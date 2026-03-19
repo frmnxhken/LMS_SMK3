@@ -28,7 +28,7 @@ const CourseDetail = () => {
         <CourseAttachmentDetail files={data?.post_files} />
         <CommentSection isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
       </div>
-      <CourseSideDetail type={type} />
+      <CourseSideDetail type={type} submission={data?.submissions?.[0]} />
     </div>
   );
 };

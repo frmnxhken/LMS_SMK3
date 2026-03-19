@@ -9,6 +9,7 @@ import {
   MdChecklist,
   MdChecklistRtl,
   MdSupervisedUserCircle,
+  MdLogout,
 } from "react-icons/md";
 import { Link, useLocation } from "react-router";
 
@@ -59,7 +60,7 @@ const menuList = [
 
 const Sidebar = ({ collapsed, onToggle, isMobileOpen, onNavigation }) => {
   const currentLocation = useLocation().pathname;
-  const { user } = useAuth();
+  const { user, logout } = useAuth();
   collapsed = isMobileOpen ? false : collapsed;
 
   return (
@@ -107,7 +108,6 @@ const Sidebar = ({ collapsed, onToggle, isMobileOpen, onNavigation }) => {
               return (
                 <li
                   key={menu.label}
-                  title={collapsed ? menu.label : undefined}
                   className={`
                     flex items-center gap-3 rounded-lg px-3 py-2
                     cursor-pointer hover:bg-gray-100
@@ -129,6 +129,14 @@ const Sidebar = ({ collapsed, onToggle, isMobileOpen, onNavigation }) => {
                 </li>
               );
             })}
+          <li
+            onClick={logout}
+            className={`flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-gray-100
+                    ${collapsed ? "justify-center" : ""}`}
+          >
+            <MdLogout className="text-lg text-dark" />
+            {!collapsed && <p className="text-sm font-medium">Logout</p>}
+          </li>
         </ul>
       </div>
     </aside>

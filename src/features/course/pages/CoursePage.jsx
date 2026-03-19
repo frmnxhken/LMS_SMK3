@@ -11,13 +11,13 @@ import CoursePostCard from "../ui/CoursePostCard";
 const CoursePage = () => {
   const { id_class } = useParams();
   const { user } = useAuth();
-  const { data: posts } = useCoursePosts(id_class);
+  const { data } = useCoursePosts(id_class);
   const actionMenus = useCourseAction();
 
   return (
     <>
       <div className="max-w-[980px] container mx-auto p-6">
-        <CourseBanner name="Sementara" />
+        <CourseBanner name={data?.[0].subject} />
         <div className="flex flex-col sm:flex-row justify-between gap-6 mt-4">
           <div className="w-60 hidden sm:block"></div>
           <div className="w-full space-y-4">
@@ -28,7 +28,7 @@ const CoursePage = () => {
                 align="left"
               />
             )}
-            {posts?.map((post) => (
+            {data?.[0].posts?.map((post) => (
               <CoursePostCard {...post} />
             ))}
           </div>
