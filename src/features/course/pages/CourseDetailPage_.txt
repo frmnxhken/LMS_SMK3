@@ -1,0 +1,160 @@
+import React, { useState } from "react";
+import FileCard from "@/shared/ui/cards/FileCard";
+import { IoTimeOutline, IoChatbubbleOutline } from "react-icons/io5";
+import AttachmentCard from "../ui/AttachmentCard";
+import { useParams } from "react-router";
+import { useAuth } from "@/app/contexts/AuthContext";
+import Button from "@/shared/ui/buttons/Button";
+import CommentCard from "../ui/CommentCard";
+import useCoursePostDetail from "../hooks/useCoursePostDetail";
+import IconConfig from "../hooks/useCourseConfig";
+
+const CourseDetail = () => {
+  const { user } = useAuth();
+  const { id_class, id_post } = useParams();
+  const { data } = useCoursePostDetail(id_class, id_post);
+  const type = data?.type;
+  const config = IconConfig(type);
+
+  const [isCommentOpen, setIsCommentOpen] = useState(false);
+
+  const toggleComments = () => setIsCommentOpen(!isCommentOpen);
+
+  return (
+    <div
+      className={`container relative ${type === "assignment" ? "max-w-[1080px]" : "max-w-[780px]"} mx-auto py-6 px-4 flex flex-col sm:flex-row gap-4 justify-between`}
+    >
+      <div className="w-full">
+        <div className="flex items-start gap-4">
+          <div
+            className={`p-3 rounded-full ${config.bg} ${config.text} transition-colors group-hover:bg-opacity-80`}
+          >
+            <config.icon size={24} />
+          </div>
+
+          <div className="w-full">
+            <div>
+              <span
+                className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${config.bg} ${config.text}`}
+              >
+                {config.label}
+              </span>
+            </div>
+
+            <div>
+              <h1 className="text-xl font-semibold text-text-heading mt-1">
+                {data?.title}
+              </h1>
+              <p>{data?.content}</p>
+            </div>
+
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full gap-2">
+              <div className="flex items-center gap-4 text-sm text-text-muted mt-1">
+                <IoTimeOutline />
+                <span>{data?.created_at}</span>
+                <button
+                  onClick={toggleComments}
+                  className="flex sm:hidden items-center gap-1 text-sm text-primary font-semibold hover:text-blue-700 transition-colors cursor-pointer"
+                >
+                  <IoChatbubbleOutline />
+                  Lihat komentar
+                </button>
+                <span className="hidden sm:flex items-center gap-1 text-sm text-primary font-semibold hover:text-blue-700 transition-colors">
+                  <IoChatbubbleOutline />
+                  Lihat komentar
+                </span>
+              </div>
+              {type === "assignment" && (
+                <p className="text-xs font-bold text-orange-600 bg-orange-50 px-3 py-1 rounded-full">
+                  Tenggat: 15 Mar 2026
+                </p>
+              )}
+            </div>
+          </div>
+        </div>
+
+        <div className="hidden sm:flex items-center gap-3 py-6">
+          <img
+            className="w-[40px] h-[40px] rounded-full object-cover"
+            src="https://pbs.twimg.com/media/GM-K29qaoAAmXky?format=jpg&name=medium"
+            alt="profile"
+          />
+          <input
+            type="text"
+            placeholder="Tambahkan komentar kelas..."
+            className="flex-1 border border-app-border rounded-full px-4 py-2 text-sm focus:ring-1 focus:ring-primary outline-none transition-all"
+          />
+        </div>
+
+        <div className="py-6">
+          <h2 className="text-text-heading font-bold text-lg mb-4">Lampiran</h2>
+          <div className="grid grid-cols-2 gap-3">
+            {data?.post_files.map((file, index) => (
+              <FileCard key={index} {...file} isDeletable={false} />
+            ))}
+          </div>
+        </div>
+
+        <div
+          className={`fixed inset-0 bg-black/50 z-[60] transition-opacity duration-300 lg:hidden ${
+            isCommentOpen ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
+          onClick={() => setIsCommentOpen(false)}
+        />
+
+        <div
+          className={`
+    fixed inset-x-0 bottom-0 z-[70] bg-white rounded-t-2xl shadow-2xl transition-transform duration-300
+    h-[80vh] p-6
+    ${isCommentOpen ? "translate-y-0" : "translate-y-full"}
+    lg:relative lg:translate-y-0 lg:h-auto lg:px-0 lg:py-6 lg:border-t lg:border-gray-100 lg:shadow-none lg:z-0 lg:rounded-none
+  `}
+        >
+          <div
+            className="w-12 h-1.5 bg-gray-300 rounded-full mx-auto mb-6 lg:hidden cursor-pointer"
+            onClick={() => setIsCommentOpen(false)}
+          />
+
+          <div className="hidden sm:flex items-center gap-2 mb-6">
+            <IoChatbubbleOutline className="text-text-muted" size={20} />
+            <h2 className="text-text-heading font-bold text-lg">
+              3 Komentar Kelas
+            </h2>
+          </div>
+
+          <div className="relative h-full">
+            <div className="space-y-6 overflow-y-auto lg:overflow-visible max-h-[64vh] lg:max-h-none pb-12">
+              {[1, 2, 3, 4, 5].map((_, index) => (
+                <CommentCard key={index} />
+              ))}
+            </div>
+
+            <div className="block sm:hidden absolute w-full bottom-0 flex items-center gap-3 py-6">
+              <img
+                className="w-[40px] h-[40px] rounded-full object-cover"
+                src="https://pbs.twimg.com/media/GM-K29qaoAAmXky?format=jpg&name=medium"
+                alt="profile"
+              />
+              <input
+                type="text"
+                placeholder="Tambahkan komentar kelas..."
+                className="w-full bg-app-surface border border-app-border rounded-full px-4 py-2 text-sm focus:ring-1 focus:ring-primary outline-none transition-all"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      {type === "assignment" && (
+        <div className="sticky sm:relative bottom-0 w-full sm:w-[40%] pt-4 sm:pt-0">
+          {user.role === "student" ? (
+            <AttachmentCard />
+          ) : (
+            <Button className="w-full">Lihat Pengumpulan</Button>
+          )}
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default CourseDetail;

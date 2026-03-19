@@ -1,0 +1,27 @@
+[
+  {
+    "title": "Dasar-Dasar Pengembangan Perangkat Lunak",
+    "teacher": "Bapak Budi Santoso, S.Kom",
+    "color": "text-blue-400"
+  },
+  {
+    "title": "Pemrograman Berorientasi Objek (PBO)",
+    "teacher": "Ibu Siti Aminah, M.Pd",
+    "color": "text-purple-400"
+  },
+  {
+    "title": "Pemrograman Web dan Perangkat Bergerak",
+    "teacher": "Bapak Ahmad Fauzi, S.Pd",
+    "color": "text-orange-400"
+  },
+  {
+    "title": "Basis Data dan Manajemen Informasi",
+    "teacher": "Ibu Laila Sari, S.T",
+    "color": "text-emerald-400"
+  },
+  {
+    "title": "Produk Kreatif dan Kewirausahaan (RPL)",
+    "teacher": "Bapak Hadi Pratama, M.Kom",
+    "color": "text-pink-400"
+  }
+]

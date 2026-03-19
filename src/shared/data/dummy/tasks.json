@@ -1,0 +1,27 @@
+[
+  {
+    "task": "Membuat CRUD Inventaris Barang dengan Flask & PyMySQL",
+    "due": "2026-03-12",
+    "color": "bg-blue-500"
+  },
+  {
+    "task": "Slicing UI Design Landing Page Sekolah ke Tailwind CSS",
+    "due": "2026-03-08",
+    "color": "bg-rose-400"
+  },
+  {
+    "task": "Implementasi Relasi Database One-to-Many pada Project Perpus",
+    "due": "2026-03-07",
+    "color": "bg-red-500"
+  },
+  {
+    "task": "Testing & Debugging API Endpoints menggunakan Postman",
+    "due": "2026-03-08",
+    "color": "bg-green-500"
+  },
+  {
+    "task": "Integrasi Library Scikit-Learn untuk Sistem Rekomendasi",
+    "due": "2026-03-25",
+    "color": "bg-amber-500"
+  }
+]

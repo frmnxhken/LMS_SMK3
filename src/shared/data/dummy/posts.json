@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "type": "material",
+    "title": "Pengenalan Arsitektur React dan Virtual DOM",
+    "date": "12 Oct 2025"
+  },
+  {
+    "id": 2,
+    "type": "assignment",
+    "title": "Membuat Komponen Card dengan Tailwind v4",
+    "date": "14 Oct 2025",
+    "category": "Tugas Praktikum"
+  },
+  {
+    "id": 3,
+    "type": "material",
+    "title": "Deep Dive: React Hooks (useState & useEffect)",
+    "date": "07 Mar 2026"
+  },
+  {
+    "id": 5,
+    "type": "material",
+    "title": "Implementasi Basis Data Relasional dengan MySQL",
+    "date": "08 Mar 2026"
+  }
+]
