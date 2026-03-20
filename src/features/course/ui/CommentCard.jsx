@@ -1,6 +1,7 @@
+import { formatDateDMY } from "@/shared/lib/formatDate";
 import React from "react";
 
-const CommentCard = () => {
+const CommentCard = ({ name, message, created_at }) => {
   return (
     <div className="flex gap-4">
       <img
@@ -10,13 +11,12 @@ const CommentCard = () => {
       />
       <div className="flex-1">
         <div className="flex items-center gap-2">
-          <h4 className="text-sm font-bold text-text-heading">Aralie</h4>
-          <span className="text-[11px] text-text-muted">10 Mar 2026</span>
+          <h4 className="text-sm font-bold text-text-heading">{name}</h4>
+          <span className="text-[11px] text-text-muted">
+            {formatDateDMY(created_at)}
+          </span>
         </div>
-        <p className="text-sm text-text-body mt-1 font-medium">
-          Pak, untuk lampiran yang nomor 2 itu formatnya harus PDF atau boleh
-          gambar ya?
-        </p>
+        <p className="text-sm text-text-body mt-1 font-medium">{message}</p>
       </div>
     </div>
   );

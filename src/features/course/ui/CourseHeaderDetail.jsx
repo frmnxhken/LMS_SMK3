@@ -2,6 +2,7 @@ import React from "react";
 import IconConfig from "../hooks/useCourseConfig";
 import { IoTimeOutline, IoChatbubbleOutline } from "react-icons/io5";
 import { formatDateDMY } from "@/shared/lib/formatDate";
+import Badge from "@/shared/ui/buttons/Badge";
 
 const CourseHeaderDetail = ({
   type,
@@ -47,15 +48,9 @@ const CourseHeaderDetail = ({
               <IoChatbubbleOutline />
               Lihat komentar
             </button>
-            <span className="hidden sm:flex items-center gap-1 text-sm text-primary font-semibold hover:text-blue-700 transition-colors">
-              <IoChatbubbleOutline />
-              Lihat komentar
-            </span>
           </div>
           {type === "assignment" && (
-            <p className="text-xs font-bold text-orange-600 bg-orange-50 px-3 py-1 rounded-full">
-              Tenggat: {due}
-            </p>
+            <Badge variant="warning" label={"BERAKHIR:" + formatDateDMY(due)} />
           )}
         </div>
       </div>

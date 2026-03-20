@@ -1,8 +1,17 @@
 import React, { useState } from "react";
 import CommentCard from "./CommentCard";
 import { IoTimeOutline, IoChatbubbleOutline } from "react-icons/io5";
+import useCourseComments from "../hooks/useCourseComments";
+import { useParams } from "react-router";
 
 const CommentSection = ({ isOpen, toggle }) => {
+  const { id_class, id_post } = useParams();
+  const { data: comments, isLoading } = useCourseComments(id_class, id_post);
+  const { message, handleInput, handleSubmit } = useCourseComments(
+    id_class,
+    id_post,
+  );
+
   return (
     <>
       <div
@@ -34,8 +43,13 @@ const CommentSection = ({ isOpen, toggle }) => {
 
         <div className="relative h-full">
           <div className="space-y-6 overflow-y-auto lg:overflow-visible max-h-[64vh] lg:max-h-none pb-12">
-            {[1, 2, 3, 4, 5].map((_, index) => (
-              <CommentCard key={index} />
+            {comments?.map((comment, index) => (
+              <CommentCard
+                key={index}
+                name={comment?.user?.name}
+                message={comment?.message}
+                created_at={comment?.created_at}
+              />
             ))}
           </div>
 
