@@ -1,12 +1,14 @@
 import React from "react";
 import { IoClipboard, IoTimeOutline } from "react-icons/io5";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { formatDateDMY } from "@/shared/lib/formatDate";
 import Button from "@/shared/ui/buttons/Button";
 import { useAuth } from "@/app/contexts/AuthContext";
 
-const AssignmentCard = ({ title, due, created_at }) => {
+const AssignmentCard = ({ id, title, due, created_at }) => {
+  const navigate = useNavigate();
   const { user } = useAuth();
+
   return (
     <div className="bg-app-surface border border-app-border rounded-xl p-4 cursor-pointer hover:bg-app-bg">
       <div className="flex flex-col sm:flex-row items-start gap-4 justify-between">
@@ -33,7 +35,11 @@ const AssignmentCard = ({ title, due, created_at }) => {
             </div>
           </div>
         </div>
-        {user.role === "teacher" && <Button>Lihat Pengumpulan</Button>}
+        {user.role === "teacher" && (
+          <Button onClick={() => navigate(`${id}/assesment`)}>
+            Lihat Pengumpulan
+          </Button>
+        )}
       </div>
     </div>
   );

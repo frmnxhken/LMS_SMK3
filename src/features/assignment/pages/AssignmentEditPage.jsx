@@ -1,6 +1,7 @@
 import React from "react";
 import { useParams } from "react-router";
 import AssignmentForm from "../ui/AssignmentForm";
+import useAssignmentEdit from "../hooks/useAssignmentEdit";
 
 const AssignmentEditPage = () => {
   const { id_class, id_post } = useParams();
@@ -11,7 +12,7 @@ const AssignmentEditPage = () => {
     handleDeleteFile,
     existingFiles,
     handleSubmit,
-  } = useMaterialEdit(id_class, id_post);
+  } = useAssignmentEdit(id_class, id_post);
   if (isLoading) return;
   return (
     <div className="container max-w-[780px] p-6 mx-auto">

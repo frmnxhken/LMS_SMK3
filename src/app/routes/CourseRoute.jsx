@@ -10,6 +10,8 @@ import MaterialCreatePage from "@/features/material/pages/MaterialCreatePage";
 import AssignmentCreatePage from "@/features/assignment/pages/AssignmentCreatePage";
 import AssignmentEditPage from "@/features/assignment/pages/AssignmentEditPage";
 import AssignmentListPage from "@/features/assignment/pages/AssignmentListPage";
+import AssesmentPage from "@/features/assesment/pages/AssesmentPage";
+import AssesmentDetailPage from "@/features/assesment/pages/AssesmentDetailPage";
 
 const CourseRoute = () => {
   return (
@@ -21,10 +23,18 @@ const CourseRoute = () => {
       <Route element={<ProtectedRoute allowedRoles={["teacher"]} />}>
         <Route path="material/create" element={<MaterialCreatePage />} />
         <Route path="assignment/create" element={<AssignmentCreatePage />} />
-        <Route path="material/edit/:id_post" element={<MaterialEditPage />} />
+        <Route path="material/:id_post/edit" element={<MaterialEditPage />} />
         <Route
-          path="assignment/edit/:id_post"
+          path="assignment/:id_post/edit"
           element={<AssignmentEditPage />}
+        />
+        <Route
+          path="assignment/:id_post/assesment"
+          element={<AssesmentPage />}
+        />
+        <Route
+          path="assignment/:id_post/assesment/:id_submission"
+          element={<AssesmentDetailPage />}
         />
       </Route>
     </Route>

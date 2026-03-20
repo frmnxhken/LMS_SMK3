@@ -19,9 +19,10 @@ export const useCourseAction = () => {
   ];
 };
 
-export const useCoursePostAction = (id_class, id) => {
+export const useCoursePostAction = (id, id_class, type) => {
   const navigate = useNavigate();
   const { handleDelete } = useCoursePostDelete(id_class, id);
+
   const onDelete = () => {
     const sure = confirm("Yakin untuk dihapus?");
     if (sure) {
@@ -33,7 +34,7 @@ export const useCoursePostAction = (id_class, id) => {
     {
       label: "Edit",
       icon: IoPencil,
-      onClick: () => navigate("material/edit/" + id),
+      onClick: () => navigate(`${type}/${id}/edit`),
     },
     {
       label: "Delete",

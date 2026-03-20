@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { deleteFile, updateAssignment } from "../api/materialApi";
+import { deleteFile, updateAssignment } from "../api/assignmentApi";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import useCoursePostDetail from "@/features/course/hooks/useCoursePostDetail";
 import { useNavigate } from "react-router";
@@ -41,10 +41,9 @@ const useAssignmentEdit = (id_class, id_post) => {
 
   const handleSubmit = (values) => {
     const formData = new FormData();
-    console.log(values);
-
     formData.append("title", values.title);
     formData.append("content", values.content);
+    formData.append("due", values.due);
     if (values.files && values.files.length > 0) {
       Array.from(values.files).forEach((file) => {
         formData.append("files[]", file);

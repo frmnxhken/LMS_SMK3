@@ -10,7 +10,7 @@ import { formatDateDMY } from "@/shared/lib/formatDate";
 const CoursePostCard = ({ id, type, title, created_at }) => {
   const { user } = useAuth();
   const { id_class } = useParams();
-  const actionMenus = useCoursePostAction(id, id_class);
+  const actionMenus = useCoursePostAction(id, id_class, type);
   const config = IconConfig(type);
 
   return (
