@@ -28,8 +28,8 @@ const CoursePage = () => {
                 align="left"
               />
             )}
-            {data?.[0].posts?.map((post) => (
-              <CoursePostCard {...post} />
+            {data?.[0].posts?.map((post, index) => (
+              <CoursePostCard key={index} {...post} />
             ))}
           </div>
         </div>

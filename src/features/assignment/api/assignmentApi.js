@@ -20,6 +20,11 @@ export const updateAssignment = async (id_class, id_post, payload) => {
   );
 };
 
+export const getAssignmentList = async (id_class) => {
+  const res = await api.get(`/class/${id_class}/assignment`);
+  return res.data;
+};
+
 export const deleteFile = async (id) => {
   const res = await api.delete(`/file/${id}`);
   return res;

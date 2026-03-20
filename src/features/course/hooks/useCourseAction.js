@@ -1,5 +1,5 @@
 import { MdBook, MdAssignment } from "react-icons/md";
-import { useNavigate, useParams } from "react-router";
+import { useNavigate } from "react-router";
 import { IoPencil, IoTrash } from "react-icons/io5";
 import useCoursePostDelete from "./useCoursePostDelete";
 
@@ -19,10 +19,15 @@ export const useCourseAction = () => {
   ];
 };
 
-export const useCoursePostAction = (id) => {
+export const useCoursePostAction = (id_class, id) => {
   const navigate = useNavigate();
-  const { id_class } = useParams();
   const { handleDelete } = useCoursePostDelete(id_class, id);
+  const onDelete = () => {
+    const sure = confirm("Yakin untuk dihapus?");
+    if (sure) {
+      handleDelete();
+    }
+  };
 
   return [
     {
@@ -33,7 +38,7 @@ export const useCoursePostAction = (id) => {
     {
       label: "Delete",
       icon: IoTrash,
-      onClick: handleDelete,
+      onClick: onDelete,
     },
   ];
 };

@@ -9,6 +9,7 @@ import MaterialEditPage from "@/features/material/pages/MaterialEditPage";
 import MaterialCreatePage from "@/features/material/pages/MaterialCreatePage";
 import AssignmentCreatePage from "@/features/assignment/pages/AssignmentCreatePage";
 import AssignmentEditPage from "@/features/assignment/pages/AssignmentEditPage";
+import AssignmentListPage from "@/features/assignment/pages/AssignmentListPage";
 
 const CourseRoute = () => {
   return (
@@ -16,6 +17,7 @@ const CourseRoute = () => {
       <Route index element={<CoursePage />} />
       <Route path="post/:id_post" element={<CourseDetail />} />
       <Route path="member" element={<MemberPage />} />
+      <Route path="assignment" element={<AssignmentListPage />} />
       <Route element={<ProtectedRoute allowedRoles={["teacher"]} />}>
         <Route path="material/create" element={<MaterialCreatePage />} />
         <Route path="assignment/create" element={<AssignmentCreatePage />} />

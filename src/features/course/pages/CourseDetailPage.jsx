@@ -10,8 +10,11 @@ import CourseSideDetail from "../ui/CourseSideDetail";
 const CourseDetail = () => {
   const { id_class, id_post } = useParams();
   const { data } = useCoursePostDetail(id_class, id_post);
-  const type = data?.type;
   const [isOpen, setIsOpen] = useState(false);
+  const type = data?.type;
+  const files = data?.post_files;
+  const submission = data?.submissions?.[0];
+  const handleToggle = () => setIsOpen(!isOpen);
 
   return (
     <div
@@ -20,15 +23,18 @@ const CourseDetail = () => {
       <div className="w-full">
         <CourseHeaderDetail
           type={type}
-          data={data}
+          title={data?.title}
+          content={data?.content}
+          created_at={data?.created_at}
+          due={data?.due}
           toggle={() => setIsOpen(!isOpen)}
         />
 
         <CommentInput />
-        <CourseAttachmentDetail files={data?.post_files} />
-        <CommentSection isOpen={isOpen} toggle={() => setIsOpen(!isOpen)} />
+        <CourseAttachmentDetail files={files} />
+        <CommentSection isOpen={isOpen} toggle={handleToggle} />
       </div>
-      <CourseSideDetail type={type} submission={data?.submissions?.[0]} />
+      <CourseSideDetail type={type} submission={submission} />
     </div>
   );
 };

@@ -47,7 +47,12 @@ const HomeCourseList = ({ courses }) => {
       >
         {courses?.map((course, index) => (
           <SwiperSlide key={index}>
-            <CourseCard {...course} index={index} />
+            <CourseCard
+              id={course.id}
+              subject={course.subject}
+              teacher={course.teacher}
+              index={index}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

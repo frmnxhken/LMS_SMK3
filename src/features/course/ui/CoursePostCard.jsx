@@ -6,14 +6,12 @@ import { useAuth } from "@/app/contexts/AuthContext";
 import IconConfig from "../hooks/useCourseConfig";
 import { useCoursePostAction } from "../hooks/useCourseAction";
 import { formatDateDMY } from "@/shared/lib/formatDate";
-import useCoursePostDelete from "../hooks/useCoursePostDelete";
 
 const CoursePostCard = ({ id, type, title, created_at }) => {
   const { user } = useAuth();
   const { id_class } = useParams();
-  const actionMenus = useCoursePostAction(id);
+  const actionMenus = useCoursePostAction(id, id_class);
   const config = IconConfig(type);
-  const { handleDelete } = useCoursePostDelete(id_class, id);
 
   return (
     <div className="bg-app-surface border border-app-border rounded-xl p-4 cursor-pointer hover:bg-app-bg">
@@ -51,7 +49,6 @@ const CoursePostCard = ({ id, type, title, created_at }) => {
           <Dropdown
             trigger={<IoEllipsisVertical size={18} />}
             menuItems={actionMenus}
-            onDelete={() => handleDelete}
             align="right"
           />
         )}

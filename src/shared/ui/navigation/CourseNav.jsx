@@ -23,7 +23,7 @@ const CourseNav = () => {
     <div className="border-b border-app-border p-2 px-6 sticky top-18 z-20 bg-white">
       <ul className="flex justify-evenly sm:justify-start space-x-12">
         {menuCourse.map((menu, index) => (
-          <li>
+          <li key={index}>
             <NavLink
               to={menu.path}
               end={menu.path === ""}
