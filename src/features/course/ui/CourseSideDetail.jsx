@@ -11,7 +11,10 @@ const CourseSideDetail = ({ type, submission }) => {
       {type === "assignment" && (
         <div className="sticky sm:relative bottom-0 w-full sm:w-[40%] pt-4 sm:pt-0">
           {user.role === "student" ? (
-            <AttachmentCard status={submission?.status} />
+            <AttachmentCard
+              status={submission?.status}
+              score={submission?.score}
+            />
           ) : (
             <Button className="w-full">Lihat Pengumpulan</Button>
           )}

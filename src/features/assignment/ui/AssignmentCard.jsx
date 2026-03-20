@@ -36,7 +36,7 @@ const AssignmentCard = ({ id, title, due, created_at }) => {
           </div>
         </div>
         {user.role === "teacher" && (
-          <Button onClick={() => navigate(`${id}/assesment`)}>
+          <Button onClick={() => navigate(`${id}/assessment`)}>
             Lihat Pengumpulan
           </Button>
         )}

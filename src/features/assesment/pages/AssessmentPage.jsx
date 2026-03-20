@@ -1,9 +1,9 @@
 import React from "react";
 import AssesmentCard from "../ui/AssesmentCard";
-import useAssesment from "../hooks/useAssesment";
+import useAssesment from "../hooks/useAssessment";
 import { useParams } from "react-router";
 
-const AssesmentPage = () => {
+const AssessmentPage = () => {
   const { id_class, id_post } = useParams();
   const { data } = useAssesment(id_class, id_post);
   return (
@@ -24,4 +24,4 @@ const AssesmentPage = () => {
   );
 };
 
-export default AssesmentPage;
+export default AssessmentPage;

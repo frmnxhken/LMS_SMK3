@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { getlistSubmissionStudent } from "../api/assesmentApi";
+import { getlistSubmissionStudent } from "../api/assessmentApi";
 
-const useAssesment = (id_class, id_post) => {
+const useAssessment = (id_class, id_post) => {
   return useQuery({
     queryKey: ["assesmentList", id_class, id_post],
     queryFn: ({ queryKey }) => {
@@ -12,4 +12,4 @@ const useAssesment = (id_class, id_post) => {
   });
 };
 
-export default useAssesment;
+export default useAssessment;

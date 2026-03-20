@@ -4,8 +4,9 @@ import { IoClose } from "react-icons/io5";
 import { MdInsertDriveFile } from "react-icons/md";
 import useCourseSubmission from "../hooks/useCourseSubmission";
 import { useParams } from "react-router";
+import Badge from "@/shared/ui/buttons/Badge";
 
-const AttachmentCard = ({ status }) => {
+const AttachmentCard = ({ status, score }) => {
   const { id_class, id_post } = useParams();
   const { files, handleFileChange, handleRemoveFile, handleSubmit } =
     useCourseSubmission(id_class, id_post);
@@ -15,9 +16,16 @@ const AttachmentCard = ({ status }) => {
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-xl font-medium">Tugas</h2>
         <p className="text-sm text-text-muted">
-          {status === "pending" ? "Ditugaskan" : "Diserahkan"}
+          {status === "pending" && "Ditugaskan"}
+          {status === "done" && "Diserahkan"}
+          {status === "graded" && (
+            <Badge variant="success" label="telah diniliai" />
+          )}
         </p>
       </div>
+      {status === "graded" && (
+        <h3 className="text-xl font-bold text-center py-4">{score}/100</h3>
+      )}
       {status === "pending" && (
         <form onSubmit={handleSubmit}>
           {files?.length > 0 && (

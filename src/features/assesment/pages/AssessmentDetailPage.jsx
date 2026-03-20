@@ -4,14 +4,22 @@ import FormInput from "@/shared/ui/forms/FormInput";
 import React from "react";
 import { IoTimeOutline } from "react-icons/io5";
 import { useParams } from "react-router";
-import useAssesmentDetail from "../hooks/useAssesmentDetail";
+import useAssesmentDetail from "../hooks/useAssessmentDetail";
 import { formatDateDMY } from "@/shared/lib/formatDate";
+import useGradeSubmission from "../hooks/useGradeSubmission";
 const image =
   "https://cdn.idn.media/idnaccount/avatar/500/71e9df185dcc84e99ddf1dc97cc37467.webp?v=1768211620";
 
-const AssesmentDetailPage = () => {
-  const { id_class, id_submission } = useParams();
+const AssessmentDetailPage = () => {
+  const { id_class, id_post, id_submission } = useParams();
   const { data, isLoading } = useAssesmentDetail(id_class, id_submission);
+  const { score, handleInput, handleSubmit, errors } = useGradeSubmission(
+    id_class,
+    id_post,
+    id_submission,
+    data?.score,
+  );
+
   const files = data?.submission_files;
 
   return (
@@ -47,12 +55,20 @@ const AssesmentDetailPage = () => {
       </div>
       <div className="w-full sm:w-80">
         <div className="border border-app-border p-4 rounded-xl">
-          <FormInput label="0 - 100" type="number" min="0" max="100" />
-          <Button className="w-full mt-2">Nilai</Button>
+          <form onSubmit={handleSubmit} method="post">
+            <FormInput
+              value={score}
+              onInput={handleInput}
+              label="0 - 100"
+              type="number"
+              name="score"
+            />
+            <Button className="w-full mt-2">Nilai</Button>
+          </form>
         </div>
       </div>
     </div>
   );
 };
 
-export default AssesmentDetailPage;
+export default AssessmentDetailPage;

@@ -10,8 +10,8 @@ import MaterialCreatePage from "@/features/material/pages/MaterialCreatePage";
 import AssignmentCreatePage from "@/features/assignment/pages/AssignmentCreatePage";
 import AssignmentEditPage from "@/features/assignment/pages/AssignmentEditPage";
 import AssignmentListPage from "@/features/assignment/pages/AssignmentListPage";
-import AssesmentPage from "@/features/assesment/pages/AssesmentPage";
-import AssesmentDetailPage from "@/features/assesment/pages/AssesmentDetailPage";
+import AssessmentPage from "@/features/assesment/pages/AssessmentPage";
+import AssessmentDetailPage from "@/features/assesment/pages/AssessmentDetailPage";
 
 const CourseRoute = () => {
   return (
@@ -29,12 +29,12 @@ const CourseRoute = () => {
           element={<AssignmentEditPage />}
         />
         <Route
-          path="assignment/:id_post/assesment"
-          element={<AssesmentPage />}
+          path="assignment/:id_post/assessment"
+          element={<AssessmentPage />}
         />
         <Route
-          path="assignment/:id_post/assesment/:id_submission"
-          element={<AssesmentDetailPage />}
+          path="assignment/:id_post/assessment/:id_submission"
+          element={<AssessmentDetailPage />}
         />
       </Route>
     </Route>
