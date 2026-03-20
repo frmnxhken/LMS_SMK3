@@ -4,10 +4,12 @@ import MainRoute from "./routes/MainRoute";
 import LoginPage from "@/pages/public/LoginPage";
 import ProtectedRoute from "./routes/ProtectedRoute";
 import GuestRoute from "./routes/GuestRoute";
+import ScrollToTop from "@/shared/lib/ScrollToTop";
 
 const App = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
         <Route
           element={<ProtectedRoute allowedRoles={["student", "teacher"]} />}

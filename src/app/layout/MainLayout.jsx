@@ -24,7 +24,7 @@ const MainLayout = () => {
         isMobileOpen={isMobileOpen}
       />
 
-      <main className="flex-1 overflow-y-auto relative">
+      <main id="app-container" className="flex-1 overflow-y-auto relative">
         <Navbar onMenuClick={() => toggleMobileSidebar()} />
         <Outlet />
       </main>
