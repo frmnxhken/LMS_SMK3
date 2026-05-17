@@ -1,5 +1,5 @@
 import { useAuth } from "@/app/contexts/AuthContext";
-import React from "react";
+import React, { useState } from "react";
 import {
   MdDashboard,
   MdAssignment,
@@ -13,6 +13,8 @@ import {
   MdOutlineDoorBack,
   MdOutlineManageAccounts,
   MdCalendarViewMonth,
+  MdDns,
+  MdExpandMore,
 } from "react-icons/md";
 import { Link, useLocation } from "react-router";
 
@@ -22,6 +24,12 @@ const menuList = [
     icon: MdDashboard,
     path: "/",
     roles: ["teacher", "student"],
+  },
+  {
+    label: "Bank Soal",
+    icon: MdDns,
+    roles: ["teacher"],
+    path: "/question-bank",
   },
   {
     label: "Tugas",
@@ -89,6 +97,14 @@ const Sidebar = ({ collapsed, onToggle, isMobileOpen, onNavigation }) => {
   const currentLocation = useLocation().pathname;
   const { user, logout } = useAuth();
   collapsed = isMobileOpen ? false : collapsed;
+  const [openMenus, setOpenMenus] = useState({});
+
+  const toggleSubMenu = (label) => {
+    setOpenMenus((prev) => ({
+      ...prev,
+      [label]: !prev[label],
+    }));
+  };
 
   return (
     <aside
@@ -126,36 +142,74 @@ const Sidebar = ({ collapsed, onToggle, isMobileOpen, onNavigation }) => {
         </div>
 
         {/* Menu */}
-        <ul className="space-y-4 px-2">
+        <ul className="space-y-2 px-2 overflow-y-auto">
           {menuList
             .filter((item) => item.roles.includes(user?.role))
             .map((menu) => {
               const Icon = menu.icon;
+              const hasChildren = menu.children && menu.children.length > 0;
+              const isOpen = openMenus[menu.label];
 
               return (
-                <li
-                  key={menu.label}
-                  className={`
-                    flex items-center gap-3 rounded-lg px-3 py-2
-                    cursor-pointer hover:bg-gray-100
-                    ${collapsed ? "justify-center" : ""}
+                <React.Fragment key={menu.label}>
+                  <li
+                    className={`
+                      flex items-center justify-between rounded-lg px-3 py-2
+                      cursor-pointer hover:bg-gray-100
+                      ${collapsed ? "justify-center" : ""}
+                      ${currentLocation === menu.path ? "bg-blue-50 text-blue-500" : "text-dark"}
                     `}
-                >
-                  <Icon
-                    className={`text-lg ${currentLocation === menu.path ? "text-blue-500" : "text-dark"}`}
-                  />
-                  {!collapsed && (
-                    <Link
-                      onClick={onNavigation}
-                      to={menu.path}
-                      className={`text-sm font-medium ${currentLocation === menu.path ? "text-blue-500" : "text-dark"}`}
-                    >
-                      {menu.label}
-                    </Link>
+                    onClick={() =>
+                      hasChildren && !collapsed
+                        ? toggleSubMenu(menu.label)
+                        : null
+                    }
+                  >
+                    <div className="flex items-center gap-3">
+                      <Icon className="text-lg" />
+                      {!collapsed &&
+                        (hasChildren ? (
+                          <span className="text-sm font-medium">
+                            {menu.label}
+                          </span>
+                        ) : (
+                          <Link
+                            onClick={onNavigation}
+                            to={menu.path}
+                            className="text-sm font-medium"
+                          >
+                            {menu.label}
+                          </Link>
+                        ))}
+                    </div>
+
+                    {/* Icon Panah jika ada sub-menu */}
+                    {!collapsed && hasChildren && (
+                      <MdExpandMore
+                        className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
+                      />
+                    )}
+                  </li>
+
+                  {!collapsed && hasChildren && isOpen && (
+                    <ul className="ml-9 mt-1 space-y-1">
+                      {menu.children.map((child) => (
+                        <li key={child.path}>
+                          <Link
+                            to={child.path}
+                            onClick={onNavigation}
+                            className="block py-2 px-3 text-sm"
+                          >
+                            {child.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
                   )}
-                </li>
+                </React.Fragment>
               );
             })}
+
           <li
             onClick={logout}
             className={`flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-gray-100
