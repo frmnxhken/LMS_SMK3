@@ -7,7 +7,7 @@ import CommentInput from "../ui/CommentInput";
 import CourseAttachmentDetail from "../ui/CourseAttachmentDetail";
 import CourseSideDetail from "../ui/CourseSideDetail";
 
-const CourseDetail = () => {
+export const CourseDetail = () => {
   const { id_class, id_post } = useParams();
   const { data, isLoading } = useCoursePostDetail(id_class, id_post);
   const [isOpen, setIsOpen] = useState(false);
@@ -42,5 +42,3 @@ const CourseDetail = () => {
     </div>
   );
 };
-
-export default CourseDetail;

@@ -3,7 +3,7 @@ import AssignmentCard from "../ui/AssignmentCard";
 import { useParams } from "react-router";
 import useAssignmentList from "../hooks/useAssignmentList";
 
-const AssignmentListPage = () => {
+export const AssignmentListPage = () => {
   const { id_class } = useParams();
   const { data, isLoading } = useAssignmentList(id_class);
 
@@ -17,5 +17,3 @@ const AssignmentListPage = () => {
     </div>
   );
 };
-
-export default AssignmentListPage;

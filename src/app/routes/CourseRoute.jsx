@@ -4,16 +4,15 @@ import { Route } from "react-router";
 import CourseLayout from "../layout/CourseLayout";
 import ProtectedRoute from "./ProtectedRoute";
 
-import CoursePage from "@/features/course/pages/CoursePage";
-import CourseDetail from "@/features/course/pages/CourseDetailPage";
-import MemberPage from "@/features/member/pages/MemberPage";
-import MaterialEditPage from "@/features/material/pages/MaterialEditPage";
-import MaterialCreatePage from "@/features/material/pages/MaterialCreatePage";
-import AssignmentCreatePage from "@/features/assignment/pages/AssignmentCreatePage";
-import AssignmentEditPage from "@/features/assignment/pages/AssignmentEditPage";
-import AssignmentListPage from "@/features/assignment/pages/AssignmentListPage";
-import AssessmentPage from "@/features/assesment/pages/AssessmentPage";
-import AssessmentDetailPage from "@/features/assesment/pages/AssessmentDetailPage";
+import { CoursePage, CourseDetail } from "@/features/course";
+import { MemberPage } from "@/features/member";
+import { MaterialCreatePage, MaterialEditPage } from "@/features/material";
+import {
+  AssignmentCreatePage,
+  AssignmentEditPage,
+  AssignmentListPage,
+} from "@/features/assignment";
+import { AssessmentPage, AssessmentDetailPage } from "@/features/assessment";
 
 const CourseRoute = () => {
   return (

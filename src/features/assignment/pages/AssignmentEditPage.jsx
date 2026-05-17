@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import AssignmentForm from "../ui/AssignmentForm";
 import useAssignmentEdit from "../hooks/useAssignmentEdit";
 
-const AssignmentEditPage = () => {
+export const AssignmentEditPage = () => {
   const { id_class, id_post } = useParams();
   const {
     data,
@@ -28,5 +28,3 @@ const AssignmentEditPage = () => {
     </div>
   );
 };
-
-export default AssignmentEditPage;

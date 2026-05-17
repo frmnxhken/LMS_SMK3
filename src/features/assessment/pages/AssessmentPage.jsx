@@ -3,7 +3,7 @@ import AssesmentCard from "../ui/AssesmentCard";
 import useAssesment from "../hooks/useAssessment";
 import { useParams } from "react-router";
 
-const AssessmentPage = () => {
+export const AssessmentPage = () => {
   const { id_class, id_post } = useParams();
   const { data } = useAssesment(id_class, id_post);
   return (
@@ -23,5 +23,3 @@ const AssessmentPage = () => {
     </div>
   );
 };
-
-export default AssessmentPage;

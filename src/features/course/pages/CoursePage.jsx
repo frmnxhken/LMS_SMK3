@@ -8,7 +8,7 @@ import CourseBanner from "../ui/CourseBanner";
 import { useCourseAction } from "../hooks/useCourseAction";
 import CoursePostCard from "../ui/CoursePostCard";
 
-const CoursePage = () => {
+export const CoursePage = () => {
   const { id_class } = useParams();
   const { user } = useAuth();
   const { data } = useCoursePosts(id_class);
@@ -37,5 +37,3 @@ const CoursePage = () => {
     </>
   );
 };
-
-export default CoursePage;

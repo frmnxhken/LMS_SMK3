@@ -3,7 +3,7 @@ import MaterialForm from "../ui/MaterialForm";
 import { useParams } from "react-router";
 import useMaterialEdit from "../hooks/useMaterialEdit";
 
-const MaterialEditPage = () => {
+export const MaterialEditPage = () => {
   const { id_class, id_post } = useParams();
   const {
     data,
@@ -29,5 +29,3 @@ const MaterialEditPage = () => {
     </div>
   );
 };
-
-export default MaterialEditPage;

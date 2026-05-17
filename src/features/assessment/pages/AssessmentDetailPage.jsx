@@ -10,7 +10,7 @@ import useGradeSubmission from "../hooks/useGradeSubmission";
 const image =
   "https://cdn.idn.media/idnaccount/avatar/500/71e9df185dcc84e99ddf1dc97cc37467.webp?v=1768211620";
 
-const AssessmentDetailPage = () => {
+export const AssessmentDetailPage = () => {
   const { id_class, id_post, id_submission } = useParams();
   const { data, isLoading } = useAssesmentDetail(id_class, id_submission);
   const { score, handleInput, handleSubmit, errors } = useGradeSubmission(
@@ -70,5 +70,3 @@ const AssessmentDetailPage = () => {
     </div>
   );
 };
-
-export default AssessmentDetailPage;

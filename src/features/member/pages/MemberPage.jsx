@@ -3,7 +3,7 @@ import MemberCard from "../ui/MemberCard";
 import { useParams } from "react-router";
 import useMembers from "../hooks/useMembers";
 
-const MemberPage = () => {
+export const MemberPage = () => {
   const { id_class } = useParams();
   const { data, isLoading } = useMembers(id_class);
 
@@ -27,5 +27,3 @@ const MemberPage = () => {
     </div>
   );
 };
-
-export default MemberPage;

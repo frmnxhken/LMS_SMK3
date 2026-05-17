@@ -3,7 +3,7 @@ import { useParams } from "react-router";
 import useAssignmentCreate from "../hooks/useAssignmentCreate";
 import AssignmentForm from "../ui/AssignmentForm";
 
-const AssignmentCreatePage = () => {
+export const AssignmentCreatePage = () => {
   const { id_class } = useParams();
   const { handleSubmit, isLoading, errors } = useAssignmentCreate(id_class);
   return (
@@ -17,5 +17,3 @@ const AssignmentCreatePage = () => {
     </div>
   );
 };
-
-export default AssignmentCreatePage;

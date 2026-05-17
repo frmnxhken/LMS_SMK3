@@ -3,7 +3,7 @@ import MaterialForm from "../ui/MaterialForm";
 import { useParams } from "react-router";
 import useMaterialCreate from "../hooks/useMaterialCreate";
 
-const MaterialCreatePage = () => {
+export const MaterialCreatePage = () => {
   const { id_class } = useParams();
   const { handleSubmit, isLoading, errors } = useMaterialCreate(id_class);
 
@@ -15,5 +15,3 @@ const MaterialCreatePage = () => {
     </div>
   );
 };
-
-export default MaterialCreatePage;
