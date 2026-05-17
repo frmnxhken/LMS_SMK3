@@ -6,19 +6,16 @@ import {
   MdChevronLeft,
   MdChevronRight,
   MdCalendarMonth,
-  MdChecklist,
   MdChecklistRtl,
   MdSupervisedUserCircle,
   MdLogout,
+  MdNewspaper,
+  MdOutlineDoorBack,
+  MdOutlineManageAccounts,
+  MdCalendarViewMonth,
 } from "react-icons/md";
 import { Link, useLocation } from "react-router";
 
-// const menuList = [
-//   { label: "Beranda", icon: MdDashboard, path: "/" },
-//   { label: "Materi", icon: MdMenuBook, path: "/material" },
-//   { label: "Penilaian", icon: MdAssignment, path: "/assesment" },
-//   { label: "Laporan", icon: MdBarChart, path: "/report" },
-// ];
 const menuList = [
   {
     label: "Beranda",
@@ -30,7 +27,7 @@ const menuList = [
     label: "Tugas",
     icon: MdAssignment,
     path: "/task",
-    roles: ["teacher", "student"],
+    roles: ["student"],
   },
   {
     label: "Kalender",
@@ -45,15 +42,45 @@ const menuList = [
     roles: ["student"],
   },
   {
+    label: "Dashboard",
+    icon: MdDashboard,
+    path: "/dashboard",
+    roles: ["admin"],
+  },
+  {
+    label: "Tahun Akademik",
+    icon: MdCalendarViewMonth,
+    path: "/dashboard/academic",
+    roles: ["admin"],
+  },
+  {
+    label: "Kelas",
+    icon: MdOutlineDoorBack,
+    path: "/dashboard/class",
+    roles: ["admin"],
+  },
+  {
     label: "Data siswa",
     icon: MdSupervisedUserCircle,
-    path: "/student",
+    path: "/dashboard/student",
     roles: ["admin"],
   },
   {
     label: "Data Guru",
     icon: MdSupervisedUserCircle,
-    path: "/teacher",
+    path: "/dashboard/teacher",
+    roles: ["admin"],
+  },
+  {
+    label: "Mata Pelajaran",
+    icon: MdNewspaper,
+    path: "/dashboard/subject",
+    roles: ["admin"],
+  },
+  {
+    label: "Pengajaran",
+    icon: MdOutlineManageAccounts,
+    path: "/dashboard/teaching-assignment",
     roles: ["admin"],
   },
 ];

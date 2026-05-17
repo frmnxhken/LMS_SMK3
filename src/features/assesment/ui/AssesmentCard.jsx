@@ -1,5 +1,5 @@
 import { formatDateDMY } from "@/shared/lib/formatDate";
-import Badge from "@/shared/ui/buttons/Badge";
+import Badge from "@/shared/ui/Feedback/Badge";
 import Button from "@/shared/ui/buttons/Button";
 import React from "react";
 import { IoTimeOutline } from "react-icons/io5";

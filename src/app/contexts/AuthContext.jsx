@@ -9,6 +9,7 @@ export const AuthProvider = ({ children }) => {
     JSON.parse(localStorage.getItem("user")),
   );
   const [token, setToken] = useState(() => localStorage.getItem("token"));
+
   const queryClient = useQueryClient();
 
   const loginMutation = useMutation({

@@ -1,11 +1,13 @@
 import React from "react";
-import { Route, Routes } from "react-router";
+import { Route } from "react-router";
+
 import MainLayout from "../layout/MainLayout";
-import CalendarPage from "@/pages/public/CalendarPage";
 import CourseRoute from "./CourseRoute";
 import ProtectedRoute from "./ProtectedRoute";
+
+import CalendarPage from "@/features/calendar/pages/CalendarPage";
 import AttendancePage from "@/features/attendance/pages/AttendancePage";
-import { HomePage } from "@/pages/public/home";
+import HomePage from "@/features/home/pages/HomePage";
 
 const MainRoute = () => {
   return (

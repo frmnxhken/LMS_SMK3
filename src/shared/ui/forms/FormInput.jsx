@@ -1,7 +1,7 @@
 import React from "react";
 
 const FormInput = ({
-  label,
+  label = null,
   id,
   type = "text",
   placeholder,
@@ -12,7 +12,7 @@ const FormInput = ({
   return (
     <div>
       {label && (
-        <label htmlFor={id} className="text-sm font-medium text-text-body">
+        <label htmlFor={id} className="text-sm font-medium text-text-body mb-2">
           {label}
         </label>
       )}
@@ -22,7 +22,7 @@ const FormInput = ({
         type={type}
         placeholder={placeholder}
         className={`
-          w-full rounded border px-3 py-2 text-sm outline-none transition mt-2
+          w-full rounded border px-3 py-2 text-sm outline-none transition
           ${feedback ? "border-red-500 focus:ring-1 focus:ring-red-500" : "border-gray-300 focus:ring-1 focus:ring-blue-500"}
           ${className}
         `}

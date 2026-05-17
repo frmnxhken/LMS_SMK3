@@ -1,5 +1,4 @@
 import React from "react";
-// import courses from "@/shared/data/dummy/courses.json";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, FreeMode } from "swiper/modules";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";

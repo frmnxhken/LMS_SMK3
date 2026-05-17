@@ -2,7 +2,7 @@ import React from "react";
 import IconConfig from "../hooks/useCourseConfig";
 import { IoTimeOutline, IoChatbubbleOutline } from "react-icons/io5";
 import { formatDateDMY } from "@/shared/lib/formatDate";
-import Badge from "@/shared/ui/buttons/Badge";
+import Badge from "@/shared/ui/Feedback/Badge";
 
 const CourseHeaderDetail = ({
   type,

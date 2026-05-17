@@ -2,6 +2,8 @@ import React from "react";
 
 const variants = {
   primary: "bg-primary text-white hover:bg-blue-600",
+  success: "bg-green-600 text-white hover:bg-green-700",
+  danger: "bg-rose-600 text-white hover:bg-rose-700",
   secondary: "bg-gray-100 text-black hover:bg-gray-200",
   outline:
     "bg-transparent border border-app-border text-black hover:bg-gray-100",

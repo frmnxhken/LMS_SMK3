@@ -4,7 +4,7 @@ import { IoClose } from "react-icons/io5";
 import { MdInsertDriveFile } from "react-icons/md";
 import useCourseSubmission from "../hooks/useCourseSubmission";
 import { useParams } from "react-router";
-import Badge from "@/shared/ui/buttons/Badge";
+import Badge from "@/shared/ui/Feedback/Badge";
 
 const AttachmentCard = ({ status, score }) => {
   const { id_class, id_post } = useParams();

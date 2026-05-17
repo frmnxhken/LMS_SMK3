@@ -1,8 +1,8 @@
 import React from "react";
-import HomeStat from "./ui/HomeStat";
-import HomeCourseList from "./ui/HomeCourseList";
-import HomeHeader from "./ui/HomeHeader";
-import useHome from "./hooks/useHome";
+import HomeHeader from "../ui/HomeHeader";
+import HomeStat from "../ui/HomeStat";
+import HomeCourseList from "../ui/HomeCourseList";
+import useHome from "../hooks/useHome";
 
 const HomePage = () => {
   const { courses, isLoading } = useHome();

@@ -1,6 +1,5 @@
 import React from "react";
 import { MdMenu } from "react-icons/md";
-import { Link } from "react-router";
 
 const imageProfile =
   "https://pbs.twimg.com/media/GM-K29qaoAAmXky?format=jpg&name=medium";
