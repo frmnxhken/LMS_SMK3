@@ -3,11 +3,11 @@ import { useAuth } from "../contexts/AuthContext";
 
 const GuestRoute = () => {
   const { user } = useAuth();
-  if (user) {
-    return <Navigate to="/" replace />;
+  if (!user) return <Outlet />;
+  if (user?.role === "admin") {
+    return <Navigate to="/dashboard" replace />;
   }
-
-  return <Outlet />;
+  return <Navigate to="/" replace />;
 };
 
 export default GuestRoute;
