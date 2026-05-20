@@ -13,6 +13,7 @@ import {
   AssignmentListPage,
 } from "@/features/assignment";
 import { AssessmentPage, AssessmentDetailPage } from "@/features/assessment";
+import ExamPage from "@/features/exam/pages/ExamPage";
 
 const CourseRoute = () => {
   return (
@@ -24,6 +25,10 @@ const CourseRoute = () => {
         <Route path="assignment" element={<AssignmentListPage />} />
       </Route>
 
+      <Route element={<ProtectedRoute allowedRoles={["student"]} />}>
+        <Route path="exam" element={<ExamPage />} />
+      </Route>
+
       <Route element={<ProtectedRoute allowedRoles={["teacher"]} />}>
         <Route path="material">
           <Route path="create" element={<MaterialCreatePage />} />
@@ -31,7 +36,7 @@ const CourseRoute = () => {
         </Route>
 
         <Route path="assignment">
-          <Route path="create" element={<AssignmentCreatePage />} />
+          <Route path=" create" element={<AssignmentCreatePage />} />
           <Route path=":id_post">
             <Route path="edit" element={<AssignmentEditPage />} />
             <Route path="assessment" element={<AssessmentPage />} />
