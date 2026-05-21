@@ -36,7 +36,7 @@ const CourseRoute = () => {
         </Route>
 
         <Route path="assignment">
-          <Route path=" create" element={<AssignmentCreatePage />} />
+          <Route path="create" element={<AssignmentCreatePage />} />
           <Route path=":id_post">
             <Route path="edit" element={<AssignmentEditPage />} />
             <Route path="assessment" element={<AssessmentPage />} />
