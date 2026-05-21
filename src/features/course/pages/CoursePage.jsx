@@ -7,17 +7,23 @@ import useCoursePosts from "../hooks/useCoursePosts";
 import CourseBanner from "../ui/CourseBanner";
 import { useCourseAction } from "../hooks/useCourseAction";
 import CoursePostCard from "../ui/CoursePostCard";
+import CoursePostCardSkeleton from "../ui/skeletons/CoursePostCardSkeleton";
+import CourseBannerSkeleton from "../ui/skeletons/CourseBannerSkeleton";
 
 export const CoursePage = () => {
   const { id_class } = useParams();
   const { user } = useAuth();
-  const { data } = useCoursePosts(id_class);
+  const { isLoading, data } = useCoursePosts(id_class);
   const actionMenus = useCourseAction();
 
   return (
     <>
       <div className="max-w-[980px] container mx-auto p-6">
-        <CourseBanner name={data?.[0].subject} />
+        {isLoading ? (
+          <CourseBannerSkeleton />
+        ) : (
+          <CourseBanner name={data?.[0].subject} />
+        )}
         <div className="flex flex-col sm:flex-row justify-between gap-6 mt-4">
           <div className="w-60 hidden sm:block"></div>
           <div className="w-full space-y-4">
@@ -28,6 +34,8 @@ export const CoursePage = () => {
                 align="left"
               />
             )}
+            {isLoading &&
+              [1, 2, 3, 4].map((sk) => <CoursePostCardSkeleton key={sk} />)}
             {data?.[0].posts?.map((post, index) => (
               <CoursePostCard key={index} {...post} />
             ))}
