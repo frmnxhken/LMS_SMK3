@@ -1,18 +1,17 @@
 import React from "react";
 
 const FormSelect = ({
-  label = null,
+  label,
   id,
-  options = [],
-  placeholder = "Pilih...",
+  children,
   feedback,
   className = "",
   ...props
 }) => {
   return (
-    <div>
+    <div className="flex flex-col gap-1">
       {label && (
-        <label htmlFor={id} className="text-sm font-medium text-text-body mb-2">
+        <label htmlFor={id} className="text-sm font-medium text-text-body mb-1">
           {label}
         </label>
       )}
@@ -30,22 +29,22 @@ const FormSelect = ({
         `}
         {...props}
       >
-        {placeholder && (
-          <option value="" disabled>
-            {placeholder}
-          </option>
-        )}
-
-        {options.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
+        {children}
       </select>
 
-      {feedback && <p className="text-xs text-red-500">{feedback}</p>}
+      {feedback && <p className="text-xs text-red-500 mt-1">{feedback}</p>}
     </div>
   );
 };
+
+const Option = ({ value, children, disabled = false, ...props }) => {
+  return (
+    <option value={value} disabled={disabled} {...props}>
+      {children}
+    </option>
+  );
+};
+
+FormSelect.Option = Option;
 
 export default FormSelect;

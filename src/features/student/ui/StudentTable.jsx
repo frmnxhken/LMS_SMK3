@@ -1,8 +1,11 @@
 import Badge from "@/shared/ui/Feedback/Badge";
 import Button from "@/shared/ui/buttons/Button";
 import React from "react";
+import { useNavigate } from "react-router";
 
 const StudentTable = ({ students }) => {
+  const navigate = useNavigate();
+
   return (
     <table className="table-custom">
       <thead className="">
@@ -26,7 +29,9 @@ const StudentTable = ({ students }) => {
               {student.level + " " + student.major}
             </td>
             <td className="table-body-cell space-x-2">
-              <Button>Edit</Button>
+              <Button onClick={() => navigate(`${student.id}/edit`)}>
+                Edit
+              </Button>
               <Button variant="outline">Delete</Button>
             </td>
           </tr>
