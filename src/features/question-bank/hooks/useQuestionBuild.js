@@ -12,7 +12,7 @@ const useQuestionBuild = (examId) => {
   const [errors, setErrors] = useState({});
 
   const createMutation = useMutation({
-    mutationFn: createQuestion,
+    mutationFn: ({ id, payload }) => createQuestion(id, payload),
   });
 
   const updateMutation = useMutation({
@@ -34,8 +34,8 @@ const useQuestionBuild = (examId) => {
       await Promise.all([
         ...created.map((question) =>
           createMutation.mutateAsync({
-            exam_id: examId,
-            ...question,
+            id: examId,
+            payload: [question],
           }),
         ),
 
