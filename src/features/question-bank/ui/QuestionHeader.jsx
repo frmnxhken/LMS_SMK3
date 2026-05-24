@@ -3,7 +3,7 @@ import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
 import { FaPlus } from "react-icons/fa6";
 
-const QuestionHeader = () => {
+const QuestionHeader = ({ onOpen }) => {
   return (
     <div className="mb-6">
       <h1 className="text-heading font-bold text-xl mb-4">Bank Soal</h1>
@@ -14,7 +14,7 @@ const QuestionHeader = () => {
             onInput={(e) => setSearchTerm(e.target.value)}
           />
         </div>
-        <Button className="flex items-center">
+        <Button onClick={onOpen} className="flex items-center">
           <FaPlus size={14} /> Tambah Soal
         </Button>
       </div>

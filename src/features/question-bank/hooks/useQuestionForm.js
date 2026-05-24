@@ -1,9 +1,15 @@
-import { useState } from "react";
-
-const useQuestionForm = (questions, setQuestions) => {
+const useQuestionForm = (questions, setQuestions, setDeletedQuestions) => {
   const handleQuestionChange = (index, value) => {
     setQuestions((prev) =>
-      prev.map((q, i) => (i === index ? { ...q, question: value } : q)),
+      prev.map((q, i) =>
+        i === index
+          ? {
+              ...q,
+              question: value,
+              _dirty: true,
+            }
+          : q,
+      ),
     );
   };
 
@@ -11,10 +17,17 @@ const useQuestionForm = (questions, setQuestions) => {
     setQuestions((prev) =>
       prev.map((q, i) => {
         if (i !== qIndex) return q;
+
         return {
           ...q,
+          _dirty: true,
           options: q.options.map((opt, j) =>
-            j === oIndex ? { ...opt, option: value } : opt,
+            j === oIndex
+              ? {
+                  ...opt,
+                  option: value,
+                }
+              : opt,
           ),
         };
       }),
@@ -25,8 +38,10 @@ const useQuestionForm = (questions, setQuestions) => {
     setQuestions((prev) =>
       prev.map((q, i) => {
         if (i !== qIndex) return q;
+
         return {
           ...q,
+          _dirty: true,
           options: q.options.map((opt, j) => ({
             ...opt,
             is_correct: j === oIndex,
@@ -42,6 +57,7 @@ const useQuestionForm = (questions, setQuestions) => {
         i === qIndex
           ? {
               ...q,
+              _dirty: true,
               options: [
                 ...q.options,
                 {
@@ -62,6 +78,7 @@ const useQuestionForm = (questions, setQuestions) => {
 
         return {
           ...q,
+          _dirty: true,
           options: q.options.filter((_, idx) => idx !== oIndex),
         };
       }),
@@ -69,9 +86,13 @@ const useQuestionForm = (questions, setQuestions) => {
   };
 
   const removeQuestion = (index) => {
-    setQuestions((prev) =>
-      prev.length > 1 ? prev.filter((_, i) => i !== index) : prev,
-    );
+    const question = questions[index];
+
+    if (question?.id) {
+      setDeletedQuestions((prev) => [...prev, question.id]);
+    }
+
+    setQuestions((prev) => prev.filter((_, i) => i !== index));
   };
 
   return {

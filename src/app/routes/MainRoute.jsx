@@ -22,7 +22,10 @@ const MainRoute = () => {
       {CourseRoute()}
       <Route element={<ProtectedRoute allowedRoles={["teacher"]} />}>
         <Route path="/question-bank" element={<QuestionList />} />
-        <Route path="/question-bank/create" element={<QuestionBuildPage />} />
+        <Route
+          path="/question-bank/:id/create"
+          element={<QuestionBuildPage />}
+        />
       </Route>
       <Route element={<ProtectedRoute allowedRoles={["student"]} />}>
         <Route path="/calendar" element={<CalendarPage />} />

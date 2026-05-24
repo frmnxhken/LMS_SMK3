@@ -9,8 +9,12 @@ const QuestionBuildAction = ({ addQuestion, onSave }) => {
       </Button>
 
       <div className="flex gap-3 w-full sm:w-auto">
-        <Button variant="secondary">Draft</Button>
-        <Button onClick={onSave}>Simpan Ke Bank Soal</Button>
+        <Button variant="secondary" type="button">
+          Draft
+        </Button>
+        <Button onClick={onSave} type="submit">
+          Simpan Ke Bank Soal
+        </Button>
       </div>
     </div>
   );

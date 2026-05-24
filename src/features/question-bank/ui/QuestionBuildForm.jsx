@@ -5,7 +5,14 @@ import { FaPlus, FaTimes, FaTrash } from "react-icons/fa";
 import { MdCheckCircle, MdRadioButtonUnchecked } from "react-icons/md";
 import useQuestionForm from "../hooks/useQuestionForm";
 
-const QuestionBuildForm = ({ q, index, questions, setQuestions, errors }) => {
+const QuestionBuildForm = ({
+  q,
+  index,
+  questions,
+  setQuestions,
+  errors,
+  setDeletedQuestions,
+}) => {
   const {
     handleQuestionChange,
     handleOptionChange,
@@ -13,7 +20,7 @@ const QuestionBuildForm = ({ q, index, questions, setQuestions, errors }) => {
     addOption,
     removeOption,
     removeQuestion,
-  } = useQuestionForm(questions, setQuestions);
+  } = useQuestionForm(questions, setQuestions, setDeletedQuestions);
 
   return (
     <div
