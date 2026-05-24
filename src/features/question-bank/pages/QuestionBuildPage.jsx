@@ -4,19 +4,24 @@ import QuestionBuildAction from "../ui/QuestionBuildAction";
 
 export default function QuestionBuildPage() {
   const [errors, setErrors] = useState({});
-  const [questions, setQuestions] = useState([
-    {
-      text: "",
-      options: ["", "", "", ""],
-      correctAnswer: 0,
-    },
-  ]);
+  const createQuestion = () => ({
+    question: "",
+    options: [
+      { option: "", is_correct: true },
+      { option: "", is_correct: false },
+      { option: "", is_correct: false },
+      { option: "", is_correct: false },
+    ],
+  });
 
   const addQuestion = () => {
-    setQuestions([
-      ...questions,
-      { text: "", options: ["", "", "", ""], correctAnswer: 0 },
-    ]);
+    setQuestions((prev) => [...prev, createQuestion()]);
+  };
+
+  const [questions, setQuestions] = useState([createQuestion()]);
+
+  const handleSave = () => {
+    console.log(questions);
   };
 
   return (
@@ -35,7 +40,7 @@ export default function QuestionBuildPage() {
         />
       ))}
 
-      <QuestionBuildAction addQuestion={addQuestion} />
+      <QuestionBuildAction addQuestion={addQuestion} onSave={handleSave} />
     </div>
   );
 }

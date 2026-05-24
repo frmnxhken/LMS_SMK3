@@ -35,9 +35,9 @@ const QuestionBuildForm = ({ q, index, questions, setQuestions, errors }) => {
       <FormTextarea
         label="Pertanyaan"
         placeholder="Tuliskan pertanyaan soal..."
-        value={q.text}
+        value={q.question}
         onInput={(e) => handleQuestionChange(index, e.target.value)}
-        feedback={errors?.questions?.[index]?.text}
+        feedback={errors?.questions?.[index]?.question}
       />
 
       <div className="space-y-4">
@@ -47,7 +47,8 @@ const QuestionBuildForm = ({ q, index, questions, setQuestions, errors }) => {
 
         <div className="space-y-3">
           {q.options.map((opt, oIndex) => {
-            const isCorrect = q.correctAnswer === oIndex;
+            const isCorrect = opt.is_correct;
+
             return (
               <div
                 key={oIndex}
@@ -58,6 +59,7 @@ const QuestionBuildForm = ({ q, index, questions, setQuestions, errors }) => {
                 }`}
               >
                 <button
+                  type="button"
                   onClick={() => setCorrectAnswer(index, oIndex)}
                   className={`mt-2 text-xl transition-colors ${
                     isCorrect ? "text-green-500" : "text-text-muted"
@@ -69,7 +71,7 @@ const QuestionBuildForm = ({ q, index, questions, setQuestions, errors }) => {
                 <div className="flex-1">
                   <FormInput
                     placeholder={`Jawaban ${String.fromCharCode(65 + oIndex)}`}
-                    value={opt}
+                    value={opt.option}
                     onInput={(e) =>
                       handleOptionChange(index, oIndex, e.target.value)
                     }
@@ -78,6 +80,7 @@ const QuestionBuildForm = ({ q, index, questions, setQuestions, errors }) => {
 
                 {q.options.length > 2 && (
                   <button
+                    type="button"
                     onClick={() => removeOption(index, oIndex)}
                     className="mt-3 text-text-muted hover:text-red-500"
                   >

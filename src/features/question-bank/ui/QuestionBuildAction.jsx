@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@/shared/ui/buttons/Button";
 
-const QuestionBuildAction = ({ addQuestion }) => {
+const QuestionBuildAction = ({ addQuestion, onSave }) => {
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-between items-center pt-4 border-t border-[var(--color-app-border)]">
       <Button onClick={addQuestion} variant="outline">
@@ -10,7 +10,7 @@ const QuestionBuildAction = ({ addQuestion }) => {
 
       <div className="flex gap-3 w-full sm:w-auto">
         <Button variant="secondary">Draft</Button>
-        <Button>Simpan Ke Bank Soal</Button>
+        <Button onClick={onSave}>Simpan Ke Bank Soal</Button>
       </div>
     </div>
   );
