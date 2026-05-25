@@ -15,7 +15,7 @@ const CourseNav = () => {
       path: "assignment",
     },
     {
-      name: "Anggota",
+      name: "Ujian",
       path: "member",
     },
   ];

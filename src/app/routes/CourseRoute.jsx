@@ -14,6 +14,7 @@ import {
 } from "@/features/assignment";
 import { AssessmentPage, AssessmentDetailPage } from "@/features/assessment";
 import ExamPage from "@/features/exam/pages/ExamPage";
+import ExamAssignmentList from "@/features/exam-assignment/pages/ExamAssignmentList";
 
 const CourseRoute = () => {
   return (
@@ -46,6 +47,8 @@ const CourseRoute = () => {
             />
           </Route>
         </Route>
+
+        <Route path="exam-assignment" element={<ExamAssignmentList />} />
       </Route>
     </Route>
   );
