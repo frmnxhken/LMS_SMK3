@@ -1,4 +1,4 @@
-const useQuestionForm = (questions, setQuestions, setDeletedQuestions) => {
+const useQuizBuilderForm = (questions, setQuestions, setDeletedQuestions) => {
   const handleQuestionChange = (index, value) => {
     setQuestions((prev) =>
       prev.map((q, i) =>
@@ -105,4 +105,4 @@ const useQuestionForm = (questions, setQuestions, setDeletedQuestions) => {
   };
 };
 
-export default useQuestionForm;
+export default useQuizBuilderForm;

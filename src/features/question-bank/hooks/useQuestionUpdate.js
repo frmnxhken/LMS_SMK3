@@ -1,17 +1,18 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { createQuestion } from "../api/questionApi";
+import { updateQuestion } from "../api/questionApi";
 
-const useQuestionCreate = () => {
+const useQuestionUpdate = (id) => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
   const [errors, setErrors] = useState(null);
 
   const mutation = useMutation({
-    mutationFn: (payload) => createQuestion(payload),
+    mutationFn: (payload) => updateQuestion(id, payload),
     onSuccess: () => {
       queryClient.invalidateQueries(["questions"]);
+      queryClient.invalidateQueries(["question", id]);
       navigate("/question-bank");
     },
     onError: (error) => {
@@ -26,4 +27,4 @@ const useQuestionCreate = () => {
   return { handleSubmit, errors };
 };
 
-export default useQuestionCreate;
+export default useQuestionUpdate;

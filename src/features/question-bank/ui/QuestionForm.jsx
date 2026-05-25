@@ -7,7 +7,7 @@ const QuestionForm = ({ subjects, initData = {}, onSubmit, errors }) => {
   const [formData, setFormData] = useState({
     title: initData?.title || "",
     duration: initData?.duration || "",
-    subject_id: initData?.subject_id || "",
+    subject_id: initData?.subject?.id || "",
     type: initData?.type || "",
   });
 
@@ -27,6 +27,7 @@ const QuestionForm = ({ subjects, initData = {}, onSubmit, errors }) => {
       <FormInput
         label="Judul"
         name="title"
+        value={formData.title}
         onInput={handleInput}
         feedback={errors?.duration?.[0]}
       />
@@ -34,12 +35,14 @@ const QuestionForm = ({ subjects, initData = {}, onSubmit, errors }) => {
         label="Durasi"
         type="number"
         name="duration"
+        value={formData.duration}
         onInput={handleInput}
         feedback={errors?.duration?.[0]}
       />
       <FormSelect
         label="Jenis Ujian"
         name="type"
+        value={formData.type}
         onChange={handleInput}
         feedback={errors?.type?.[0]}
       >
@@ -58,6 +61,7 @@ const QuestionForm = ({ subjects, initData = {}, onSubmit, errors }) => {
       <FormSelect
         label="Mata Pelajaran"
         name="subject_id"
+        value={formData.subject_id}
         onChange={handleInput}
         feedback={errors?.subject_id?.[0]}
       >

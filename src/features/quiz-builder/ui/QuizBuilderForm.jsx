@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import FormInput from "@/shared/ui/forms/FormInput";
 import FormTextarea from "@/shared/ui/forms/FormTextArea";
 import { FaPlus, FaTimes, FaTrash } from "react-icons/fa";
 import { MdCheckCircle, MdRadioButtonUnchecked } from "react-icons/md";
-import useQuestionForm from "../hooks/useQuestionForm";
+import useQuizBuilderForm from "../hooks/useQuizBuilderForm";
 
-const QuestionBuildForm = ({
+const QuizBuilderForm = ({
   q,
   index,
   questions,
@@ -20,7 +20,7 @@ const QuestionBuildForm = ({
     addOption,
     removeOption,
     removeQuestion,
-  } = useQuestionForm(questions, setQuestions, setDeletedQuestions);
+  } = useQuizBuilderForm(questions, setQuestions, setDeletedQuestions);
 
   return (
     <div
@@ -110,4 +110,4 @@ const QuestionBuildForm = ({
   );
 };
 
-export default QuestionBuildForm;
+export default QuizBuilderForm;

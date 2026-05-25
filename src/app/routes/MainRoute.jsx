@@ -8,10 +8,12 @@ import ProtectedRoute from "./ProtectedRoute";
 import CalendarPage from "@/features/calendar/pages/CalendarPage";
 import AttendancePage from "@/features/attendance/pages/AttendancePage";
 import HomePage from "@/features/home/pages/HomePage";
-import QuestionBuildPage from "@/features/question-bank/pages/QuestionBuildPage";
-import QuestionList from "@/features/question-bank/pages/QuestionList";
 import { ProfilePage } from "@/features/profile/pages/ProfilePage";
 import { ChangePasswordPage } from "@/features/profile/pages/ChangePasswordPage";
+import QuizBuilderPage from "@/features/quiz-builder/pages/QuizBuilderPage";
+import QuestionListPage from "@/features/question-bank/pages/QuestionListPage";
+import QuestionCreatePage from "@/features/question-bank/pages/QuestionCreatePage";
+import QuestionEditPage from "@/features/question-bank/pages/QuestionEditPage";
 
 const MainRoute = () => {
   return (
@@ -21,11 +23,12 @@ const MainRoute = () => {
       <Route path="/profile/change-password" element={<ChangePasswordPage />} />
       {CourseRoute()}
       <Route element={<ProtectedRoute allowedRoles={["teacher"]} />}>
-        <Route path="/question-bank" element={<QuestionList />} />
-        <Route
-          path="/question-bank/:id/create"
-          element={<QuestionBuildPage />}
-        />
+        <Route path="/question-bank">
+          <Route path="" element={<QuestionListPage />} />
+          <Route path="create" element={<QuestionCreatePage />} />
+          <Route path=":id/edit" element={<QuestionEditPage />} />
+          <Route path=":id/create" element={<QuizBuilderPage />} />
+        </Route>
       </Route>
       <Route element={<ProtectedRoute allowedRoles={["student"]} />}>
         <Route path="/calendar" element={<CalendarPage />} />

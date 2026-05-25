@@ -1,11 +1,10 @@
 import React, { useEffect, useState, useCallback } from "react";
 import { useParams } from "react-router";
 
-import QuestionBuildForm from "../ui/QuestionBuildForm";
-import QuestionBuildAction from "../ui/QuestionBuildAction";
-
-import useQuestionDetail from "../hooks/useQuestionDetail";
-import useQuestionBuild from "../hooks/useQuestionBuild";
+import useQuizBuilderDetail from "../hooks/useQuizBuilderDetail";
+import useQuizBuilder from "../hooks/useQuizBuilder";
+import QuizBuilderForm from "../ui/QuizBuilderForm";
+import QuizBuilderAction from "../ui/QuizBuilderAction";
 
 const createEmptyQuestion = () => ({
   question: "",
@@ -18,15 +17,12 @@ const createEmptyQuestion = () => ({
   _dirty: true,
 });
 
-export default function QuestionBuildPage() {
+export default function QuizBuilderPage() {
   const { id: examId } = useParams();
-
   const [questions, setQuestions] = useState([]);
   const [deletedQuestions, setDeletedQuestions] = useState([]);
-
-  const { data, isLoading } = useQuestionDetail(examId);
-
-  const { errors, handleSubmit, isPending } = useQuestionBuild(examId);
+  const { data, isLoading } = useQuizBuilderDetail(examId);
+  const { errors, handleSubmit, isPending } = useQuizBuilder(examId);
 
   useEffect(() => {
     if (!data) return;
@@ -66,7 +62,7 @@ export default function QuestionBuildPage() {
       <h1 className="text-2xl font-bold text-text-heading">Question Builder</h1>
 
       {questions.map((question, index) => (
-        <QuestionBuildForm
+        <QuizBuilderForm
           key={question.id ?? `new-${index}`}
           q={question}
           index={index}
@@ -78,7 +74,7 @@ export default function QuestionBuildPage() {
         />
       ))}
 
-      <QuestionBuildAction
+      <QuizBuilderAction
         addQuestion={addQuestion}
         onSave={handleSave}
         loading={isPending}

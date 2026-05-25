@@ -5,9 +5,9 @@ import {
   createQuestion,
   updateQuestion,
   deleteQuestion,
-} from "../api/questionApi";
+} from "../api/quizBuilderApi";
 
-const useQuestionBuild = (examId) => {
+const useQuizBuilder = (examId) => {
   const queryClient = useQueryClient();
   const [errors, setErrors] = useState({});
 
@@ -73,4 +73,4 @@ const useQuestionBuild = (examId) => {
   };
 };
 
-export default useQuestionBuild;
+export default useQuizBuilder;

@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "@/shared/ui/buttons/Button";
 
-const QuestionBuildAction = ({ addQuestion, onSave }) => {
+const QuizBuilderAction = ({ addQuestion, onSave }) => {
   return (
     <div className="flex flex-col sm:flex-row gap-4 justify-between items-center pt-4 border-t border-[var(--color-app-border)]">
       <Button onClick={addQuestion} variant="outline">
@@ -20,4 +20,4 @@ const QuestionBuildAction = ({ addQuestion, onSave }) => {
   );
 };
 
-export default QuestionBuildAction;
+export default QuizBuilderAction;

@@ -5,27 +5,22 @@ export const getQuestion = async () => {
   return res.data;
 };
 
-export const storeQuestion = async (payload) => {
+export const detailQuestion = async (id) => {
+  const res = await api.get(`/exam/${id}`);
+  return res.data;
+};
+
+export const createQuestion = async (payload) => {
   const res = await api.post("/exam", payload);
   return res;
 };
 
-export const getDetailQuestion = async (id) => {
-  const res = await api.get(`/exam/${id}/question`);
-  return res.data;
-};
-
-export const createQuestion = async (id, payload) => {
-  const res = await api.post(`/exam/${id}/question`, { questions: payload });
-  return res;
-};
-
 export const updateQuestion = async (id, payload) => {
-  const res = await api.put(`/exam/question/${id}`, payload);
+  const res = await api.put(`/exam/${id}`, payload);
   return res;
 };
 
-export const deleteQuestion = async (id, payload) => {
-  const res = await api.delete(`/exam/question/${id}`, { questions: payload });
+export const deleteQuestion = async (id) => {
+  const res = await api.delete(`/exam/${id}`);
   return res;
 };
