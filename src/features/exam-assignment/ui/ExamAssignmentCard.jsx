@@ -9,9 +9,12 @@ import {
 import Badge from "@/shared/ui/Feedback/Badge";
 import Dropdown from "@/shared/ui/buttons/DropDown";
 import { useAuth } from "@/app/contexts/AuthContext";
+import { formatTimeStamp, isExpired } from "@/shared/lib/formatDate";
+import { Link } from "react-router";
 
 const ExamAssignmentCard = ({ exam, onEdit, onDelete }) => {
   const { user } = useAuth();
+
   const actionMenus = [
     {
       label: "Edit",
@@ -40,18 +43,27 @@ const ExamAssignmentCard = ({ exam, onEdit, onDelete }) => {
             <h2 className="text-sm sm:text-base font-semibold text-text-heading mt-1 group-hover:text-primary transition-colors">
               {exam.exam.title}
             </h2>
-
             <div className="flex items-center gap-x-4 text-[11px] text-text-muted mt-1">
               <div className="flex items-center">
                 <IoTimeOutline />
-                <span>{exam.start_time}</span>
+                <span>{formatTimeStamp(exam.start_time)}</span>
               </div>
               -
               <div className="flex items-center">
                 <IoTimeOutline />
-                <span>{exam.end_time}</span>
+                <span>{formatTimeStamp(exam.end_time)}</span>
               </div>
             </div>
+            {user.role === "student" && isExpired(exam.end_time) && (
+              <div className="mt-2">
+                <Link
+                  to={`${exam.id}/prepare`}
+                  className="text-primary underline font-semibold text-sm"
+                >
+                  Lihat Detail
+                </Link>
+              </div>
+            )}
           </div>
         </div>
         {user.role === "teacher" && (

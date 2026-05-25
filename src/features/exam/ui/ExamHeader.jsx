@@ -1,7 +1,10 @@
 import React from "react";
 import { HiClock } from "react-icons/hi";
+import useExamTimer from "../hooks/useExamTimer";
 
-const ExamHeader = ({ title, subject, timeLeft }) => {
+const ExamHeader = ({ title, subject, startedAt, duration, attemptId }) => {
+  const { timeLeft } = useExamTimer(startedAt, duration, attemptId);
+
   return (
     <div className="bg-white p-6 rounded-xl border border-app-border flex justify-between items-center">
       <div>

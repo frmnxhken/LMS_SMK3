@@ -1,13 +1,39 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ExamHeader from "../ui/ExamHeader";
 import ExamQuestion from "../ui/ExamQuestion";
 import ExamQuestionNav from "../ui/ExamQuestionNav";
-import { questions } from "@/shared/data/dummy/quest.json";
+import { useNavigate, useParams } from "react-router";
+import useExamQuestion from "../hooks/useExamQuestion";
 
 const ExamPage = () => {
-  const [currentQuestion, setCurrentQuestion] = useState(1);
+  const { id_class, id_exam } = useParams();
+  const { isLoading, data, isError, error } = useExamQuestion(
+    id_class,
+    id_exam,
+  );
+  const questions = data?.questions || [];
   const totalQuestions = questions.length;
-  const currentData = questions[currentQuestion - 1];
+  const [currentQuestion, setCurrentQuestion] = useState(1);
+  const currentData = questions?.[currentQuestion - 1];
+  const navigate = useNavigate();
+
+  if (isError) {
+    const errorMessage = error?.response?.data?.message;
+    alert(errorMessage);
+    return navigate(`/course/${id_class}/exam`);
+  }
+
+  useEffect(() => {
+    if (isLoading || !data?.started_at) return;
+    const startTime = new Date(data.started_at.replace(/-/g, "/")).getTime();
+    const durationMinutes = data.duration || 60;
+    const endTime = startTime + durationMinutes * 60 * 1000;
+    if (endTime - new Date().getTime() <= 0) {
+      navigate("/", { replace: true });
+    }
+  }, [data, isLoading, navigate]);
+
+  if (isLoading) return;
 
   const handleNext = () => {
     if (currentQuestion < totalQuestions)
@@ -25,13 +51,16 @@ const ExamPage = () => {
           <ExamHeader
             title="Ujian Akhir Semester"
             subject="Pemrograman Web"
-            timeLeft="01:45:22"
+            startedAt={data?.started_at}
+            duration={data?.duration || 60}
+            attemptId={data?.attempt_id}
           />
           <ExamQuestion
             currentQuestion={currentQuestion}
             data={currentData}
             onNext={handleNext}
             onPrev={handlePrev}
+            attemptId={data?.attempt_id}
           />
         </div>
 
@@ -40,6 +69,7 @@ const ExamPage = () => {
             totalQuestions={totalQuestions}
             currentQuestion={currentQuestion}
             onNavigate={setCurrentQuestion}
+            attemptId={data?.attempt_id}
           />
         </div>
       </div>

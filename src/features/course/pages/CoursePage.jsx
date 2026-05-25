@@ -2,7 +2,7 @@ import React from "react";
 import Dropdown from "@/shared/ui/buttons/DropDown";
 import Button from "@/shared/ui/buttons/Button";
 import { useAuth } from "@/app/contexts/AuthContext";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import useCoursePosts from "../hooks/useCoursePosts";
 import CourseBanner from "../ui/CourseBanner";
 import { useCourseAction } from "../hooks/useCourseAction";
@@ -28,11 +28,19 @@ export const CoursePage = () => {
           <div className="w-60 hidden sm:block"></div>
           <div className="w-full space-y-4">
             {user.role === "teacher" && (
-              <Dropdown
-                trigger={<Button variant="outline">Buat Postingan</Button>}
-                menuItems={actionMenus}
-                align="left"
-              />
+              <div className="flex items-center justify-between">
+                <Dropdown
+                  trigger={<Button variant="outline">Buat Postingan</Button>}
+                  menuItems={actionMenus}
+                  align="left"
+                />
+                <Link
+                  to="member"
+                  className="text-sm font-semibold text-primary underline"
+                >
+                  Lihat Anggota
+                </Link>
+              </div>
             )}
             {isLoading &&
               [1, 2, 3, 4].map((sk) => <CoursePostCardSkeleton key={sk} />)}
