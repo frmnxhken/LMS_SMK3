@@ -13,8 +13,7 @@ import {
   AssignmentListPage,
 } from "@/features/assignment";
 import { AssessmentPage, AssessmentDetailPage } from "@/features/assessment";
-import ExamPage from "@/features/exam/pages/ExamPage";
-import ExamAssignmentList from "@/features/exam-assignment/pages/ExamAssignmentList";
+import ExamAssignmentListPage from "@/features/exam-assignment/pages/ExamAssignmentListPage";
 
 const CourseRoute = () => {
   return (
@@ -24,10 +23,11 @@ const CourseRoute = () => {
         <Route path="post/:id_post" element={<CourseDetail />} />
         <Route path="member" element={<MemberPage />} />
         <Route path="assignment" element={<AssignmentListPage />} />
+        <Route path="exam" element={<ExamAssignmentListPage />} />
       </Route>
 
       <Route element={<ProtectedRoute allowedRoles={["student"]} />}>
-        <Route path="exam" element={<ExamPage />} />
+        {/* For Exam btw */}
       </Route>
 
       <Route element={<ProtectedRoute allowedRoles={["teacher"]} />}>
@@ -47,8 +47,6 @@ const CourseRoute = () => {
             />
           </Route>
         </Route>
-
-        <Route path="exam-assignment" element={<ExamAssignmentList />} />
       </Route>
     </Route>
   );
