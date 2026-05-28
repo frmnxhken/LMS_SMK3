@@ -4,9 +4,14 @@ import FormInput from "@/shared/ui/forms/FormInput";
 import Button from "@/shared/ui/buttons/Button";
 import { MdSearch } from "react-icons/md";
 import { PiMicrosoftExcelLogo } from "react-icons/pi";
+import useClass from "@/features/class/hooks/useClass";
+import FormSelect from "@/shared/ui/forms/FormSelect";
+import useStudent from "../hooks/useStudent";
 
 const StudentHeader = ({ open, setOpen }) => {
   const navigate = useNavigate();
+  const { filter, handleFilterChange } = useStudent();
+  const { data: classes } = useClass();
 
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
@@ -26,12 +31,23 @@ const StudentHeader = ({ open, setOpen }) => {
         </Button>
       </div>
       <div className="flex gap-4">
-        <select className="border border-app-border rounded-md px-4 py-1">
-          <option value="">Pilih Kelas</option>
-          <option value="">X RPL 3</option>
-          <option value="">X RPL 2</option>
-          <option value="">X RPL 1</option>
-        </select>
+        <FormSelect
+          id="class-select"
+          value={filter}
+          onChange={(e) => handleFilterChange(e.target.value)}
+        >
+          <FormSelect.Option value="" disabled>
+            Pilih Kelas...
+          </FormSelect.Option>
+
+          <FormSelect.Option value="">Semua Kelas</FormSelect.Option>
+
+          {classes?.map((c, i) => (
+            <FormSelect.Option key={i} value={c.id}>
+              {`${c.level} ${c.major}`}
+            </FormSelect.Option>
+          ))}
+        </FormSelect>
         <div className="flex">
           <FormInput placeholder="Cari siswa.." />
           <Button>

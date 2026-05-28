@@ -1,9 +1,8 @@
-import Badge from "@/shared/ui/Feedback/Badge";
-import Button from "@/shared/ui/buttons/Button";
 import React from "react";
+import Button from "@/shared/ui/buttons/Button";
 import { useNavigate } from "react-router";
 
-const StudentTable = ({ students }) => {
+const StudentTable = ({ students, page }) => {
   const navigate = useNavigate();
 
   return (
@@ -21,7 +20,7 @@ const StudentTable = ({ students }) => {
       <tbody className="text-xs">
         {students?.map((student, index) => (
           <tr className="table-body-row">
-            <td className="table-body-cell">{index + 1}</td>
+            <td className="table-body-cell">{(page - 1) * 10 + index + 1}</td>
             <td className="table-body-cell">{student.nis}</td>
             <td className="table-body-cell">{student.name}</td>
             <td className="table-body-cell">{student.username}</td>

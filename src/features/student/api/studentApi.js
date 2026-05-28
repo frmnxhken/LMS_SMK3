@@ -1,7 +1,7 @@
 import api from "@/shared/api/ApiClient";
 
-export const getStudents = async () => {
-  const res = await api.get("/admin/student");
+export const getStudents = async (page, filter = "") => {
+  const res = await api.get(`/admin/student?page=${page}&filter=${filter}`);
   return res.data;
 };
 

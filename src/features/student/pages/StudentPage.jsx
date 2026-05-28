@@ -7,11 +7,12 @@ import Modal from "@/shared/ui/modal/Modal";
 import useClass from "@/features/class/hooks/useClass";
 import useStudentImport from "../hooks/useStudentImport";
 import StudentHeader from "../ui/StudentHeader";
+import Pagination from "@/shared/ui/navigation/Pagination";
 
 const StudentPage = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
-  const { data } = useStudent();
+  const { data, page, handlePageChange, pagination } = useStudent();
   const { data: classes } = useClass();
   const { isImporting, handleSubmit, errors } = useStudentImport();
 
@@ -30,8 +31,13 @@ const StudentPage = () => {
       </Modal>
 
       <div className="table-responsive mt-4">
-        <StudentTable students={data} />
+        <StudentTable students={data} page={page} />
       </div>
+      <Pagination
+        page={page}
+        setPage={handlePageChange}
+        totalPages={pagination.last_page}
+      />
     </div>
   );
 };
