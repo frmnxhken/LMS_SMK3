@@ -1,9 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import { useNavigate } from "react-router";
+import useStudentDelete from "../hooks/useStudentDelete";
 
 const StudentTable = ({ students, page }) => {
   const navigate = useNavigate();
+  const [selectedId, setSelectedId] = useState(null);
+  const { handleDelete } = useStudentDelete(selectedId);
+
+  const onDelete = (id) => {
+    setSelectedId(id);
+    let confirmed = confirm("Apakah Anda Yakin Untuk Dihapus?");
+    if (confirmed) handleDelete();
+  };
 
   return (
     <table className="table-custom">
@@ -31,7 +40,9 @@ const StudentTable = ({ students, page }) => {
               <Button onClick={() => navigate(`${student.id}/edit`)}>
                 Edit
               </Button>
-              <Button variant="outline">Delete</Button>
+              <Button variant="outline" onClick={() => onDelete(student.id)}>
+                Delete
+              </Button>
             </td>
           </tr>
         ))}

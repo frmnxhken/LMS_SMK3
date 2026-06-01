@@ -20,6 +20,11 @@ export const updateStudent = async (id, payload) => {
   return res.data;
 };
 
+export const deleteStudent = async (id) => {
+  const res = await api.delete(`/admin/student/${id}`);
+  return res;
+};
+
 export const importStudents = async (payload) => {
   const res = await api.post("/admin/student/import", payload, {
     headers: {
