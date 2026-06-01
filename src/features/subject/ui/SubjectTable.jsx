@@ -1,15 +1,18 @@
+import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import Modal from "@/shared/ui/modal/Modal";
-import React, { useState } from "react";
+import EmptyState from "@/shared/ui/Feedback/EmptyState";
 import useSubjectUpdate from "../hooks/useSubjectUpdate";
 import useSubjectDelete from "../hooks/useSubjectDelete";
 import SubjectForm from "./SubjectForm";
+import SubjectTableSkeleton from "./skeletons/SubjectTableSkeleton";
 
-const SubjectTable = ({ data }) => {
+const SubjectTable = ({ data, isLoading }) => {
   const [open, setOpen] = useState(false);
   const [oldData, setOldData] = useState(null);
   const [id, setId] = useState(null);
-  const { handleUpdate } = useSubjectUpdate(id);
+  const { handleUpdate, isUpdating, errors, clearErrors } =
+    useSubjectUpdate(id);
   const { handleDelete } = useSubjectDelete();
 
   const onEdit = (currentData) => {
@@ -23,13 +26,20 @@ const SubjectTable = ({ data }) => {
     if (confirmed) handleDelete(id);
   };
 
+  const handleCloseModal = () => {
+    clearErrors();
+    setOpen(false);
+  };
+
   return (
     <>
-      <Modal isOpen={open} onClose={() => setOpen(false)} title="Edit Mapel">
+      <Modal isOpen={open} onClose={handleCloseModal} title="Edit Mapel">
         <SubjectForm
           initData={oldData}
           onSubmit={handleUpdate}
-          closeModal={() => setOpen(false)}
+          onPending={isUpdating}
+          errors={errors}
+          closeModal={handleCloseModal}
         />
       </Modal>
 
@@ -41,19 +51,28 @@ const SubjectTable = ({ data }) => {
             <th className="table-head-cell">Aksi</th>
           </tr>
         </thead>
+        {isLoading && <SubjectTableSkeleton />}
         <tbody className="text-xs">
-          {data?.map((item, index) => (
+          {!isLoading && data.length === 0 ? (
             <tr className="table-body-row">
-              <td className="table-body-cell">{index + 1}</td>
-              <td className="table-body-cell">{item.name}</td>
-              <td className="table-body-cell space-x-2">
-                <Button onClick={() => onEdit(item)}>Edit</Button>
-                <Button onClick={() => onDelete(item.id)} variant="outline">
-                  Delete
-                </Button>
+              <td colSpan={3}>
+                <EmptyState />
               </td>
             </tr>
-          ))}
+          ) : (
+            data?.map((item, index) => (
+              <tr className="table-body-row">
+                <td className="table-body-cell">{index + 1}</td>
+                <td className="table-body-cell">{item.name}</td>
+                <td className="table-body-cell space-x-2">
+                  <Button onClick={() => onEdit(item)}>Edit</Button>
+                  <Button onClick={() => onDelete(item.id)} variant="outline">
+                    Delete
+                  </Button>
+                </td>
+              </tr>
+            ))
+          )}
         </tbody>
       </table>
     </>
