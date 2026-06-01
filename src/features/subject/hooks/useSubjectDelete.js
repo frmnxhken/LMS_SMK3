@@ -1,22 +1,20 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteSubject } from "../api/subjectApi";
 
-const useSubjectDelete = (id) => {
+const useSubjectDelete = () => {
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: () => deleteSubject(id),
+    mutationFn: (id) => deleteSubject(id),
     onSuccess: () => {
       queryClient.invalidateQueries(["subjects"]);
     },
   });
 
-  const handleSubmit = () => {
-    mutation.mutate();
+  const handleDelete = (id) => {
+    mutation.mutate(id);
   };
 
-  return {
-    handleSubmit,
-  };
+  return { handleDelete };
 };
 
 export default useSubjectDelete;

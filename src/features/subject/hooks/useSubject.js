@@ -4,7 +4,7 @@ import { getSubjects } from "../api/subjectApi";
 const useSubject = () => {
   return useQuery({
     queryKey: ["subjects"],
-    queryFn: () => getSubjects(),
+    queryFn: getSubjects,
     staleTime: 1000 * 60 * 3,
   });
 };

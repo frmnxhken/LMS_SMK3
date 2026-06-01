@@ -11,6 +11,7 @@ export const storeSubject = async (payload) => {
   });
   return res;
 };
+
 export const updateSubject = async (id, payload) => {
   const res = await api.put(`/admin/subject/${id}`, payload, {
     headers: { "Content-Type": "application/json" },

@@ -9,19 +9,18 @@ const SubjectTable = ({ data }) => {
   const [open, setOpen] = useState(false);
   const [oldData, setOldData] = useState(null);
   const [id, setId] = useState(null);
-  const { handleSubmit: handleUpdate } = useSubjectUpdate(id);
-  const { handleSubmit: handleDestroy } = useSubjectDelete(id);
+  const { handleUpdate } = useSubjectUpdate(id);
+  const { handleDelete } = useSubjectDelete();
 
-  const handleEdit = (currentData) => {
+  const onEdit = (currentData) => {
     setOldData(currentData);
     setId(currentData?.id);
     setOpen(!open);
   };
 
-  const handleDelete = (currentId) => {
-    setId(currentId);
+  const onDelete = (id) => {
     let confirmed = confirm("Anda yakin untuk dihapus ?");
-    if (confirmed) handleDestroy();
+    if (confirmed) handleDelete(id);
   };
 
   return (
@@ -48,8 +47,8 @@ const SubjectTable = ({ data }) => {
               <td className="table-body-cell">{index + 1}</td>
               <td className="table-body-cell">{item.name}</td>
               <td className="table-body-cell space-x-2">
-                <Button onClick={() => handleEdit(item)}>Edit</Button>
-                <Button onClick={() => handleDelete(item.id)} variant="outline">
+                <Button onClick={() => onEdit(item)}>Edit</Button>
+                <Button onClick={() => onDelete(item.id)} variant="outline">
                   Delete
                 </Button>
               </td>

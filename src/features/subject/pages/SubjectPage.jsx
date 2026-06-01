@@ -3,12 +3,12 @@ import Modal from "@/shared/ui/modal/Modal";
 import React, { useState } from "react";
 import SubjectForm from "../ui/SubjectForm";
 import SubjectTable from "../ui/SubjectTable";
-import useSubjectStore from "../hooks/useSubjectStore";
 import useSubject from "../hooks/useSubject";
+import useSubjectCreate from "../hooks/useSubjectCreate";
 
 const SubjectPage = () => {
   const [open, setOpen] = useState(false);
-  const { handleSubmit: handleStore } = useSubjectStore();
+  const { handleSubmit } = useSubjectCreate();
   const { data, isLoading } = useSubject();
 
   return (
@@ -21,7 +21,10 @@ const SubjectPage = () => {
       </div>
 
       <Modal isOpen={open} onClose={() => setOpen(false)} title="Tambah Mapel">
-        <SubjectForm onSubmit={handleStore} closeModal={() => setOpen(false)} />
+        <SubjectForm
+          onSubmit={handleSubmit}
+          closeModal={() => setOpen(false)}
+        />
       </Modal>
       <div className="table-responsive mt-4">
         <SubjectTable data={data} />

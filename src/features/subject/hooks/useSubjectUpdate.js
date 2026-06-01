@@ -10,13 +10,11 @@ const useSubjectUpdate = (id) => {
     },
   });
 
-  const handleSubmit = (values) => {
+  const handleUpdate = (values) => {
     mutation.mutate(JSON.stringify(values));
   };
 
-  return {
-    handleSubmit,
-  };
+  return { handleUpdate };
 };
 
 export default useSubjectUpdate;

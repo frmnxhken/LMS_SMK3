@@ -1,7 +1,9 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { storeSubject } from "../api/subjectApi";
+import { useState } from "react";
 
-const useSubjectStore = () => {
+const useSubjectCreate = () => {
+  const [errors, setErrors] = useState(null);
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (payload) => storeSubject(payload),
@@ -16,7 +18,8 @@ const useSubjectStore = () => {
 
   return {
     handleSubmit,
+    errors,
   };
 };
 
-export default useSubjectStore;
+export default useSubjectCreate;
