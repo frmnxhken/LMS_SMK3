@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
 
-const ClassForm = ({ initData, onSubmit, closeModal }) => {
+const ClassForm = ({ initData = {}, onSubmit, errors }) => {
   const [formData, setFormData] = useState({
     level: initData?.level || "",
     major: initData?.major || "",
@@ -15,10 +15,7 @@ const ClassForm = ({ initData, onSubmit, closeModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit(formData);
-      closeModal();
-    }
+    if (onSubmit) onSubmit(formData);
   };
 
   return (
@@ -30,6 +27,7 @@ const ClassForm = ({ initData, onSubmit, closeModal }) => {
         name="level"
         value={formData?.level}
         placeholder="Contoh: 10"
+        feedback={errors?.level?.[0]}
       />
       <FormInput
         onInput={handleInput}
@@ -37,6 +35,7 @@ const ClassForm = ({ initData, onSubmit, closeModal }) => {
         name="major"
         value={formData?.major}
         placeholder="RPL 3"
+        feedback={errors?.major?.[0]}
       />
       <FormInput
         onInput={handleInput}
@@ -44,6 +43,7 @@ const ClassForm = ({ initData, onSubmit, closeModal }) => {
         name="section"
         value={formData?.section}
         placeholder="Contoh: 1/2/3"
+        feedback={errors?.section?.[0]}
       />
       <Button>Simpan</Button>
     </form>

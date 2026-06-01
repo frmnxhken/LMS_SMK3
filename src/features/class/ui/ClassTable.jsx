@@ -1,22 +1,11 @@
+import React from "react";
 import Button from "@/shared/ui/buttons/Button";
-import Modal from "@/shared/ui/modal/Modal";
-import React, { useState } from "react";
-import ClassForm from "./ClassForm";
-import useClassUpdate from "../hooks/useClassUpdate";
 import useClassDelete from "../hooks/useClassDelete";
+import { useNavigate } from "react-router";
 
 const ClassTable = ({ data }) => {
-  const [open, setOpen] = useState(false);
-  const [oldData, setOldData] = useState(null);
-  const [id, setId] = useState(null);
-  const { handleUpdate } = useClassUpdate(id);
+  const navigate = useNavigate();
   const { handleDelete } = useClassDelete();
-
-  const onEdit = (currentData) => {
-    setOldData(currentData);
-    setId(currentData?.id);
-    setOpen(!open);
-  };
 
   const onDelete = (id) => {
     let confirmed = confirm("Anda yakin untuk dihapus ?");
@@ -25,14 +14,6 @@ const ClassTable = ({ data }) => {
 
   return (
     <>
-      <Modal isOpen={open} onClose={() => setOpen(false)} title="Edit Kelas">
-        <ClassForm
-          initData={oldData}
-          onSubmit={handleUpdate}
-          closeModal={() => setOpen(false)}
-        />
-      </Modal>
-
       <table className="table-custom">
         <thead className="">
           <tr>
@@ -51,7 +32,9 @@ const ClassTable = ({ data }) => {
               <td className="table-body-cell">{item.major}</td>
               <td className="table-body-cell">{item.section}</td>
               <td className="table-body-cell space-x-2">
-                <Button onClick={() => onEdit(item)}>Edit</Button>
+                <Button onClick={() => navigate(`${item.id}/edit`)}>
+                  Edit
+                </Button>
                 <Button onClick={() => onDelete(item.id)} variant="outline">
                   Delete
                 </Button>

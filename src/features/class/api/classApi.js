@@ -5,6 +5,11 @@ export const getClasses = async () => {
   return res.data;
 };
 
+export const getDetailClass = async (id) => {
+  const res = await api.get(`/admin/class/${id}`);
+  return res.data;
+};
+
 export const storeClass = async (payload) => {
   const res = await api.post("/admin/class", payload, {
     headers: { "Content-Type": "application/json" },
