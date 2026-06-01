@@ -6,6 +6,7 @@ const ClassForm = ({ initData, onSubmit, closeModal }) => {
   const [formData, setFormData] = useState({
     level: initData?.level || "",
     major: initData?.major || "",
+    section: initData?.section || "",
   });
 
   const handleInput = (e) => {
@@ -24,7 +25,7 @@ const ClassForm = ({ initData, onSubmit, closeModal }) => {
     <form onSubmit={handleSubmit} className="space-y-2" method="post">
       <FormInput
         onInput={handleInput}
-        label="kelas"
+        label="Tingkatan"
         type="number"
         name="level"
         value={formData?.level}
@@ -36,6 +37,13 @@ const ClassForm = ({ initData, onSubmit, closeModal }) => {
         name="major"
         value={formData?.major}
         placeholder="RPL 3"
+      />
+      <FormInput
+        onInput={handleInput}
+        label="Kelas"
+        name="section"
+        value={formData?.section}
+        placeholder="Contoh: 1/2/3"
       />
       <Button>Simpan</Button>
     </form>

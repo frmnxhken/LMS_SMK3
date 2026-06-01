@@ -9,19 +9,18 @@ const ClassTable = ({ data }) => {
   const [open, setOpen] = useState(false);
   const [oldData, setOldData] = useState(null);
   const [id, setId] = useState(null);
-  const { handleSubmit: handleUpdate } = useClassUpdate(id);
-  const { handleSubmit: handleDestroy } = useClassDelete(id);
+  const { handleUpdate } = useClassUpdate(id);
+  const { handleDelete } = useClassDelete();
 
-  const handleEdit = (currentData) => {
+  const onEdit = (currentData) => {
     setOldData(currentData);
     setId(currentData?.id);
     setOpen(!open);
   };
 
-  const handleDelete = (currentId) => {
-    setId(currentId);
+  const onDelete = (id) => {
     let confirmed = confirm("Anda yakin untuk dihapus ?");
-    if (confirmed) handleDestroy();
+    if (confirmed) handleDelete(id);
   };
 
   return (
@@ -38,8 +37,9 @@ const ClassTable = ({ data }) => {
         <thead className="">
           <tr>
             <th className="table-head-cell">No</th>
-            <th className="table-head-cell">Kelas</th>
+            <th className="table-head-cell">Tingkatan</th>
             <th className="table-head-cell">Jurusan</th>
+            <th className="table-head-cell">Kelas</th>
             <th className="table-head-cell">Aksi</th>
           </tr>
         </thead>
@@ -49,9 +49,10 @@ const ClassTable = ({ data }) => {
               <td className="table-body-cell">{index + 1}</td>
               <td className="table-body-cell">{item.level}</td>
               <td className="table-body-cell">{item.major}</td>
+              <td className="table-body-cell">{item.section}</td>
               <td className="table-body-cell space-x-2">
-                <Button onClick={() => handleEdit(item)}>Edit</Button>
-                <Button onClick={() => handleDelete(item.id)} variant="outline">
+                <Button onClick={() => onEdit(item)}>Edit</Button>
+                <Button onClick={() => onDelete(item.id)} variant="outline">
                   Delete
                 </Button>
               </td>

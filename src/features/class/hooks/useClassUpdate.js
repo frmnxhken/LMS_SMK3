@@ -10,12 +10,12 @@ const useClassUpdate = (id) => {
     },
   });
 
-  const handleSubmit = (values) => {
+  const handleUpdate = (values) => {
     mutation.mutate(JSON.stringify(values));
   };
 
   return {
-    handleSubmit,
+    handleUpdate,
   };
 };
 

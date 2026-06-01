@@ -4,7 +4,7 @@ import { getClasses } from "../api/classApi";
 const useClass = () => {
   return useQuery({
     queryKey: ["classes"],
-    queryFn: () => getClasses(),
+    queryFn: getClasses,
     staleTime: 1000 * 60 * 3,
   });
 };

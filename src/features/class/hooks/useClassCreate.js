@@ -1,7 +1,7 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { storeClass } from "../api/classApi";
 
-const useClassStore = () => {
+const useClassCreate = () => {
   const queryClient = useQueryClient();
   const mutation = useMutation({
     mutationFn: (payload) => storeClass(payload),
@@ -19,4 +19,4 @@ const useClassStore = () => {
   };
 };
 
-export default useClassStore;
+export default useClassCreate;

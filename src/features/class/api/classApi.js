@@ -11,6 +11,7 @@ export const storeClass = async (payload) => {
   });
   return res;
 };
+
 export const updateClass = async (id, payload) => {
   const res = await api.put(`/admin/class/${id}`, payload, {
     headers: { "Content-Type": "application/json" },

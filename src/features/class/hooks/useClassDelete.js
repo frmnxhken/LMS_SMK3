@@ -1,23 +1,20 @@
-import React from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteClass } from "../api/classApi";
 
-const useClassDelete = (id) => {
+const useClassDelete = () => {
   const queryClient = useQueryClient();
   const mutation = useMutation({
-    mutationFn: () => deleteClass(id),
+    mutationFn: (id) => deleteClass(id),
     onSuccess: () => {
       queryClient.invalidateQueries(["classes"]);
     },
   });
 
-  const handleSubmit = () => {
-    mutation.mutate();
+  const handleDelete = (id) => {
+    mutation.mutate(id);
   };
 
-  return {
-    handleSubmit,
-  };
+  return { handleDelete };
 };
 
 export default useClassDelete;
