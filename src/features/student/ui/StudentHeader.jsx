@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import FormInput from "@/shared/ui/forms/FormInput";
 import Button from "@/shared/ui/buttons/Button";
@@ -8,24 +8,39 @@ import useClass from "@/features/class/hooks/useClass";
 import FormSelect from "@/shared/ui/forms/FormSelect";
 import useStudent from "../hooks/useStudent";
 
-const StudentHeader = ({ open, setOpen }) => {
+const StudentHeader = ({
+  openImport,
+  setOpenImport,
+  openExport,
+  setOpenExport,
+}) => {
   const navigate = useNavigate();
-  const { filter, handleFilterChange } = useStudent();
+  const [keyword, setKeyword] = useState("");
+  const { filter, handleFilterChange, handleSearchChange } = useStudent();
   const { data: classes } = useClass();
+
+  const handleSearch = () => {
+    handleSearchChange(keyword);
+    setKeyword("");
+  };
 
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
       <div className="flex gap-2">
         <Button onClick={() => navigate("create")}>Tambah</Button>
         <Button
-          onClick={() => setOpen(!open)}
+          onClick={() => setOpenImport(!openImport)}
           variant="success"
           className="flex items-center"
         >
           <PiMicrosoftExcelLogo />
           Import
         </Button>
-        <Button variant="danger" className="flex items-center">
+        <Button
+          onClick={() => setOpenExport(!openExport)}
+          variant="danger"
+          className="flex items-center"
+        >
           <PiMicrosoftExcelLogo />
           Export
         </Button>
@@ -44,13 +59,16 @@ const StudentHeader = ({ open, setOpen }) => {
 
           {classes?.map((c, i) => (
             <FormSelect.Option key={i} value={c.id}>
-              {`${c.level} ${c.major}`}
+              {`${c.level} ${c.major} ${c.section}`}
             </FormSelect.Option>
           ))}
         </FormSelect>
         <div className="flex">
-          <FormInput placeholder="Cari siswa.." />
-          <Button>
+          <FormInput
+            onInput={(e) => setKeyword(e.target.value)}
+            placeholder="Cari siswa.."
+          />
+          <Button onClick={handleSearch}>
             <MdSearch size={18} />
           </Button>
         </div>

@@ -1,6 +1,6 @@
+import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { importStudents } from "../api/studentApi";
-import { useState } from "react";
 
 const useStudentImport = () => {
   const queryClient = useQueryClient();
@@ -10,22 +10,25 @@ const useStudentImport = () => {
     mutationFn: (formData) => importStudents(formData),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["students"] });
+      setErrors(null);
       alert("Import Berhasil!");
     },
-
     onError: (error) => {
       setErrors(error.response?.data?.errors || ["Terjadi kesalahan sistem"]);
     },
   });
 
-  const handleSubmit = (values) => {
-    mutation.mutate(values);
+  const handleImport = (values, options) => {
+    mutation.mutate(values, options);
   };
 
+  const clearErrors = () => setErrors(null);
+
   return {
+    handleImport,
     isImporting: mutation.isPending,
     errors,
-    handleSubmit,
+    clearErrors,
   };
 };
 

@@ -12,10 +12,11 @@ const useStudent = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const page = Number(searchParams.get("page")) || 1;
   const filter = searchParams.get("filter") || "";
+  const search = searchParams.get("search") || "";
 
   const { data, isLoading } = useQuery({
-    queryKey: ["students", page, filter],
-    queryFn: () => getStudents(page, filter),
+    queryKey: ["students", page, filter, search],
+    queryFn: () => getStudents(page, filter, search),
     placeholderData: keepPreviousData,
     staleTime: 1000 * 60 * 5,
   });
@@ -26,6 +27,7 @@ const useStudent = () => {
       params.set("filter", newFilter);
     } else {
       params.delete("filter");
+      params.delete("search");
     }
     params.set("page", 1);
     setSearchParams(params);
@@ -37,13 +39,24 @@ const useStudent = () => {
     setSearchParams(params);
   };
 
+  const handleSearchChange = (keyword) => {
+    const params = new URLSearchParams(searchParams);
+    if (keyword.trim()) {
+      params.set("search", keyword);
+    } else {
+      params.delete("search");
+    }
+    params.set("page", 1);
+    setSearchParams(params);
+  };
+
   useEffect(() => {
     const hasNextPage = data?.meta ? page < data.meta.totalPages : false;
     if (hasNextPage) {
       const nextPage = page + 1;
       queryClient.prefetchQuery({
-        queryKey: ["students", nextPage],
-        queryFn: () => getStudents(nextPage),
+        queryKey: ["students", nextPage, filter, search],
+        queryFn: () => getStudents(nextPage, filter, search),
         staleTime: 1000 * 60 * 5,
       });
     }
@@ -56,6 +69,7 @@ const useStudent = () => {
     filter,
     handlePageChange,
     handleFilterChange,
+    handleSearchChange,
     pagination: data?.meta || {},
   };
 };

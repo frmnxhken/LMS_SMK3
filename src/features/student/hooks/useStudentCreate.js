@@ -3,7 +3,7 @@ import { storeStudent } from "../api/studentApi";
 import { useState } from "react";
 import { useNavigate } from "react-router";
 
-const useStudentStore = () => {
+const useStudentCreate = () => {
   const queryClient = useQueryClient();
   const [errors, setErrors] = useState(null);
   const navigate = useNavigate();
@@ -12,7 +12,7 @@ const useStudentStore = () => {
     mutationFn: (payload) => storeStudent(payload),
     onSuccess: () => {
       queryClient.invalidateQueries(["students"]);
-      navigate("/dashboard/student");
+      navigate(-1);
     },
     onError: (error) => {
       setErrors(error.response?.data?.errors);
@@ -25,8 +25,9 @@ const useStudentStore = () => {
 
   return {
     handleSubmit,
+    isCreating: mutation.isPending,
     errors,
   };
 };
 
-export default useStudentStore;
+export default useStudentCreate;

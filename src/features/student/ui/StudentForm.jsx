@@ -3,7 +3,13 @@ import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
 import FormSelect from "@/shared/ui/forms/FormSelect";
 
-const StudentForm = ({ classes, initData = {}, onSubmit, errors }) => {
+const StudentForm = ({
+  classes,
+  initData = {},
+  onSubmit,
+  onPending,
+  errors,
+}) => {
   const [formData, setFormData] = useState({
     nis: initData?.nis || "",
     name: initData?.name || "",
@@ -20,7 +26,6 @@ const StudentForm = ({ classes, initData = {}, onSubmit, errors }) => {
     if (onSubmit) {
       onSubmit(formData);
     }
-    console.log(errors);
   };
 
   return (
@@ -60,13 +65,13 @@ const StudentForm = ({ classes, initData = {}, onSubmit, errors }) => {
 
         {classes?.map((c, i) => (
           <FormSelect.Option key={i} value={c.id}>
-            {`${c.level} ${c.major}`}
+            {`${c.level} ${c.major} ${c.section}`}
           </FormSelect.Option>
         ))}
 
         <FormSelect.Option value="other">Pilih...</FormSelect.Option>
       </FormSelect>
-      <Button>Simpan</Button>
+      <Button isLoading={onPending}>Simpan</Button>
     </form>
   );
 };

@@ -1,9 +1,15 @@
+import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
 import FormSelect from "@/shared/ui/forms/FormSelect";
-import React, { useState } from "react";
 
-const StudentImportForm = ({ classes, onSubmit, errors, closeModal }) => {
+const StudentImportForm = ({
+  classes,
+  onSubmit,
+  onPending,
+  errors,
+  closeModal,
+}) => {
   const [formData, setFormData] = useState({
     school_class_id: "",
     file: null,
@@ -24,8 +30,11 @@ const StudentImportForm = ({ classes, onSubmit, errors, closeModal }) => {
     data.append("file", formData.file);
 
     if (onSubmit) {
-      onSubmit(data);
-      closeModal();
+      onSubmit(data, {
+        onSuccess: () => {
+          closeModal();
+        },
+      });
     }
   };
   return (
@@ -58,7 +67,9 @@ const StudentImportForm = ({ classes, onSubmit, errors, closeModal }) => {
 
         <FormSelect.Option value="other">Pilih...</FormSelect.Option>
       </FormSelect>
-      <Button type="submit">Import</Button>
+      <Button isLoading={onPending} type="submit">
+        Import
+      </Button>
     </form>
   );
 };

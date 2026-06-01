@@ -19,19 +19,19 @@ const useStudentUpdate = (id) => {
     onSuccess: () => {
       queryClient.invalidateQueries(["students"]);
       queryClient.invalidateQueries(["student", id]);
-      navigate("/dashboard/student");
+      navigate(-1);
     },
     onError: (error) => {
       setErrors(error.response?.data?.errors);
     },
   });
 
-  const handleSubmit = (values) => {
+  const handleUpdate = (values) => {
     mutation.mutate(values);
   };
 
   return {
-    handleSubmit,
+    handleUpdate,
     errors,
     student: data?.data,
     isLoading,

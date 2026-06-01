@@ -1,7 +1,13 @@
 import api from "@/shared/api/ApiClient";
 
-export const getStudents = async (page, filter = "") => {
-  const res = await api.get(`/admin/student?page=${page}&filter=${filter}`);
+export const getStudents = async (page, filter = "", search = "") => {
+  const res = await api.get("/admin/student", {
+    params: {
+      page,
+      filter,
+      search,
+    },
+  });
   return res.data;
 };
 
@@ -31,5 +37,16 @@ export const importStudents = async (payload) => {
       "Content-Type": "multipart/form-data",
     },
   });
+  return res.data;
+};
+
+export const exportStudents = async (schoolClassId = null) => {
+  const res = await api.get("/admin/student/export", {
+    params: {
+      school_class_id: schoolClassId,
+    },
+    responseType: "blob",
+  });
+
   return res.data;
 };
