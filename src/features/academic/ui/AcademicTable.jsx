@@ -2,7 +2,7 @@ import Badge from "@/shared/ui/Feedback/Badge";
 import Button from "@/shared/ui/buttons/Button";
 import React from "react";
 
-const AcademicTable = ({ data }) => {
+const AcademicTable = ({ academies }) => {
   return (
     <table className="table-custom">
       <thead className="">
@@ -14,18 +14,22 @@ const AcademicTable = ({ data }) => {
         </tr>
       </thead>
       <tbody className="text-xs">
-        {data.map((item, index) => (
+        {academies?.data.map((item, index) => (
           <tr className="table-body-row">
             <td className="table-body-cell">{index + 1}</td>
-            <td className="table-body-cell">{item.tahunAkademik}</td>
+            <td className="table-body-cell">{item.name}</td>
             <td className="table-body-cell">
               <Badge
-                variant={item.status === "aktif" ? "success" : "dark"}
-                label={item.status}
+                variant={item.is_active === 1 ? "success" : "dark"}
+                label={item.is_active === 1 ? "aktif" : "tidak aktif"}
               />
             </td>
             <td className="table-body-cell">
-              <Button>Aktifkan</Button>
+              {item.is_active === 1 ? (
+                <Button variant="success">Nonaktifkan</Button>
+              ) : (
+                <Button>Aktifkan</Button>
+              )}
             </td>
           </tr>
         ))}
