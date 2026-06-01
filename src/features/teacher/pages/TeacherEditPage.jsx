@@ -1,0 +1,29 @@
+import React from "react";
+import { useParams } from "react-router";
+import TeacherForm from "../ui/TeacherForm";
+import TeacherEditSkeleton from "../ui/skeletons/TeacherEditSkeleton";
+import useTeacherUpdate from "../hooks/useTeacherUpdate";
+
+export const TeacherEditPage = () => {
+  const { id } = useParams();
+  const { isLoading, teacher, handleUpdate, isUpdating, errors } =
+    useTeacherUpdate(id);
+
+  return (
+    <div className="container max-w-[680px] mx-auto p-6">
+      <div className="border border-app-border p-4 rounded-xl">
+        <h1 className="text-xl text-text-heading font-bold mb-4">Edit Guru</h1>
+        {isLoading ? (
+          <TeacherEditSkeleton />
+        ) : (
+          <TeacherForm
+            initData={teacher}
+            onSubmit={handleUpdate}
+            onPending={isUpdating}
+            errors={errors}
+          />
+        )}
+      </div>
+    </div>
+  );
+};
