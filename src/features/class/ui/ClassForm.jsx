@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
 
-const ClassForm = ({ initData = {}, onSubmit, errors }) => {
+const ClassForm = ({ initData = {}, onSubmit, onPending, errors }) => {
   const [formData, setFormData] = useState({
     level: initData?.level || "",
     major: initData?.major || "",
@@ -45,7 +45,7 @@ const ClassForm = ({ initData = {}, onSubmit, errors }) => {
         placeholder="Contoh: 1/2/3"
         feedback={errors?.section?.[0]}
       />
-      <Button>Simpan</Button>
+      <Button isLoading={onPending}>Simpan</Button>
     </form>
   );
 };

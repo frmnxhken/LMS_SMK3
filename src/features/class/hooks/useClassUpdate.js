@@ -1,9 +1,11 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { getDetailClass, updateClass } from "../api/classApi";
 import { useState } from "react";
+import { useNavigate } from "react-router";
 
 const useClassUpdate = (id) => {
   const queryClient = useQueryClient();
+  const navigate = useNavigate();
   const [errors, setErrors] = useState(null);
 
   const { data, isLoading } = useQuery({
@@ -16,6 +18,7 @@ const useClassUpdate = (id) => {
     mutationFn: (payload) => updateClass(id, payload),
     onSuccess: () => {
       queryClient.invalidateQueries(["classes"]);
+      navigate(-1);
     },
     onError: (error) => {
       setErrors(error.response?.data?.errors);
@@ -30,6 +33,7 @@ const useClassUpdate = (id) => {
     data,
     isLoading,
     handleUpdate,
+    isUpdating: mutation.isPending,
     errors,
   };
 };

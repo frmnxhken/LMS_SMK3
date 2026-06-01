@@ -3,7 +3,7 @@ import ClassForm from "../ui/ClassForm";
 import useClassCreate from "../hooks/useClassCreate";
 
 export const ClassCreatePage = () => {
-  const { handleSubmit, errors } = useClassCreate();
+  const { handleSubmit, isCreating, errors } = useClassCreate();
 
   return (
     <div className="p-6 container mx-auto max-w-[600px]">
@@ -11,7 +11,11 @@ export const ClassCreatePage = () => {
         <h1 className="text-xl text-text-heading font-bold mb-4">
           Tambah Kelas
         </h1>
-        <ClassForm onSubmit={handleSubmit} errors={errors} />
+        <ClassForm
+          onSubmit={handleSubmit}
+          onPending={isCreating}
+          errors={errors}
+        />
       </div>
     </div>
   );

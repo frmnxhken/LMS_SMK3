@@ -1,4 +1,5 @@
 import React from "react";
+import { CgSpinner } from "react-icons/cg";
 
 const variants = {
   primary: "bg-primary text-white hover:bg-blue-600",
@@ -13,17 +14,22 @@ const Button = ({
   children,
   variant = "primary",
   className = "",
+  isLoading = false,
+  disabled,
   ...props
 }) => {
   return (
     <button
       {...props}
+      disabled={disabled || isLoading}
       className={`
-        w-auto text-sm font-semibold px-4 py-2 rounded-md transition
+        inline-flex items-center justify-center gap-2 text-sm font-semibold px-4 py-2 rounded-md transition
         ${variants[variant]}
+        ${isLoading ? "opacity-70 cursor-not-allowed" : ""} 
         ${className}
       `}
     >
+      {isLoading && <CgSpinner className="animate-spin h-4 w-4" />}
       {children}
     </button>
   );
