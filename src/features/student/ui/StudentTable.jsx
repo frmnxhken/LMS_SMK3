@@ -46,7 +46,7 @@ const StudentTable = ({ students, page, isLoading }) => {
               <td className="table-body-cell">
                 {student.level + " " + student.major + " " + student.section}
               </td>
-              <td className="table-body-cell space-x-2">
+              <td className="table-body-cell flex space-x-2">
                 <Button onClick={() => navigate(`${student.id}/edit`)}>
                   Edit
                 </Button>

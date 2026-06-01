@@ -45,7 +45,7 @@ const StudentHeader = ({
           Export
         </Button>
       </div>
-      <div className="flex gap-4">
+      <div className="grid grid-cols-2 gap-4">
         <FormSelect
           id="class-select"
           value={filter}
@@ -63,13 +63,14 @@ const StudentHeader = ({
             </FormSelect.Option>
           ))}
         </FormSelect>
-        <div className="flex">
+        <div className="flex items-center w-full">
           <FormInput
+            className="w-full"
             onInput={(e) => setKeyword(e.target.value)}
             placeholder="Cari siswa.."
           />
           <Button onClick={handleSearch}>
-            <MdSearch size={18} />
+            <MdSearch size={20} />
           </Button>
         </div>
       </div>

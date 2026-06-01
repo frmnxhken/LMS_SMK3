@@ -41,7 +41,7 @@ const ClassTable = ({ data, isLoading }) => {
                 <td className="table-body-cell">{item.level}</td>
                 <td className="table-body-cell">{item.major}</td>
                 <td className="table-body-cell">{item.section}</td>
-                <td className="table-body-cell space-x-2">
+                <td className="table-body-cell flex space-x-2">
                   <Button onClick={() => navigate(`${item.id}/edit`)}>
                     Edit
                   </Button>

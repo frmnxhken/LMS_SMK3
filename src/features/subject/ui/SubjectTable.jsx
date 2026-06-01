@@ -64,7 +64,7 @@ const SubjectTable = ({ data, isLoading }) => {
               <tr className="table-body-row">
                 <td className="table-body-cell">{index + 1}</td>
                 <td className="table-body-cell">{item.name}</td>
-                <td className="table-body-cell space-x-2">
+                <td className="table-body-cell flex space-x-2">
                   <Button onClick={() => onEdit(item)}>Edit</Button>
                   <Button onClick={() => onDelete(item.id)} variant="outline">
                     Delete
