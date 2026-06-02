@@ -6,10 +6,10 @@ import CourseHeaderDetail from "../ui/CourseHeaderDetail";
 import CommentInput from "../ui/CommentInput";
 import CourseAttachmentDetail from "../ui/CourseAttachmentDetail";
 import CourseSideDetail from "../ui/CourseSideDetail";
-import CourseDocViewer from "../ui/CourseDocViewer";
 import CourseHeaderDetailSkeleton from "../ui/skeletons/CourseHeaderDetailSkeleton";
 import CourseAttachmentDetailSkeleton from "../ui/skeletons/CourseAttachmentDetailSkeleton";
 import TopLoader from "@/shared/ui/Feedback/TopLoader";
+import FileViewer from "@/shared/ui/media/FileViewer";
 
 export const CourseDetail = () => {
   const { id_class, id_post } = useParams();
@@ -40,7 +40,7 @@ export const CourseDetail = () => {
           />
         )}
 
-        <CourseDocViewer file={docView} onClose={() => setDocView(null)} />
+        <FileViewer file={docView} onClose={() => setDocView(null)} />
 
         <div className="hidden sm:block">
           <CommentInput />

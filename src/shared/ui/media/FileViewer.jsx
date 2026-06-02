@@ -3,7 +3,7 @@ import Modal from "@/shared/ui/modal/Modal";
 import DocViewer, { DocViewerRenderers } from "@iamjariwala/react-doc-viewer";
 import "@iamjariwala/react-doc-viewer/dist/index.css";
 
-const CourseDocViewer = ({ file, onClose }) => {
+const FileViewer = ({ file, onClose }) => {
   return (
     <Modal
       title={"Preview Dokumen"}
@@ -46,4 +46,4 @@ const CourseDocViewer = ({ file, onClose }) => {
   );
 };
 
-export default CourseDocViewer;
+export default FileViewer;
