@@ -3,12 +3,13 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, FreeMode } from "swiper/modules";
 import { IoChevronBack, IoChevronForward } from "react-icons/io5";
 import CourseCard from "@/features/course/ui/CourseCard";
+import CourseCardSkeleton from "@/features/course/ui/skeletons/CourseCardSkeleton";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/free-mode";
 
-const HomeCourseList = ({ courses }) => {
+const HomeCourseList = ({ courses, isLoading }) => {
   return (
     <div className="w-full mt-8">
       <div className="flex justify-between items-center mb-6 px-2">
@@ -44,16 +45,22 @@ const HomeCourseList = ({ courses }) => {
         modules={[FreeMode, Navigation]}
         className="pb-4"
       >
-        {courses?.map((course, index) => (
-          <SwiperSlide key={index}>
-            <CourseCard
-              id={course.id}
-              subject={course.subject}
-              teacher={course.teacher}
-              index={index}
-            />
-          </SwiperSlide>
-        ))}
+        {isLoading
+          ? [1, 2, 3, 4].map((i) => (
+              <SwiperSlide key={i}>
+                <CourseCardSkeleton />
+              </SwiperSlide>
+            ))
+          : courses?.map((course, index) => (
+              <SwiperSlide key={index}>
+                <CourseCard
+                  id={course.id}
+                  subject={course.subject}
+                  teacher={course.teacher}
+                  index={index}
+                />
+              </SwiperSlide>
+            ))}
       </Swiper>
     </div>
   );
