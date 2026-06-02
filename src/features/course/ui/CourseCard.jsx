@@ -1,9 +1,11 @@
+import { useAuth } from "@/app/contexts/AuthContext";
 import { courseVariantColors } from "@/shared/lib/Constants";
 import React from "react";
 import { IoArrowForward, IoPerson, IoLibrary } from "react-icons/io5";
 import { Link } from "react-router";
 
 const CourseCard = ({ id, subject, teacher, index }) => {
+  const { user } = useAuth();
   const color = courseVariantColors[index % 5];
   return (
     <div className="bg-app-surface border border-app-border rounded-xl overflow-hidden transition-all duration-300">
@@ -19,14 +21,15 @@ const CourseCard = ({ id, subject, teacher, index }) => {
       <div className="p-5">
         <div className="flex items-center gap-2 text-text-body text-xs">
           <IoPerson />
-          <span>{teacher}</span>
+          <span>{user.role === "student" ? teacher : "Anda"}</span>
         </div>
 
         <Link
           to={"/course/" + id}
           className="w-full mt-5 bg-app-bg hover:bg-primary hover:text-white text-primary text-sm font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all"
         >
-          Mulai Belajar <IoArrowForward />
+          {user.role === "student" ? "Mulai Belajar" : "Mulai Mengajar"}
+          <IoArrowForward />
         </Link>
       </div>
     </div>
