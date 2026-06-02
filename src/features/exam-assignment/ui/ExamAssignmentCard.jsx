@@ -40,9 +40,18 @@ const ExamAssignmentCard = ({ exam, onEdit, onDelete }) => {
             <div>
               <Badge label={exam.exam.type} variant="success" />
             </div>
-            <h2 className="text-sm sm:text-base font-semibold text-text-heading mt-1 group-hover:text-primary transition-colors">
-              {exam.exam.title}
-            </h2>
+            {user.role === "student" ? (
+              <Link
+                to={`${exam.id}/prepare`}
+                className="text-sm sm:text-base font-semibold text-text-heading mt-1 group-hover:text-primary transition-colors"
+              >
+                {exam.exam.title}
+              </Link>
+            ) : (
+              <h2 className="text-sm sm:text-base font-semibold text-text-heading mt-1 group-hover:text-primary transition-colors">
+                {exam.exam.title}
+              </h2>
+            )}
             <div className="flex items-center gap-x-4 text-[11px] text-text-muted mt-1">
               <div className="flex items-center">
                 <IoTimeOutline />
@@ -54,16 +63,6 @@ const ExamAssignmentCard = ({ exam, onEdit, onDelete }) => {
                 <span>{formatTimeStamp(exam.end_time)}</span>
               </div>
             </div>
-            {user.role === "student" && isExpired(exam.end_time) && (
-              <div className="mt-2">
-                <Link
-                  to={`${exam.id}/prepare`}
-                  className="text-primary underline font-semibold text-sm"
-                >
-                  Lihat Detail
-                </Link>
-              </div>
-            )}
           </div>
         </div>
         {user.role === "teacher" && (
