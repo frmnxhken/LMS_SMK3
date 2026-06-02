@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import TopLoader from "@/shared/ui/Feedback/TopLoader";
 import Modal from "@/shared/ui/modal/Modal";
 import Pagination from "@/shared/ui/navigation/Pagination";
 import TeacherHeader from "../ui/TeacherHeader";
@@ -20,7 +19,6 @@ export const TeacherPage = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <TopLoader isLoading={isLoading} />
       <h1 className="text-xl font-bold text-text-heading mb-2">Daftar Guru</h1>
       <TeacherHeader openModal={() => setOpen(true)} />
 

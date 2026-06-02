@@ -1,8 +1,5 @@
 import React from "react";
-import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { monthNames, dayNames } from "@/shared/lib/Constants";
-import TopLoader from "@/shared/ui/Feedback/TopLoader";
-import Button from "@/shared/ui/buttons/Button";
 import TaskToDo from "../ui/TaskToDo";
 import useTaskCalendar from "../hooks/useTaskCalendar";
 import useTask from "../hooks/useTask";
@@ -15,7 +12,6 @@ const TaskCalendarPage = () => {
 
   return (
     <div className="p-6">
-      <TopLoader isLoading={isLoading} />
       <h1 className="text-lg font-bold text-center">
         {dates.length > 0 && `${monthNames[dates[0].month]} ${dates[0].year}`}
       </h1>

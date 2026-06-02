@@ -3,7 +3,6 @@ import MemberCard from "../ui/MemberCard";
 import { useParams } from "react-router";
 import useMembers from "../hooks/useMembers";
 import MemberCardSkeleton from "../ui/skeletons/MemberCardSkeleton";
-import TopLoader from "@/shared/ui/Feedback/TopLoader";
 
 export const MemberPage = () => {
   const { id_class } = useParams();
@@ -11,7 +10,6 @@ export const MemberPage = () => {
 
   return (
     <div className="container max-w-[780px] mx-auto p-6">
-      <TopLoader isLoading={isLoading} />
       <div className="mb-8">
         <h1 className="text-heading font-bold text-xl mb-4">Pengajar</h1>
         {isLoading ? (

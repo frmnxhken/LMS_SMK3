@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Modal from "@/shared/ui/modal/Modal";
 import Pagination from "@/shared/ui/navigation/Pagination";
-import TopLoader from "@/shared/ui/Feedback/TopLoader";
 import useClass from "@/features/class/hooks/useClass";
 import StudentTable from "../ui/StudentTable";
 import StudentHeader from "../ui/StudentHeader";
@@ -26,7 +25,6 @@ const StudentPage = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <TopLoader isLoading={isLoading} />
       <h1 className="text-xl font-bold text-text-heading mb-2">Daftar Siswa</h1>
 
       <StudentHeader

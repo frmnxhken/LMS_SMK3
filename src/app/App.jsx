@@ -6,10 +6,14 @@ import GuestRoute from "./routes/GuestRoute";
 import AdminRoute from "./routes/AdminRoute";
 import ScrollToTop from "@/shared/lib/ScrollToTop";
 import LoginPage from "@/features/authentication/pages/LoginPage";
+import { useIsFetching } from "@tanstack/react-query";
+import TopLoader from "@/shared/ui/Feedback/TopLoader";
 
 const App = () => {
+  const isFetching = useIsFetching();
   return (
     <BrowserRouter>
+      <TopLoader isLoading={isFetching} />
       <ScrollToTop />
       <Routes>
         <Route

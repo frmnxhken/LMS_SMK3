@@ -8,7 +8,6 @@ import CourseAttachmentDetail from "../ui/CourseAttachmentDetail";
 import CourseSideDetail from "../ui/CourseSideDetail";
 import CourseHeaderDetailSkeleton from "../ui/skeletons/CourseHeaderDetailSkeleton";
 import CourseAttachmentDetailSkeleton from "../ui/skeletons/CourseAttachmentDetailSkeleton";
-import TopLoader from "@/shared/ui/Feedback/TopLoader";
 import FileViewer from "@/shared/ui/media/FileViewer";
 
 export const CourseDetail = () => {
@@ -25,7 +24,6 @@ export const CourseDetail = () => {
     <div
       className={`container relative ${type === "assignment" ? "max-w-[1080px]" : "max-w-[780px]"} mx-auto py-6 px-4 flex flex-col sm:flex-row gap-4 justify-between`}
     >
-      <TopLoader isLoading={isLoading} />
       <div className="w-full">
         {isLoading ? (
           <CourseHeaderDetailSkeleton />

@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import Modal from "@/shared/ui/modal/Modal";
-import TopLoader from "@/shared/ui/Feedback/TopLoader";
 import SubjectForm from "../ui/SubjectForm";
 import SubjectTable from "../ui/SubjectTable";
 import useSubject from "../hooks/useSubject";
@@ -19,7 +18,6 @@ const SubjectPage = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <TopLoader isLoading={isLoading} />
       <div className="flex items-center justify-between">
         <h1 className="text-xl font-bold text-text-heading">
           Daftar Pelajaran

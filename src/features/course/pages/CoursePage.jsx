@@ -9,7 +9,6 @@ import { useCourseAction } from "../hooks/useCourseAction";
 import CoursePostCard from "../ui/CoursePostCard";
 import CoursePostCardSkeleton from "../ui/skeletons/CoursePostCardSkeleton";
 import CourseBannerSkeleton from "../ui/skeletons/CourseBannerSkeleton";
-import TopLoader from "@/shared/ui/Feedback/TopLoader";
 
 export const CoursePage = () => {
   const { id_class } = useParams();
@@ -19,7 +18,6 @@ export const CoursePage = () => {
 
   return (
     <div className="max-w-[980px] container mx-auto p-6">
-      <TopLoader isLoading={isLoading} />
       {isLoading ? (
         <CourseBannerSkeleton />
       ) : (

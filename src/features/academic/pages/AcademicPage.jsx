@@ -6,7 +6,6 @@ import AcademicForm from "../ui/AcademicForm";
 import useAcademic from "../hooks/useAcademic";
 import useAcademicAction from "../hooks/useAcademicAction";
 import { MdAdd } from "react-icons/md";
-import TopLoader from "@/shared/ui/Feedback/TopLoader";
 
 const AcademicPage = () => {
   const { data, isLoading } = useAcademic();
@@ -23,7 +22,6 @@ const AcademicPage = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <TopLoader isLoading={isLoading} />
       <div className="flex justify-between">
         <h1 className="text-xl font-bold text-text-heading mb-2">
           Daftar Tahun Ajaran

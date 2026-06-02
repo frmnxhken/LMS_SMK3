@@ -3,7 +3,6 @@ import useTeachingAssignment from "../hooks/useTeachingAssignment";
 import TeachingAssignmentTable from "../ui/TeachingAssignmentTable";
 import TeachingAssignmentHeader from "../ui/TeachingAssignmentHeader";
 import Pagination from "@/shared/ui/navigation/Pagination";
-import TopLoader from "@/shared/ui/Feedback/TopLoader";
 
 const TeachingAssignmentPage = () => {
   const { isLoading, data, page, handlePageChange, pagination } =
@@ -11,7 +10,6 @@ const TeachingAssignmentPage = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <TopLoader isLoading={isLoading} />
       <h1 className="text-xl font-bold text-text-heading mb-4">
         Daftar Pengajar
       </h1>
