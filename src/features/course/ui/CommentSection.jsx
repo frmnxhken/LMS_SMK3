@@ -1,16 +1,13 @@
-import React, { useState } from "react";
-import CommentCard from "./CommentCard";
-import { IoTimeOutline, IoChatbubbleOutline } from "react-icons/io5";
-import useCourseComments from "../hooks/useCourseComments";
+import React from "react";
 import { useParams } from "react-router";
+import CommentCard from "./CommentCard";
+import { IoChatbubbleOutline } from "react-icons/io5";
+import useCourseComments from "../hooks/useCourseComments";
+import CommentInput from "./CommentInput";
 
 const CommentSection = ({ isOpen, toggle }) => {
   const { id_class, id_post } = useParams();
   const { data: comments, isLoading } = useCourseComments(id_class, id_post);
-  const { message, handleInput, handleSubmit } = useCourseComments(
-    id_class,
-    id_post,
-  );
 
   return (
     <>
@@ -48,22 +45,14 @@ const CommentSection = ({ isOpen, toggle }) => {
                 key={index}
                 name={comment?.user?.name}
                 message={comment?.message}
+                photo={comment?.user?.photo}
                 created_at={comment?.created_at}
               />
             ))}
           </div>
 
-          <div className="block sm:hidden absolute w-full bottom-0 flex items-center gap-3 py-6">
-            <img
-              className="w-[40px] h-[40px] rounded-full object-cover"
-              src="https://pbs.twimg.com/media/GM-K29qaoAAmXky?format=jpg&name=medium"
-              alt="profile"
-            />
-            <input
-              type="text"
-              placeholder="Tambahkan komentar kelas..."
-              className="w-full bg-app-surface border border-app-border rounded-full px-4 py-2 text-sm focus:ring-1 focus:ring-primary outline-none transition-all"
-            />
+          <div className="block sm:hidden absolute w-full bottom-0 py-6">
+            <CommentInput />
           </div>
         </div>
       </div>

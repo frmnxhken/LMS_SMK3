@@ -1,12 +1,13 @@
-import { formatDateDMY } from "@/shared/lib/formatDate";
 import React from "react";
+import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
+import { formatDateDMY } from "@/shared/lib/formatDate";
 
-const CommentCard = ({ name, message, created_at }) => {
+const CommentCard = ({ name, message, created_at, photo }) => {
   return (
     <div className="flex gap-4">
       <img
         className="w-[40px] h-[40px] rounded-full object-cover"
-        src="https://pbs.twimg.com/media/GM-K29qaoAAmXky?format=jpg&name=medium"
+        src={BASE_IMAGE_PROFILE + photo}
         alt="profile"
       />
       <div className="flex-1">

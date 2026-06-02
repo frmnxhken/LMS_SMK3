@@ -3,8 +3,11 @@ import useCourseCommentStore from "../hooks/useCourseCommentStore";
 import { useParams } from "react-router";
 import Button from "@/shared/ui/buttons/Button";
 import { MdSend } from "react-icons/md";
+import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
+import { useAuth } from "@/app/contexts/AuthContext";
 
 const CommentInput = () => {
+  const { user } = useAuth();
   const { id_class, id_post } = useParams();
   const { message, handleInput, handleSubmit } = useCourseCommentStore(
     id_class,
@@ -13,10 +16,10 @@ const CommentInput = () => {
 
   return (
     <form method="post" onSubmit={handleSubmit}>
-      <div className="flex items-center gap-3 py-6">
+      <div className="w-full flex items-center gap-3">
         <img
           className="w-[40px] h-[40px] rounded-full object-cover"
-          src="https://pbs.twimg.com/media/GM-K29qaoAAmXky?format=jpg&name=medium"
+          src={BASE_IMAGE_PROFILE + user.photo}
           alt="profile"
         />
         <input

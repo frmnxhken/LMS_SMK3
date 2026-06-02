@@ -42,7 +42,7 @@ export const CourseDetail = () => {
 
         <FileViewer file={docView} onClose={() => setDocView(null)} />
 
-        <div className="hidden sm:block">
+        <div className="hidden sm:block py-6">
           <CommentInput />
         </div>
 
