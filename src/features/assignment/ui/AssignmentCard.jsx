@@ -5,7 +5,7 @@ import { formatDateDMY } from "@/shared/lib/formatDate";
 import Button from "@/shared/ui/buttons/Button";
 import { useAuth } from "@/app/contexts/AuthContext";
 
-const AssignmentCard = ({ id, title, due, created_at }) => {
+const AssignmentCard = ({ assignment, idClass }) => {
   const navigate = useNavigate();
   const { user } = useAuth();
 
@@ -18,19 +18,22 @@ const AssignmentCard = ({ id, title, due, created_at }) => {
           </div>
 
           <div className="flex flex-col">
-            <Link className="text-sm sm:text-base font-semibold text-text-heading mt-1 group-hover:text-primary transition-colors">
-              {title}
+            <Link
+              to={`/course/${idClass}/post/${assignment.id}`}
+              className="text-sm sm:text-base font-semibold text-text-heading mt-1 group-hover:text-primary transition-colors"
+            >
+              {assignment.title}
             </Link>
 
             <div className="flex items-center gap-x-4 text-[11px] text-text-muted mt-1">
               <div className="flex items-center">
                 <IoTimeOutline />
-                <span>{formatDateDMY(created_at)}</span>
+                <span>{formatDateDMY(assignment.created_at)}</span>
               </div>
               -
               <div className="flex items-center">
                 <IoTimeOutline />
-                <span>{formatDateDMY(due)}</span>
+                <span>{formatDateDMY(assignment.due)}</span>
               </div>
             </div>
           </div>
