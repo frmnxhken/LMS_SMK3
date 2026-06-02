@@ -32,17 +32,3 @@ export const courseVariantColors = [
   "text-emerald-400",
   "text-pink-400",
 ];
-
-export const InformationProfile = {
-  teacher: {
-    name: "NAMA LENGKAP",
-    phone: "NO TELEPONE",
-    nip: "NIP",
-  },
-  student: {
-    name: "NAMA LENGKAP",
-    nis: "NIS",
-    birthday: "TANGGAL LAHIR",
-    address: "ALAMAT",
-  },
-};

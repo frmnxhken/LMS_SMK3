@@ -2,7 +2,9 @@
   "teacher": {
     "name": "Shani Indira Natio, S.Kom.",
     "phone": "081299887766",
-    "nip": "199810052024012001"
+    "teacher": {
+      "nip": "199810052024012001"
+    }
   },
   "student": {
     "name": "Azizi Asadel",

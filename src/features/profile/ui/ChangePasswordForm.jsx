@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
+import { useNavigate } from "react-router";
 
 const ChangePasswordForm = ({ onSubmit, errors }) => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     current_password: "",
     password: "",
@@ -57,7 +59,7 @@ const ChangePasswordForm = ({ onSubmit, errors }) => {
       />
 
       <div className="pt-2 flex justify-end gap-2">
-        <Button type="button" variant="outline">
+        <Button onClick={() => navigate(-1)} type="button" variant="outline">
           Batal
         </Button>
         <Button type="submit">Ubah Password</Button>
