@@ -26,11 +26,14 @@ const ExamAssignmentListPage = () => {
   if (isLoading) return;
   return (
     <div className="p-6 container max-w-[800px] mx-auto">
-      {user.role === "teacher" && (
-        <div>
-          <Button onClick={handleOpenCreate}>Tambah</Button>
-        </div>
-      )}
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-heading font-bold text-xl">Daftar Ujian</h1>
+        {user.role === "teacher" && (
+          <div>
+            <Button onClick={handleOpenCreate}>Tambah</Button>
+          </div>
+        )}
+      </div>
 
       <Modal
         title={selectedData ? "Edit Ujian" : "Tambah Ujian"}
