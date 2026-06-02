@@ -15,13 +15,16 @@ const useAcademicCreate = () => {
     },
   });
 
-  const handleSubmit = (values) => {
-    mutation.mutate(values);
+  const handleSubmit = (values, option) => {
+    mutation.mutate(values, option);
   };
 
+  const clearErrors = () => setErrors(null);
+
   return {
-    errors,
     handleSubmit,
+    errors,
+    clearErrors,
   };
 };
 

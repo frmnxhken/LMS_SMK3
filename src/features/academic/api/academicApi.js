@@ -7,7 +7,7 @@ export const getListAcademicYears = async () => {
 
 export const createAcademicYear = async (data) => {
   const res = await api.post("/admin/academic", data);
-  return res.data;
+  return res;
 };
 
 export const getDetailAcademicYear = async (id) => {
@@ -17,10 +17,15 @@ export const getDetailAcademicYear = async (id) => {
 
 export const updateAcademicYear = async (id, data) => {
   const res = await api.put(`/admin/academic/${id}`, data);
-  return res.data;
+  return res;
 };
 
 export const deleteAcademicYear = async (id) => {
   const res = await api.delete(`/admin/academic/${id}`);
-  return res.data;
+  return res;
+};
+
+export const activateAcademicYear = async (id) => {
+  const res = await api.put(`/admin/academic/${id}/activate`);
+  return res;
 };

@@ -1,27 +1,58 @@
+import React from "react";
 import Button from "@/shared/ui/buttons/Button";
 import Modal from "@/shared/ui/modal/Modal";
-import React, { useState } from "react";
 import AcademicTable from "../ui/AcademicTable";
 import AcademicForm from "../ui/AcademicForm";
 import useAcademic from "../hooks/useAcademic";
+import useAcademicAction from "../hooks/useAcademicAction";
+import { MdAdd } from "react-icons/md";
+import TopLoader from "@/shared/ui/Feedback/TopLoader";
 
 const AcademicPage = () => {
   const { data, isLoading } = useAcademic();
-  const [open, setOpen] = useState(false);
+  const {
+    isOpen,
+    selectedData,
+    handleOpenCreate,
+    handleEdit,
+    handleClose,
+    onSubmitHandler,
+    onDelete,
+    errors,
+  } = useAcademicAction();
 
   return (
     <div className="container mx-auto p-6">
-      <Button onClick={() => setOpen(true)}>Tambah</Button>
+      <TopLoader isLoading={isLoading} />
+      <div className="flex justify-between">
+        <h1 className="text-xl font-bold text-text-heading mb-2">
+          Daftar Tahun Ajaran
+        </h1>
+        <Button variant="outline" onClick={handleOpenCreate}>
+          <MdAdd size={20} />
+          Tambah
+        </Button>
+      </div>
 
       <Modal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        title="Tambah Tahun Akademik"
+        isOpen={isOpen}
+        onClose={handleClose}
+        title={selectedData ? "Edit Tahun Akademik" : "Tambah Tahun Akademik"}
       >
-        <AcademicForm />
+        <AcademicForm
+          initData={selectedData}
+          onSubmit={onSubmitHandler}
+          errors={errors}
+        />
       </Modal>
+
       <div className="table-responsive mt-4">
-        <AcademicTable academies={data} />
+        <AcademicTable
+          academies={data}
+          onEdit={handleEdit}
+          onDelete={onDelete}
+          isLoading={isLoading}
+        />
       </div>
     </div>
   );
