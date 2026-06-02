@@ -1,7 +1,7 @@
 import React from "react";
 import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
 
-const MemberCard = ({ name, photo }) => {
+const MemberCard = ({ name, photo, nip = null }) => {
   return (
     <div className="border border-app-border rounded-xl p-4">
       <div className="flex items-center gap-4">
@@ -10,7 +10,10 @@ const MemberCard = ({ name, photo }) => {
           src={BASE_IMAGE_PROFILE + photo}
           alt="profile"
         />
-        <p className="text-md font-medium text-app-body">{name}</p>
+        <div>
+          <p className="text-md font-medium text-app-body">{name}</p>
+          <p className="text-sm text-text-muted">{nip}</p>
+        </div>
       </div>
     </div>
   );

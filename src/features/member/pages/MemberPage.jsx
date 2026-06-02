@@ -2,6 +2,8 @@ import React from "react";
 import MemberCard from "../ui/MemberCard";
 import { useParams } from "react-router";
 import useMembers from "../hooks/useMembers";
+import MemberCardSkeleton from "../ui/skeletons/MemberCardSkeleton";
+import TopLoader from "@/shared/ui/Feedback/TopLoader";
 
 export const MemberPage = () => {
   const { id_class } = useParams();
@@ -9,16 +11,23 @@ export const MemberPage = () => {
 
   return (
     <div className="container max-w-[780px] mx-auto p-6">
+      <TopLoader isLoading={isLoading} />
       <div className="mb-8">
         <h1 className="text-heading font-bold text-xl mb-4">Pengajar</h1>
-        <MemberCard
-          name={data?.teacher?.[0].name}
-          photo={data?.teacher?.[0].photo}
-        />
+        {isLoading ? (
+          <MemberCardSkeleton />
+        ) : (
+          <MemberCard
+            name={data?.teacher?.name}
+            photo={data?.teacher?.photo}
+            nip={data?.teacher?.nip}
+          />
+        )}
       </div>
       <div>
         <h1 className="text-heading font-bold text-xl mb-4">Anggota Kelas</h1>
         <div className="space-y-2">
+          {isLoading && [1, 2, 3].map((i) => <MemberCardSkeleton key={i} />)}
           {data?.students.map((student, index) => (
             <MemberCard key={index} name={student.name} photo={student.photo} />
           ))}
