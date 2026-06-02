@@ -15,6 +15,7 @@ import {
   TeacherEditPage,
   TeacherPage,
 } from "@/features/teacher";
+import TeachingAssignmentEditPage from "@/features/teaching-assignment/pages/TeachingAssignmentEditPage";
 
 const AdminRoute = () => {
   return (
@@ -35,6 +36,10 @@ const AdminRoute = () => {
       <Route
         path="teaching-assignment/create"
         element={<TeachingAssignmentCreatePage />}
+      />
+      <Route
+        path="teaching-assignment/:id/edit"
+        element={<TeachingAssignmentEditPage />}
       />
     </Route>
   );
