@@ -9,6 +9,7 @@ import { useCourseAction } from "../hooks/useCourseAction";
 import CoursePostCard from "../ui/CoursePostCard";
 import CoursePostCardSkeleton from "../ui/skeletons/CoursePostCardSkeleton";
 import CourseBannerSkeleton from "../ui/skeletons/CourseBannerSkeleton";
+import EmptyState from "@/shared/ui/Feedback/EmptyState";
 
 export const CoursePage = () => {
   const { id_class } = useParams();
@@ -42,9 +43,16 @@ export const CoursePage = () => {
             </div>
           )}
           {isLoading && <CoursePostCardSkeleton />}
-          {data?.[0].posts?.map((post, index) => (
-            <CoursePostCard key={index} {...post} />
-          ))}
+          {!isLoading && data?.[0].posts?.length === 0 ? (
+            <EmptyState
+              title="Tidak ada postingan"
+              description="Belum ada postingan untuk saat ini"
+            />
+          ) : (
+            data?.[0].posts?.map((post, index) => (
+              <CoursePostCard key={index} {...post} />
+            ))
+          )}
         </div>
       </div>
     </div>
