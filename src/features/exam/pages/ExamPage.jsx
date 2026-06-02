@@ -11,6 +11,7 @@ const ExamPage = () => {
     id_class,
     id_exam,
   );
+
   const questions = data?.questions || [];
   const totalQuestions = questions.length;
   const [currentQuestion, setCurrentQuestion] = useState(1);
@@ -52,7 +53,7 @@ const ExamPage = () => {
             title="Ujian Akhir Semester"
             subject="Pemrograman Web"
             startedAt={data?.started_at}
-            duration={data?.duration || 60}
+            duration={data?.duration}
             attemptId={data?.attempt_id}
           />
           <ExamQuestion
