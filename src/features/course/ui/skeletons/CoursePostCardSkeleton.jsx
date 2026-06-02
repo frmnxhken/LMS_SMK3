@@ -1,7 +1,14 @@
+import SkeletonBar from "@/shared/ui/Feedback/SkeletonBar";
 import React from "react";
 
 const CoursePostCardSkeleton = () => {
-  return <div className="bg-app-bg w-full h-28 rounded-xl animate-pulse"></div>;
+  return (
+    <>
+      {Array.from({ length: 3 }).map((_, index) => (
+        <SkeletonBar key={index} className="w-full h-26" />
+      ))}
+    </>
+  );
 };
 
 export default CoursePostCardSkeleton;

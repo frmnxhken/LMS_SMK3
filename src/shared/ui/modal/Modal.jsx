@@ -7,6 +7,7 @@ export default function Modal({
   title,
   children,
   footer = null,
+  maxWidth = "max-w-lg",
 }) {
   useEffect(() => {
     const handleEsc = (e) => {
@@ -22,7 +23,9 @@ export default function Modal({
     <div className="fixed inset-0 z-90 flex items-center justify-center p-6">
       <div className="absolute inset-0 bg-black/50" onClick={onClose}></div>
 
-      <div className="relative z-10 w-full max-w-lg rounded-xl bg-white shadow-lg">
+      <div
+        className={`${maxWidth} relative z-10 w-full rounded-xl bg-white shadow-lg`}
+      >
         <div className="flex items-center justify-between p-4">
           <h2 className="text-sm font-semibold">{title}</h2>
           <button onClick={onClose} className="text-gray-500 hover:text-black">

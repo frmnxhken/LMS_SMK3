@@ -2,6 +2,7 @@ import React from "react";
 import useCourseCommentStore from "../hooks/useCourseCommentStore";
 import { useParams } from "react-router";
 import Button from "@/shared/ui/buttons/Button";
+import { MdSend } from "react-icons/md";
 
 const CommentInput = () => {
   const { id_class, id_post } = useParams();
@@ -24,7 +25,9 @@ const CommentInput = () => {
           placeholder="Tambahkan komentar kelas..."
           className="flex-1 border border-app-border rounded-full px-4 py-2 text-sm focus:ring-1 focus:ring-primary outline-none transition-all"
         />
-        <Button>Kirim</Button>
+        <Button className="h-8">
+          <MdSend />
+        </Button>
       </div>
     </form>
   );
