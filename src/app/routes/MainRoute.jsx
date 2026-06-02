@@ -5,7 +5,6 @@ import MainLayout from "../layout/MainLayout";
 import CourseRoute from "./CourseRoute";
 import ProtectedRoute from "./ProtectedRoute";
 
-import CalendarPage from "@/features/calendar/pages/CalendarPage";
 import AttendancePage from "@/features/attendance/pages/AttendancePage";
 import HomePage from "@/features/home/pages/HomePage";
 import { ProfilePage } from "@/features/profile/pages/ProfilePage";
@@ -14,6 +13,8 @@ import QuizBuilderPage from "@/features/quiz-builder/pages/QuizBuilderPage";
 import QuestionListPage from "@/features/question-bank/pages/QuestionListPage";
 import QuestionCreatePage from "@/features/question-bank/pages/QuestionCreatePage";
 import QuestionEditPage from "@/features/question-bank/pages/QuestionEditPage";
+import TaskPage from "@/features/task/pages/TaskPage";
+import TaskCalendarPage from "@/features/task/pages/TaskCalendarPage";
 
 const MainRoute = () => {
   return (
@@ -31,7 +32,8 @@ const MainRoute = () => {
         </Route>
       </Route>
       <Route element={<ProtectedRoute allowedRoles={["student"]} />}>
-        <Route path="/calendar" element={<CalendarPage />} />
+        <Route path="/task" element={<TaskPage />} />
+        <Route path="/calendar" element={<TaskCalendarPage />} />
         <Route path="/attendance" element={<AttendancePage />} />
       </Route>
     </Route>
