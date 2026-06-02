@@ -2,10 +2,12 @@ import React from "react";
 import Button from "@/shared/ui/buttons/Button";
 import { InformationProfile } from "@/shared/lib/Constants";
 import profileDummy from "@/shared/data/dummy/profile.json";
+import { useNavigate } from "react-router";
 
 const BioData = ({ data }) => {
   const profileMap = InformationProfile[data.role];
   const profile = profileDummy[data.role];
+  const navigate = useNavigate();
 
   return (
     <div className="rounded-xl border border-app-border">
@@ -13,7 +15,9 @@ const BioData = ({ data }) => {
         <h2 className="text-lg font-bold text-text-heading">
           Informasi Pribadi
         </h2>
-        <Button>Ubah Password</Button>
+        <Button onClick={() => navigate("change-password")}>
+          Ubah Password
+        </Button>
       </div>
 
       <div className="p-6 md:p-8">

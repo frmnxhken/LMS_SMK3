@@ -39,6 +39,7 @@ export const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         user,
+        setUser,
         token,
         login: loginMutation.mutateAsync,
         isLoading: loginMutation.isPending,

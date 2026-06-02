@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
 
-const ChangePasswordForm = ({ onSubmit, closeModal }) => {
+const ChangePasswordForm = ({ onSubmit, errors }) => {
   const [formData, setFormData] = useState({
     current_password: "",
-    new_password: "",
-    new_password_confirmation: "",
+    password: "",
+    password_confirmation: "",
   });
 
   const handleInput = (e) => {
@@ -16,14 +16,13 @@ const ChangePasswordForm = ({ onSubmit, closeModal }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (formData.new_password !== formData.new_password_confirmation) {
+    if (formData.password !== formData.password_confirmation) {
       alert("Konfirmasi password baru tidak cocok!");
       return;
     }
 
     if (onSubmit) {
       onSubmit(formData);
-      closeModal();
     }
   };
 
@@ -35,30 +34,30 @@ const ChangePasswordForm = ({ onSubmit, closeModal }) => {
         type="password"
         name="current_password"
         value={formData.current_password}
-        placeholder="••••••••"
+        feedback={errors?.current_password?.[0]}
         required
       />
       <FormInput
         onInput={handleInput}
         label="Password Baru"
         type="password"
-        name="new_password"
-        value={formData.new_password}
-        placeholder="••••••••"
+        name="password"
+        value={formData.password}
+        feedback={errors?.password?.[0]}
         required
       />
       <FormInput
         onInput={handleInput}
         label="Konfirmasi Password Baru"
         type="password"
-        name="new_password_confirmation"
-        value={formData.new_password_confirmation}
-        placeholder="••••••••"
+        name="password_confirmation"
+        value={formData.password_confirmation}
+        feedback={errors?.password_confirmation?.[0]}
         required
       />
 
       <div className="pt-2 flex justify-end gap-2">
-        <Button type="button" variant="outline" onClick={closeModal}>
+        <Button type="button" variant="outline">
           Batal
         </Button>
         <Button type="submit">Ubah Password</Button>
