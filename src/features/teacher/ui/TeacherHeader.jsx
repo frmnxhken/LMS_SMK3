@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { MdSearch } from "react-icons/md";
+import { MdAdd, MdSearch } from "react-icons/md";
 import { PiMicrosoftExcelLogo } from "react-icons/pi";
 import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
@@ -21,21 +21,19 @@ const TeacherHeader = ({ openModal }) => {
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
       <div className="flex gap-2">
-        <Button onClick={() => navigate("create")}>Tambah</Button>
-        <Button
-          onClick={() => openModal()}
-          variant="success"
-          className="flex items-center"
-        >
-          <PiMicrosoftExcelLogo />
-          Import
+        <Button onClick={() => navigate("create")}>
+          <MdAdd size={18} /> Tambah
         </Button>
         <Button
-          onClick={exportTeachers}
-          variant="danger"
+          onClick={() => openModal()}
+          variant="outline"
           className="flex items-center"
         >
-          <PiMicrosoftExcelLogo />
+          <PiMicrosoftExcelLogo size={18} />
+          Import
+        </Button>
+        <Button onClick={exportTeachers} variant="outline">
+          <PiMicrosoftExcelLogo size={18} />
           Export
         </Button>
       </div>
@@ -47,7 +45,7 @@ const TeacherHeader = ({ openModal }) => {
             className="w-full"
             placeholder="Cari guru.."
           />
-          <Button onClick={handleSearch}>
+          <Button variant="ghost" onClick={handleSearch}>
             <MdSearch size={20} />
           </Button>
         </div>

@@ -15,6 +15,8 @@ import {
   MdCalendarViewMonth,
   MdDns,
   MdExpandMore,
+  MdVerifiedUser,
+  MdOutlineSupportAgent,
 } from "react-icons/md";
 import { Link, useLocation } from "react-router";
 
@@ -75,7 +77,7 @@ const menuList = [
   },
   {
     label: "Data Guru",
-    icon: MdSupervisedUserCircle,
+    icon: MdVerifiedUser,
     path: "/dashboard/teacher",
     roles: ["admin"],
   },
@@ -117,108 +119,122 @@ const Sidebar = ({ collapsed, onToggle, isMobileOpen, onNavigation }) => {
           w-64 flex-shrink-0
         `}
     >
-      <div className="flex h-full flex-col py-4">
+      <div className="flex h-full flex-col justify-between py-4">
         {/* Header */}
-        <div className="mb-6 flex items-center justify-between px-4">
-          <div className="flex items-center">
-            <img
-              className="w-[30px] h-[30px]"
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhhyL6uTIzvrIJA5mrxToy30u7NGPS7RUzNQ&s"
-              alt="logo"
-            />
-            {!collapsed && <h1 className="text-xl font-semibold">Elearning</h1>}
+        <div>
+          <div className="mb-6 flex items-center justify-between px-4">
+            <div className="flex items-center">
+              <img
+                className="w-[30px] h-[30px]"
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRhhyL6uTIzvrIJA5mrxToy30u7NGPS7RUzNQ&s"
+                alt="logo"
+              />
+              {!collapsed && (
+                <h1 className="text-xl font-semibold">Elearning</h1>
+              )}
+            </div>
+
+            <button
+              onClick={onToggle}
+              className="hidden sm:block rounded-lg py-2 px-4 hover:bg-gray-200"
+            >
+              {collapsed ? (
+                <MdChevronRight className="text-xl" />
+              ) : (
+                <MdChevronLeft className="text-xl" />
+              )}
+            </button>
           </div>
 
-          <button
-            onClick={onToggle}
-            className="hidden sm:block rounded-lg py-2 px-4 hover:bg-gray-200"
-          >
-            {collapsed ? (
-              <MdChevronRight className="text-xl" />
-            ) : (
-              <MdChevronLeft className="text-xl" />
-            )}
-          </button>
-        </div>
+          {/* Menu */}
+          <ul className="space-y-2 px-2 overflow-y-auto">
+            {menuList
+              .filter((item) => item.roles.includes(user?.role))
+              .map((menu) => {
+                const Icon = menu.icon;
+                const hasChildren = menu.children && menu.children.length > 0;
+                const isOpen = openMenus[menu.label];
 
-        {/* Menu */}
-        <ul className="space-y-2 px-2 overflow-y-auto">
-          {menuList
-            .filter((item) => item.roles.includes(user?.role))
-            .map((menu) => {
-              const Icon = menu.icon;
-              const hasChildren = menu.children && menu.children.length > 0;
-              const isOpen = openMenus[menu.label];
-
-              return (
-                <React.Fragment key={menu.label}>
-                  <li
-                    className={`
+                return (
+                  <React.Fragment key={menu.label}>
+                    <li
+                      className={`
                       flex items-center justify-between rounded-lg px-3 py-2
                       cursor-pointer hover:bg-gray-100
                       ${collapsed ? "justify-center" : ""}
-                      ${currentLocation === menu.path ? "bg-blue-50 text-blue-500" : "text-dark"}
+                      ${currentLocation === menu.path ? "bg-slate-100 text-slate-900" : "text-slate-600 hover:bg-slate-50 hover:text-slate-900"}
                     `}
-                    onClick={() =>
-                      hasChildren && !collapsed
-                        ? toggleSubMenu(menu.label)
-                        : null
-                    }
-                  >
-                    <div className="flex items-center gap-3">
-                      <Icon className="text-lg" />
-                      {!collapsed &&
-                        (hasChildren ? (
-                          <span className="text-sm font-medium">
-                            {menu.label}
-                          </span>
-                        ) : (
-                          <Link
-                            onClick={onNavigation}
-                            to={menu.path}
-                            className="text-sm font-medium"
-                          >
-                            {menu.label}
-                          </Link>
+                      onClick={() =>
+                        hasChildren && !collapsed
+                          ? toggleSubMenu(menu.label)
+                          : null
+                      }
+                    >
+                      <div className="flex items-center gap-3">
+                        <Icon className="text-lg" />
+                        {!collapsed &&
+                          (hasChildren ? (
+                            <span className="text-sm font-medium">
+                              {menu.label}
+                            </span>
+                          ) : (
+                            <Link
+                              onClick={onNavigation}
+                              to={menu.path}
+                              className="text-sm font-medium"
+                            >
+                              {menu.label}
+                            </Link>
+                          ))}
+                      </div>
+
+                      {/* Icon Panah jika ada sub-menu */}
+                      {!collapsed && hasChildren && (
+                        <MdExpandMore
+                          className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
+                        />
+                      )}
+                    </li>
+
+                    {!collapsed && hasChildren && isOpen && (
+                      <ul className="ml-9 mt-1 space-y-1">
+                        {menu.children.map((child) => (
+                          <li key={child.path}>
+                            <Link
+                              to={child.path}
+                              onClick={onNavigation}
+                              className="block py-2 px-3 text-sm"
+                            >
+                              {child.label}
+                            </Link>
+                          </li>
                         ))}
-                    </div>
-
-                    {/* Icon Panah jika ada sub-menu */}
-                    {!collapsed && hasChildren && (
-                      <MdExpandMore
-                        className={`transition-transform ${isOpen ? "rotate-180" : ""}`}
-                      />
+                      </ul>
                     )}
-                  </li>
-
-                  {!collapsed && hasChildren && isOpen && (
-                    <ul className="ml-9 mt-1 space-y-1">
-                      {menu.children.map((child) => (
-                        <li key={child.path}>
-                          <Link
-                            to={child.path}
-                            onClick={onNavigation}
-                            className="block py-2 px-3 text-sm"
-                          >
-                            {child.label}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </React.Fragment>
-              );
-            })}
-
-          <li
+                  </React.Fragment>
+                );
+              })}
+          </ul>
+        </div>
+        <div className="space-y-2 px-2 pb-6">
+          <button
             onClick={logout}
-            className={`flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-gray-100
+            className={`w-full flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-gray-100
                     ${collapsed ? "justify-center" : ""}`}
           >
             <MdLogout className="text-lg text-dark" />
             {!collapsed && <p className="text-sm font-medium">Logout</p>}
-          </li>
-        </ul>
+          </button>
+          <button
+            className={`w-full flex items-center gap-3 rounded-lg px-3 py-2 cursor-pointer hover:bg-gray-100
+                    ${collapsed ? "justify-center" : ""}`}
+          >
+            <MdOutlineSupportAgent className="text-lg text-dark" />
+            {!collapsed && (
+              <p className="text-sm font-medium">Contact Support </p>
+            )}
+          </button>
+        </div>
       </div>
     </aside>
   );

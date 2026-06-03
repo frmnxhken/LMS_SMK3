@@ -4,6 +4,7 @@ import EmptyState from "@/shared/ui/Feedback/EmptyState";
 import TeachingAssignmentTableSkeleton from "./skeletons/TeachingAssignmentTableSkeleton";
 import { useNavigate } from "react-router";
 import useTeachingAssignmentDelete from "../hooks/useTeachingAssignmentDelete";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const TeachingAssignmentTable = ({ isLoading, data }) => {
   const navigate = useNavigate();
@@ -45,11 +46,14 @@ const TeachingAssignmentTable = ({ isLoading, data }) => {
               <td className="table-body-cell">{item.nip}</td>
               <td className="table-body-cell">{item.teacher}</td>
               <td className="table-body-cell flex space-x-2">
-                <Button onClick={() => navigate(`${item.id}/edit`)}>
-                  Edit
+                <Button
+                  variant="table"
+                  onClick={() => navigate(`${item.id}/edit`)}
+                >
+                  <MdEdit size={18} />
                 </Button>
-                <Button onClick={() => onDelete(item.id)} variant="outline">
-                  Delete
+                <Button variant="table" onClick={() => onDelete(item.id)}>
+                  <MdDelete size={18} />
                 </Button>
               </td>
             </tr>

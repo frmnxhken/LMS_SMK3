@@ -26,8 +26,8 @@ const AcademicPage = () => {
         <h1 className="text-xl font-bold text-text-heading mb-2">
           Daftar Tahun Ajaran
         </h1>
-        <Button variant="outline" onClick={handleOpenCreate}>
-          <MdAdd size={20} />
+        <Button onClick={handleOpenCreate}>
+          <MdAdd size={18} />
           Tambah
         </Button>
       </div>

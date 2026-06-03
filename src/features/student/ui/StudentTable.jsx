@@ -4,6 +4,7 @@ import { useNavigate } from "react-router";
 import useStudentDelete from "../hooks/useStudentDelete";
 import StudentTableSkeleton from "./skeletons/StudentTableSkeleton";
 import EmptyState from "@/shared/ui/Feedback/EmptyState";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const StudentTable = ({ students, page, isLoading }) => {
   const navigate = useNavigate();
@@ -47,11 +48,14 @@ const StudentTable = ({ students, page, isLoading }) => {
                 {student.level + " " + student.major + " " + student.section}
               </td>
               <td className="table-body-cell flex space-x-2">
-                <Button onClick={() => navigate(`${student.id}/edit`)}>
-                  Edit
+                <Button
+                  variant="table"
+                  onClick={() => navigate(`${student.id}/edit`)}
+                >
+                  <MdEdit size={18} />
                 </Button>
-                <Button variant="outline" onClick={() => onDelete(student.id)}>
-                  Delete
+                <Button variant="table" onClick={() => onDelete(student.id)}>
+                  <MdDelete size={18} />
                 </Button>
               </td>
             </tr>

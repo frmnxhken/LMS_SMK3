@@ -6,6 +6,7 @@ import useSubjectUpdate from "../hooks/useSubjectUpdate";
 import useSubjectDelete from "../hooks/useSubjectDelete";
 import SubjectForm from "./SubjectForm";
 import SubjectTableSkeleton from "./skeletons/SubjectTableSkeleton";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const SubjectTable = ({ data, isLoading }) => {
   const [open, setOpen] = useState(false);
@@ -65,9 +66,11 @@ const SubjectTable = ({ data, isLoading }) => {
                 <td className="table-body-cell">{index + 1}</td>
                 <td className="table-body-cell">{item.name}</td>
                 <td className="table-body-cell flex space-x-2">
-                  <Button onClick={() => onEdit(item)}>Edit</Button>
-                  <Button onClick={() => onDelete(item.id)} variant="outline">
-                    Delete
+                  <Button variant="table" onClick={() => onEdit(item)}>
+                    <MdEdit size={18} />
+                  </Button>
+                  <Button variant="table" onClick={() => onDelete(item.id)}>
+                    <MdDelete size={18} />
                   </Button>
                 </td>
               </tr>

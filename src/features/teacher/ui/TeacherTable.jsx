@@ -4,6 +4,7 @@ import Button from "@/shared/ui/buttons/Button";
 import EmptyState from "@/shared/ui/Feedback/EmptyState";
 import TeacherTableSkeleton from "./skeletons/TeacherTableSkeleton";
 import useTeacherDelete from "../hooks/useTeacherDelete";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const TeacherTable = ({ teachers, isLoading }) => {
   const navigate = useNavigate();
@@ -43,11 +44,14 @@ const TeacherTable = ({ teachers, isLoading }) => {
               <td className="table-body-cell">{teacher.username}</td>
               <td className="table-body-cell">{teacher.phone}</td>
               <td className="table-body-cell flex space-x-2">
-                <Button onClick={() => navigate(`${teacher.id}/edit`)}>
-                  Edit
+                <Button
+                  variant="table"
+                  onClick={() => navigate(`${teacher.id}/edit`)}
+                >
+                  <MdEdit size={18} />
                 </Button>
-                <Button onClick={() => onDelete(teacher.id)} variant="outline">
-                  Delete
+                <Button variant="table" onClick={() => onDelete(teacher.id)}>
+                  <MdDelete size={18} />
                 </Button>
               </td>
             </tr>

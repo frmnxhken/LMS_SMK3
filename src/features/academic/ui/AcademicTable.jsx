@@ -4,6 +4,7 @@ import Button from "@/shared/ui/buttons/Button";
 import useAcademicActivate from "../hooks/useAcademicActivate";
 import AcademicTableSkeleton from "./skeletons/AcademicTableSkeleton";
 import EmptyState from "@/shared/ui/Feedback/EmptyState";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const AcademicTable = ({ academies, onEdit, onDelete, isLoading }) => {
   const { handleActivate } = useAcademicActivate();
@@ -39,19 +40,28 @@ const AcademicTable = ({ academies, onEdit, onDelete, isLoading }) => {
                   label={item.is_active === 1 ? "aktif" : "tidak aktif"}
                 />
               </td>
-              <td className="table-body-cell flex space-x-2">
-                {item.is_active === 0 && (
-                  <Button
-                    onClick={() => handleActivate(item.id)}
-                    variant="success"
-                  >
-                    Aktifkan
+              <td className="table-body-cell flex items-center justify-between gap-2">
+                <div>
+                  {item.is_active === 0 ? (
+                    <Button
+                      onClick={() => handleActivate(item.id)}
+                      variant="ghost"
+                      className="text-emerald-600 hover:!bg-emerald-50 !hover:text-emerald-700"
+                    >
+                      Aktifkan
+                    </Button>
+                  ) : (
+                    <div />
+                  )}
+                </div>
+                <div className="flex items-center gap-2">
+                  <Button variant="table" onClick={() => onEdit(item)}>
+                    <MdEdit size={18} />
                   </Button>
-                )}
-                <Button onClick={() => onEdit(item)}>Edit</Button>
-                <Button onClick={() => onDelete(item.id)} variant="outline">
-                  Delete
-                </Button>
+                  <Button variant="table" onClick={() => onDelete(item.id)}>
+                    <MdDelete size={18} />
+                  </Button>
+                </div>
               </td>
             </tr>
           ))

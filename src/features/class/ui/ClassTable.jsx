@@ -4,6 +4,7 @@ import useClassDelete from "../hooks/useClassDelete";
 import { useNavigate } from "react-router";
 import ClassTableSkeleton from "./skeletons/ClassTableSkeleton";
 import EmptyState from "@/shared/ui/Feedback/EmptyState";
+import { MdDelete, MdEdit } from "react-icons/md";
 
 const ClassTable = ({ data, isLoading }) => {
   const navigate = useNavigate();
@@ -42,11 +43,14 @@ const ClassTable = ({ data, isLoading }) => {
                 <td className="table-body-cell">{item.major}</td>
                 <td className="table-body-cell">{item.section}</td>
                 <td className="table-body-cell flex space-x-2">
-                  <Button onClick={() => navigate(`${item.id}/edit`)}>
-                    Edit
+                  <Button
+                    variant="table"
+                    onClick={() => navigate(`${item.id}/edit`)}
+                  >
+                    <MdEdit size={18} />
                   </Button>
-                  <Button onClick={() => onDelete(item.id)} variant="outline">
-                    Delete
+                  <Button variant="table" onClick={() => onDelete(item.id)}>
+                    <MdDelete size={18} />
                   </Button>
                 </td>
               </tr>

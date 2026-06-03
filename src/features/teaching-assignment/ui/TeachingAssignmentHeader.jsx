@@ -44,7 +44,7 @@ const TeachingAssignmentHeader = () => {
           ))}
         </FormSelect>
       </div>
-      <Button onClick={() => navigate("create")} variant="outline">
+      <Button onClick={() => navigate("create")}>
         <MdAdd size={18} />
         Tambah
       </Button>

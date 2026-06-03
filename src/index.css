@@ -2,15 +2,22 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #0056d2;
-  --color-primary-dark: #00419e;
-  --color-primary-light: #e0f2fe;
-  --color-app-bg: #f8fafc;
+  --color-primary: #1e293b;
+  --color-primary-dark: #0f172a;
+  --color-primary-light: #e2e8f0;
+
+  --color-app-bg: #ffffff;
   --color-app-surface: #ffffff;
   --color-app-border: #e2e8f0;
-  --color-text-heading: #111827;
-  --color-text-body: #4b5563;
-  --color-text-muted: #9ca3af;
+
+  --color-text-heading: #0f172a;
+  --color-text-body: #475569;
+  --color-text-muted: #94a3b8;
+}
+
+body {
+  background-color: var(--color-app-bg);
+  color: var(--color-text-body);
 }
 
 @layer components {
@@ -23,10 +30,10 @@
     @apply w-full text-left border-collapse;
   }
   .table-head-cell {
-    @apply px-6 py-4 text-xs font-bold tracking-widest text-text-muted;
+    @apply p-4 text-xs font-semibold tracking-normal text-text-muted border-b border-app-border;
   }
   .table-body-cell {
-    @apply px-6 py-5 font-semibold text-text-body border-b border-app-border;
+    @apply p-4 font-medium text-text-body border-b border-app-border;
   }
 }
 

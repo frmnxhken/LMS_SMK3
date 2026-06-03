@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router";
 import FormInput from "@/shared/ui/forms/FormInput";
 import Button from "@/shared/ui/buttons/Button";
-import { MdSearch } from "react-icons/md";
+import { MdAdd, MdSearch } from "react-icons/md";
 import { PiMicrosoftExcelLogo } from "react-icons/pi";
 import useClass from "@/features/class/hooks/useClass";
 import FormSelect from "@/shared/ui/forms/FormSelect";
@@ -27,21 +27,24 @@ const StudentHeader = ({
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
       <div className="flex gap-2">
-        <Button onClick={() => navigate("create")}>Tambah</Button>
+        <Button onClick={() => navigate("create")}>
+          <MdAdd size={18} />
+          Tambah
+        </Button>
         <Button
           onClick={() => setOpenImport(!openImport)}
-          variant="success"
+          variant="outline"
           className="flex items-center"
         >
-          <PiMicrosoftExcelLogo />
+          <PiMicrosoftExcelLogo size={18} />
           Import
         </Button>
         <Button
           onClick={() => setOpenExport(!openExport)}
-          variant="danger"
+          variant="outline"
           className="flex items-center"
         >
-          <PiMicrosoftExcelLogo />
+          <PiMicrosoftExcelLogo size={18} />
           Export
         </Button>
       </div>
@@ -69,7 +72,7 @@ const StudentHeader = ({
             onInput={(e) => setKeyword(e.target.value)}
             placeholder="Cari siswa.."
           />
-          <Button onClick={handleSearch}>
+          <Button variant="ghost" onClick={handleSearch}>
             <MdSearch size={20} />
           </Button>
         </div>
