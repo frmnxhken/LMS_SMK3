@@ -14,7 +14,7 @@ const AttachmentCard = ({ status, score }) => {
   return (
     <div className="p-4 border border-app-border rounded-xl bg-app-surface">
       <div className="flex justify-between items-center mb-6">
-        <h2 className="text-xl font-medium">Tugas</h2>
+        <h2 className="text-md sm:text-lg font-medium">Tugas</h2>
         <p className="text-sm text-text-muted">
           {status === "pending" && "Ditugaskan"}
           {status === "done" && "Diserahkan"}

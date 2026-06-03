@@ -18,7 +18,7 @@ const CommentInput = () => {
     <form method="post" onSubmit={handleSubmit}>
       <div className="w-full flex items-center gap-3">
         <img
-          className="w-[40px] h-[40px] rounded-full object-cover"
+          className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px] rounded-full object-cover"
           src={BASE_IMAGE_PROFILE + user.photo}
           alt="profile"
         />

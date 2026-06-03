@@ -10,7 +10,9 @@ export const AssignmentListPage = () => {
 
   return (
     <div className="max-w-[800px] container mx-auto p-6">
-      <h1 className="text-heading font-bold text-xl mb-4">Daftar Tugas</h1>
+      <h1 className="text-heading font-bold text-md sm:text-xl mb-4">
+        Daftar Tugas
+      </h1>
       <div className="space-y-2">
         {isLoading && <AssignmentCardSkeleton />}
         {data?.[0].posts?.map((assignment, index) => (

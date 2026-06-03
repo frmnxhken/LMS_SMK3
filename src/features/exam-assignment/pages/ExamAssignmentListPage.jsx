@@ -7,6 +7,7 @@ import ExamAssignmentForm from "../ui/ExamAssignmentForm";
 import useExamAssignment from "../hooks/useExamAssignment";
 import useExamAssignmentAction from "../hooks/useExamAssignmentAction";
 import { useAuth } from "@/app/contexts/AuthContext";
+import ExamAssignmentCardSkeleton from "../ui/skeletons/ExamAssignmentCardSkeleton";
 
 const ExamAssignmentListPage = () => {
   const { id_class } = useParams();
@@ -23,11 +24,12 @@ const ExamAssignmentListPage = () => {
     onDelete,
   } = useExamAssignmentAction(id_class);
 
-  if (isLoading) return;
   return (
     <div className="p-6 container max-w-[800px] mx-auto">
       <div className="flex justify-between items-center mb-4">
-        <h1 className="text-heading font-bold text-xl">Daftar Ujian</h1>
+        <h1 className="text-heading font-bold text-md sm:text-xl">
+          Daftar Ujian
+        </h1>
         {user.role === "teacher" && (
           <div>
             <Button onClick={handleOpenCreate}>Tambah</Button>
@@ -47,7 +49,8 @@ const ExamAssignmentListPage = () => {
         />
       </Modal>
 
-      <div className="mt-4 grid gap-3">
+      <div className="mt-4 space-y-3">
+        {isLoading && <ExamAssignmentCardSkeleton />}
         {data?.data?.map((exam, index) => (
           <ExamAssignmentCard
             key={index}

@@ -2,9 +2,11 @@ import React from "react";
 import AttachmentCard from "./AttachmentCard";
 import { useAuth } from "@/app/contexts/AuthContext";
 import Button from "@/shared/ui/buttons/Button";
+import { useNavigate } from "react-router";
 
-const CourseSideDetail = ({ type, submission }) => {
+const CourseSideDetail = ({ type, submission, id_class, id_post }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -16,7 +18,15 @@ const CourseSideDetail = ({ type, submission }) => {
               score={submission?.score}
             />
           ) : (
-            <Button className="w-full">Lihat Pengumpulan</Button>
+            <Button
+              onClick={() =>
+                navigate(`/course/${id_class}/assignment/${id_post}/assessment`)
+              }
+              size="md"
+              className="w-full"
+            >
+              Lihat Pengumpulan
+            </Button>
           )}
         </div>
       )}

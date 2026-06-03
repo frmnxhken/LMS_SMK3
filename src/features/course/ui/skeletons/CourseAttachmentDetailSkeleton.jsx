@@ -5,7 +5,7 @@ const CourseAttachmentDetailSkeleton = () => {
   return (
     <div className="py-6">
       <SkeletonBar className="w-28 h-4 mb-4" />
-      <div className="grid grid-cols-2 gap-3">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {Array.from({ length: 2 }).map((_, index) => (
           <div
             key={index}
@@ -17,8 +17,8 @@ const CourseAttachmentDetailSkeleton = () => {
               </div>
 
               <div className="w-full space-y-2">
-                <SkeletonBar className="w-3/4 h-4" />
-                <SkeletonBar className="w-1/3 h-3" />
+                <SkeletonBar className="w-3/4 h-3 sm:h-4" />
+                <SkeletonBar className="w-1/3 h-2 sm:h-3" />
               </div>
             </div>
           </div>

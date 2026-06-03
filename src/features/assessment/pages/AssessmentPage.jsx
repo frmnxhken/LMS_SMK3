@@ -14,6 +14,7 @@ export const AssessmentPage = () => {
             key={index}
             id={assesment?.id}
             name={assesment?.student?.user?.name}
+            photo={assesment?.student?.user?.photo}
             updated_at={assesment?.updated_at}
             score={assesment?.score}
             status={assesment?.status}

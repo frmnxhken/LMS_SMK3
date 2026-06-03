@@ -27,7 +27,7 @@ const FormTextarea = ({
           ${
             feedback
               ? "border-red-500 focus:ring-1 focus:ring-red-500"
-              : "border-gray-300 focus:ring-1 focus:ring-blue-500"
+              : "border-gray-300 focus:ring-1 focus:ring-black"
           }
           ${className}
         `}

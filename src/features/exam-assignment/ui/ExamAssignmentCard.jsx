@@ -33,7 +33,7 @@ const ExamAssignmentCard = ({ exam, onEdit, onDelete }) => {
       <div className="flex items-start gap-4 justify-between">
         <div className="flex items-center gap-4">
           <div className="p-3 rounded-full text-green-600 bg-green-50 transition-colors group-hover:bg-opacity-80">
-            <IoClipboard size={24} />
+            <IoClipboard size={18} />
           </div>
 
           <div className="flex flex-col">
@@ -52,14 +52,16 @@ const ExamAssignmentCard = ({ exam, onEdit, onDelete }) => {
                 {exam.exam.title}
               </h2>
             )}
-            <div className="flex items-center gap-x-4 text-[11px] text-text-muted mt-1">
-              <div className="flex items-center">
-                <IoTimeOutline />
+            <div className="flex flex-col sm:flex-row sm:items-center gap-y-1 sm:gap-x-4 text-[11px] text-text-muted mt-1">
+              <div className="flex items-center gap-x-1">
+                <IoTimeOutline size={14} />
                 <span>{formatTimeStamp(exam.start_time)}</span>
               </div>
-              -
-              <div className="flex items-center">
-                <IoTimeOutline />
+
+              <span className="hidden sm:inline text-text-muted/50">-</span>
+
+              <div className="flex items-center gap-x-1">
+                <IoTimeOutline size={14} />
                 <span>{formatTimeStamp(exam.end_time)}</span>
               </div>
             </div>

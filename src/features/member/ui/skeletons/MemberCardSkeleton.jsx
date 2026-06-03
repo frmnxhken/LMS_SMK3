@@ -8,7 +8,7 @@ const MemberCardSkeleton = () => {
       <div className="flex items-center gap-4">
         <SkeletonCircle radius="50px" />
         <div className="w-full">
-          <SkeletonBar className="w-1/2 sm:w-36 h-5" />
+          <SkeletonBar className="w-1/2 sm:w-36 h-3 sm:h-5" />
         </div>
       </div>
     </div>

@@ -2,7 +2,7 @@ import React from "react";
 import SkeletonBar from "@/shared/ui/Feedback/SkeletonBar";
 import SkeletonCircle from "@/shared/ui/Feedback/SkeletonCircle";
 
-const AssignmentCardSkeleton = ({ isTeacher = false }) => {
+const ExamAssignmentCardSkeleton = () => {
   return (
     <>
       {Array.from({ length: 3 }).map((_, index) => (
@@ -21,11 +21,6 @@ const AssignmentCardSkeleton = ({ isTeacher = false }) => {
                 </div>
               </div>
             </div>
-            {isTeacher && (
-              <div className="w-full sm:w-auto pt-2 sm:pt-0 flex-shrink-0">
-                <SkeletonBar className="w-full sm:w-36 h-9 rounded-lg" />
-              </div>
-            )}
           </div>
         </div>
       ))}
@@ -33,4 +28,4 @@ const AssignmentCardSkeleton = ({ isTeacher = false }) => {
   );
 };
 
-export default AssignmentCardSkeleton;
+export default ExamAssignmentCardSkeleton;

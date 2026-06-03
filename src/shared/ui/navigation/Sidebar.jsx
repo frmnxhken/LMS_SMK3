@@ -13,23 +13,24 @@ import {
   MdOutlineDoorBack,
   MdOutlineManageAccounts,
   MdCalendarViewMonth,
-  MdDns,
   MdExpandMore,
   MdVerifiedUser,
   MdOutlineSupportAgent,
+  MdOutlineDashboard,
+  MdOutlineDns,
 } from "react-icons/md";
 import { Link, useLocation } from "react-router";
 
 const menuList = [
   {
     label: "Beranda",
-    icon: MdDashboard,
+    icon: MdOutlineDashboard,
     path: "/",
     roles: ["teacher", "student"],
   },
   {
     label: "Bank Soal",
-    icon: MdDns,
+    icon: MdOutlineDns,
     roles: ["teacher"],
     path: "/question-bank",
   },

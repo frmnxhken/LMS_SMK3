@@ -54,7 +54,12 @@ export const CourseDetail = () => {
         )}
         <CommentSection isOpen={isOpen} toggle={handleToggle} />
       </div>
-      <CourseSideDetail type={type} submission={submission} />
+      <CourseSideDetail
+        type={type}
+        submission={submission}
+        id_class={id_class}
+        id_post={id_post}
+      />
     </div>
   );
 };

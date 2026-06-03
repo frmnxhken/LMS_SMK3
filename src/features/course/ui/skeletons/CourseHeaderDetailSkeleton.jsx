@@ -9,25 +9,25 @@ const CourseHeaderDetailSkeleton = ({ type = "material" }) => {
 
       <div className="w-full">
         <div>
-          <SkeletonBar className="w-20 h-4 rounded" />
+          <SkeletonBar className="w-20 h-2 sm:h-4 rounded" />
         </div>
 
         <div className="mt-2 space-y-2">
-          <SkeletonBar className="w-3/4 h-6" />
+          <SkeletonBar className="w-3/4 h-4 sm:h-6" />
 
           <div className="space-y-1.5 pt-1">
-            <SkeletonBar className="w-3/4 h-4" />
-            <SkeletonBar className="w-1/2 h-4" />
+            <SkeletonBar className="w-3/4 h-2 sm:h-4" />
+            <SkeletonBar className="w-1/2 h-2 sm:h-4" />
           </div>
         </div>
 
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full gap-2 mt-2">
           <div className="flex items-center gap-2 text-sm text-text-muted">
-            <SkeletonBar className="w-24 h-4" />
+            <SkeletonBar className="w-24 h-2 sm:h-4" />
           </div>
 
           {type === "assignment" && (
-            <SkeletonBar className="w-40 h-6 rounded-full" />
+            <SkeletonBar className="w-40 h-4 sm:h-6 rounded-full" />
           )}
         </div>
       </div>

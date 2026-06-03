@@ -7,6 +7,12 @@ import useQuestionDelete from "../hooks/useQuestionDelete";
 
 const QuestionListCard = ({ question }) => {
   const { handleDelete } = useQuestionDelete(question.id);
+  const colorVariantType = {
+    harian: "success",
+    uts: "warning",
+    uas: "danger",
+  };
+
   const navigate = useNavigate();
   const actionMenus = [
     {
@@ -25,19 +31,19 @@ const QuestionListCard = ({ question }) => {
     <div className="bg-app-surface border border-app-border rounded-xl p-6 cursor-pointer hover:bg-app-bg">
       <div className="flex items-start gap-4 justify-between">
         <div>
-          <div className="flex gap-2">
-            <Badge label={question.type} />
-            <Badge variant="success" label={question.subject.name} />
+          <Badge
+            variant={colorVariantType[question.type]}
+            label={question.type}
+          />
+          <div className="mt-2">
+            <Link
+              to={`${question.id}/create`}
+              className="text-sm sm:text-md text-text-heading font-semibold mt-2 hover:underline"
+            >
+              {question.title}
+            </Link>
+            <p className="text-xs sm:text-sm">{question.subject.name}</p>
           </div>
-          <h3 className="text-md text-text-heading font-semibold mt-2">
-            {question.title}
-          </h3>
-          <Link
-            className="text-xs font-medium text-primary underline"
-            to={`${question.id}/create`}
-          >
-            Lihat Soal
-          </Link>
         </div>
         <div>
           <Dropdown

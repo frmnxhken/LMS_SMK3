@@ -1,16 +1,19 @@
+import React from "react";
+import { Link, useNavigate } from "react-router";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { courseVariantColors } from "@/shared/lib/Constants";
 import Badge from "@/shared/ui/Feedback/Badge";
-import React from "react";
 import { IoArrowForward, IoPerson, IoLibrary } from "react-icons/io5";
-import { Link } from "react-router";
+import Button from "@/shared/ui/buttons/Button";
 
 const CourseCard = ({ id, subject, teacher, index, class_name }) => {
   const { user } = useAuth();
+  const navigate = useNavigate();
   const color = courseVariantColors[index % 5];
+
   return (
     <div className="bg-app-surface border border-app-border rounded-xl overflow-hidden transition-all duration-300">
-      <div className="h-32 flex items-center p-4 relative overflow-hidden">
+      <div className="h-32 flex items-center p-4 relative overflow-hidden bg-slate-100/50">
         <div className="w-full">
           {class_name && <Badge label={class_name} />}
           <h3 className="text-lg font-semibold w-3/4 text-text-heading leading-tight mt-2 group-hover:text-primary transition-colors">
@@ -28,13 +31,15 @@ const CourseCard = ({ id, subject, teacher, index, class_name }) => {
           <span>{user.role === "student" ? teacher : "Anda"}</span>
         </div>
 
-        <Link
-          to={"/course/" + id}
-          className="w-full mt-5 bg-app-bg hover:bg-primary hover:text-white text-primary text-sm font-bold py-2.5 rounded-xl flex items-center justify-center gap-2 transition-all"
+        <Button
+          onClick={() => navigate(`/course/${id}`)}
+          variant="outline"
+          className="w-full mt-6 hover:!bg-primary hover:text-white"
+          size="md"
         >
           {user.role === "student" ? "Mulai Belajar" : "Mulai Mengajar"}
           <IoArrowForward />
-        </Link>
+        </Button>
       </div>
     </div>
   );

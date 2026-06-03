@@ -10,7 +10,7 @@ const BioData = ({ data }) => {
   return (
     <div className="rounded-xl border border-app-border">
       <div className="p-6 flex justify-between items-center">
-        <h2 className="text-lg font-bold text-text-heading">
+        <h2 className="text-sm sm:text-lg font-bold text-text-heading">
           Informasi Pribadi
         </h2>
         <Button onClick={() => navigate("change-password")}>
@@ -25,7 +25,7 @@ const BioData = ({ data }) => {
               <p className="text-xs font-semibold text-text-muted uppercase">
                 {row.label}
               </p>
-              <p className="text-base font-semibold text-slate-700">
+              <p className="text-sm font-semibold text-slate-700">
                 {row.value}
               </p>
             </div>

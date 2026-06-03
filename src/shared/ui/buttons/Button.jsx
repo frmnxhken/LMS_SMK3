@@ -33,7 +33,7 @@ const Button = ({
       {...props}
       disabled={disabled || isLoading}
       className={`
-        inline-flex items-center justify-center gap-2 text-sm font-semibold px-4 py-2 rounded-md transition
+        inline-flex cursor-pointer items-center justify-center gap-2 text-sm font-semibold px-4 py-2 rounded-md transition
         ${sizes[size]}
         ${variants[variant]}
         ${isLoading ? "opacity-70 cursor-not-allowed" : ""} 

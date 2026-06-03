@@ -18,32 +18,33 @@ const CourseHeaderDetail = ({
       <div
         className={`p-3 rounded-full ${config.bg} ${config.text} transition-colors group-hover:bg-opacity-80`}
       >
-        <config.icon size={24} />
+        <config.icon size={18} />
       </div>
 
       <div className="w-full">
         <div>
-          <span
-            className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${config.bg} ${config.text}`}
-          >
-            {config.label}
-          </span>
+          <Badge
+            label={type === "assignment" ? "Tugas" : "Materi"}
+            variant={type === "assignment" ? "warning" : "info"}
+          />
         </div>
 
         <div>
-          <h1 className="text-xl font-semibold text-text-heading mt-1">
+          <h1 className="text-md sm:text-xl font-semibold text-text-heading mt-1 capitalize">
             {title}
           </h1>
-          <p>{content}</p>
+          <p className="text-sm mb-2">{content}</p>
         </div>
 
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full gap-2">
-          <div className="flex items-center gap-4 text-sm text-text-muted mt-1">
-            <IoTimeOutline />
-            <span>{formatDateDMY(created_at)}</span>
+          <div className="flex items-center gap-4 text-xs sm:text-sm text-text-muted mt-1 ">
+            <div className="flex items-center gap-1">
+              <IoTimeOutline />
+              <span>{formatDateDMY(created_at)}</span>
+            </div>
             <button
               onClick={toggle}
-              className="flex sm:hidden items-center gap-1 text-sm text-primary font-semibold hover:text-blue-700 transition-colors cursor-pointer"
+              className="flex sm:hidden items-center gap-1 text-xs sm:text-sm text-primary font-semibold hover:text-blue-700 transition-colors cursor-pointer"
             >
               <IoChatbubbleOutline />
               Lihat komentar

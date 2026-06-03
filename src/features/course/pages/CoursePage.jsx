@@ -22,7 +22,10 @@ export const CoursePage = () => {
       {isLoading ? (
         <CourseBannerSkeleton />
       ) : (
-        <CourseBanner name={data?.[0].subject} />
+        <CourseBanner
+          name={data?.[0].subject}
+          nameClass={data?.[0].class_name}
+        />
       )}
       <div className="flex flex-col sm:flex-row justify-between gap-6 mt-4">
         <div className="w-60 hidden sm:block"></div>
@@ -36,7 +39,7 @@ export const CoursePage = () => {
               />
               <Link
                 to="member"
-                className="text-sm font-semibold text-primary underline"
+                className="text-xs sm:text-sm font-semibold text-primary underline"
               >
                 Lihat Anggota
               </Link>

@@ -28,19 +28,17 @@ export const AssessmentDetailPage = () => {
       <div className="w-full">
         <div className="flex items-center gap-4">
           <img
-            className="w-[50px] h-[50px] object-cover rounded-full"
+            className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] object-cover rounded-full"
             src={image}
             alt="profile"
           />
           <div>
-            <h3 className="text-md font-semibold">
+            <h3 className="text-sm sm:text-md font-semibold">
               {data?.student?.user?.name}
             </h3>
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-2 text-text-muted">
               <IoTimeOutline size={18} />
-              <span className="text-xs text-text-muted">
-                {formatDateDMY(data?.updated_at)}
-              </span>
+              <span className="text-xs">{formatDateDMY(data?.updated_at)}</span>
             </div>
           </div>
         </div>
@@ -48,8 +46,10 @@ export const AssessmentDetailPage = () => {
         <FileViewer file={docView} onClose={() => setDocView(null)} />
 
         <div className="py-6">
-          <h2 className="text-text-heading font-bold text-lg mb-4">Lampiran</h2>
-          <div className="grid grid-cols-2 gap-3">
+          <h2 className="text-text-heading font-bold text-md sm:text-lg mb-4">
+            Lampiran
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {files?.map((file, index) => (
               <FileCard
                 onClick={() => setDocView(file.file_path)}

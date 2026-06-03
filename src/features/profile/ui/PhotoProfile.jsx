@@ -43,7 +43,7 @@ const PhotoProfile = ({ fullname, role, photo }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between border border-app-border">
+    <div className="bg-white rounded-xl p-6 md:p-8 flex flex-col md:flex-row items-center justify-between border border-app-border gap-4">
       <input
         type="file"
         ref={fileInputRef}
@@ -72,8 +72,12 @@ const PhotoProfile = ({ fullname, role, photo }) => {
         </div>
 
         <div className="text-center md:text-left">
-          <h1 className="text-xl font-bold text-text-heading">{fullname}</h1>
-          <p className="text-text-muted font-medium capitalize">{role}</p>
+          <h1 className="text-md sm:text-xl font-bold text-text-heading">
+            {fullname}
+          </h1>
+          <p className="text-sm text-text-muted font-medium capitalize">
+            {role}
+          </p>
         </div>
       </div>
 

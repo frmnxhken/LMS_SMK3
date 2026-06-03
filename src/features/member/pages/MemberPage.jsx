@@ -11,7 +11,9 @@ export const MemberPage = () => {
   return (
     <div className="container max-w-[780px] mx-auto p-6">
       <div className="mb-8">
-        <h1 className="text-heading font-bold text-xl mb-4">Pengajar</h1>
+        <h1 className="text-heading font-bold text-md sm:text-xl mb-4">
+          Pengajar
+        </h1>
         {isLoading ? (
           <MemberCardSkeleton />
         ) : (
@@ -23,7 +25,9 @@ export const MemberPage = () => {
         )}
       </div>
       <div>
-        <h1 className="text-heading font-bold text-xl mb-4">Anggota Kelas</h1>
+        <h1 className="text-heading font-bold text-md sm:text-xl mb-4">
+          Anggota Kelas
+        </h1>
         <div className="space-y-2">
           {isLoading && [1, 2, 3].map((i) => <MemberCardSkeleton key={i} />)}
           {data?.students.map((student, index) => (

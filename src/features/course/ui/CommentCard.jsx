@@ -6,7 +6,7 @@ const CommentCard = ({ name, message, created_at, photo }) => {
   return (
     <div className="flex gap-4">
       <img
-        className="w-[40px] h-[40px] rounded-full object-cover"
+        className="w-[30px] sm:w-[40px] h-[30px] sm:h-[40px] rounded-full object-cover"
         src={BASE_IMAGE_PROFILE + photo}
         alt="profile"
       />
@@ -17,7 +17,9 @@ const CommentCard = ({ name, message, created_at, photo }) => {
             {formatDateDMY(created_at)}
           </span>
         </div>
-        <p className="text-sm text-text-body mt-1 font-medium">{message}</p>
+        <p className="text-xs sm:text-sm text-text-body mt-1 font-medium">
+          {message}
+        </p>
       </div>
     </div>
   );

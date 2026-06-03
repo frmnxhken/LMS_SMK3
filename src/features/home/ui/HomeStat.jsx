@@ -10,6 +10,7 @@ const stats = [
     subtext: "20 Hari tercatat",
     icon: IoCheckmarkCircle,
     iconColor: "text-green-500",
+    iconBgColor: "bg-green-500/10",
   },
   {
     title: "Tugas Aktif",
@@ -17,11 +18,14 @@ const stats = [
     subtext: "2 Segera berakhir",
     icon: FaClipboardList,
     iconColor: "text-orange-500",
+    iconBgColor: "bg-orange-500/10",
   },
   {
     title: "Jumlah Materi",
     value: "12",
     icon: IoBook,
+    iconColor: "text-blue-500",
+    iconBgColor: "bg-blue-500/10",
   },
 ];
 

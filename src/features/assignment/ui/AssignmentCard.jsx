@@ -38,11 +38,13 @@ const AssignmentCard = ({ assignment, idClass }) => {
             </div>
           </div>
         </div>
-        {user.role === "teacher" && (
-          <Button onClick={() => navigate(`${assignment.id}/assessment`)}>
-            Lihat Pengumpulan
-          </Button>
-        )}
+        <div className="flex justify-end w-full sm:w-auto">
+          {user.role === "teacher" && (
+            <Button onClick={() => navigate(`${assignment.id}/assessment`)}>
+              Lihat Pengumpulan
+            </Button>
+          )}
+        </div>
       </div>
     </div>
   );

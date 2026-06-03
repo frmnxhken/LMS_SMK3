@@ -6,6 +6,7 @@ import { useAuth } from "@/app/contexts/AuthContext";
 import IconConfig from "../hooks/useCourseConfig";
 import { useCoursePostAction } from "../hooks/useCourseAction";
 import { formatDateDMY } from "@/shared/lib/formatDate";
+import Badge from "@/shared/ui/Feedback/Badge";
 
 const CoursePostCard = ({ id, type, title, created_at }) => {
   const { user } = useAuth();
@@ -20,21 +21,20 @@ const CoursePostCard = ({ id, type, title, created_at }) => {
           <div
             className={`p-3 rounded-full ${config.bg} ${config.text} transition-colors group-hover:bg-opacity-80`}
           >
-            <config.icon size={24} />
+            <config.icon size={18} />
           </div>
 
           <div className="flex flex-col">
             <div>
-              <span
-                className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded ${config.bg} ${config.text}`}
-              >
-                {config.label}
-              </span>
+              <Badge
+                label={type === "assignment" ? "Tugas" : "Materi"}
+                variant={type === "assignment" ? "warning" : "info"}
+              />
             </div>
 
             <Link
               to={"post/" + id}
-              className="text-sm sm:text-base font-semibold text-text-heading mt-1 group-hover:text-primary transition-colors"
+              className="text-sm sm:text-base font-semibold text-text-heading mt-1 group-hover:text-primary transition-colors capitalize"
             >
               {title}
             </Link>

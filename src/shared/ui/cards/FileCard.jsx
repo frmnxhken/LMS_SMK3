@@ -43,11 +43,11 @@ const FileCard = ({
         <div
           className={`p-3 rounded-xl mr-4 flex-shrink-0 transition-colors ${getFileColorClass(extension)}`}
         >
-          <IoDocument size={24} />
+          <IoDocument size={18} />
         </div>
 
         <div className="truncate w-full">
-          <p className="text-sm font-bold text-text-heading truncate mb-0.5">
+          <p className="text-xs sm:text-sm font-bold text-text-heading truncate mb-0.5">
             {original_name}
           </p>
           <p className="text-[11px] font-medium text-text-muted uppercase tracking-wider">

@@ -9,7 +9,9 @@ const QuestionHeader = () => {
 
   return (
     <div className="mb-6">
-      <h1 className="text-heading font-bold text-xl mb-4">Bank Soal</h1>
+      <h1 className="text-heading font-bold text-md sm:text-xl mb-4">
+        Bank Soal
+      </h1>
       <div className="flex items-center justify-between">
         <div className="w-1/2">
           <FormInput placeholder="Cari soal atau kategori..." />

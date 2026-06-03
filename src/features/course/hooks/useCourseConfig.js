@@ -11,7 +11,7 @@ const IconConfig = (type) => {
     : {
         icon: IoBook,
         bg: "bg-blue-50",
-        text: "text-primary",
+        text: "text-blue-500",
         label: "Materi",
       };
 };
