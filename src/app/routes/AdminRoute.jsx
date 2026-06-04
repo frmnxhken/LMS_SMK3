@@ -16,12 +16,14 @@ import {
   TeacherPage,
 } from "@/features/teacher";
 import TeachingAssignmentEditPage from "@/features/teaching-assignment/pages/TeachingAssignmentEditPage";
+import AcademicCalendarPage from "@/features/academic-calendar/pages/AcademicCalendarPage";
 
 const AdminRoute = () => {
   return (
     <Route path="/dashboard" element={<MainLayout />}>
       <Route index element={<HomeAdminPage />} />
       <Route path="academic" element={<AcademicPage />} />
+      <Route path="academic/calendar" element={<AcademicCalendarPage />} />
       <Route path="class" element={<ClassPage />} />
       <Route path="class/create" element={<ClassCreatePage />} />
       <Route path="class/:id/edit" element={<ClassEditPage />} />

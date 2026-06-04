@@ -1,5 +1,6 @@
 import { useAuth } from "@/app/contexts/AuthContext";
 import React, { useState } from "react";
+import { IoMdCalendar } from "react-icons/io";
 import {
   MdDashboard,
   MdAssignment,
@@ -62,6 +63,12 @@ const menuList = [
     label: "Tahun Akademik",
     icon: MdCalendarViewMonth,
     path: "/dashboard/academic",
+    roles: ["admin"],
+  },
+  {
+    label: "Kalender Akademik",
+    icon: IoMdCalendar,
+    path: "/dashboard/academic/calendar",
     roles: ["admin"],
   },
   {
