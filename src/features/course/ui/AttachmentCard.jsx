@@ -6,7 +6,7 @@ import useCourseSubmission from "../hooks/useCourseSubmission";
 import { useParams } from "react-router";
 import Badge from "@/shared/ui/Feedback/Badge";
 
-const AttachmentCard = ({ status, score }) => {
+const AttachmentCard = ({ status, score, isExpired }) => {
   const { id_class, id_post } = useParams();
   const { files, handleFileChange, handleRemoveFile, handleSubmit } =
     useCourseSubmission(id_class, id_post);
@@ -16,7 +16,7 @@ const AttachmentCard = ({ status, score }) => {
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-md sm:text-lg font-medium">Tugas</h2>
         <p className="text-sm text-text-muted">
-          {status === "pending" && "Ditugaskan"}
+          {status === "pending" ? (!isExpired ? "Berlalu" : "Ditugaskan") : ""}
           {status === "done" && "Diserahkan"}
           {status === "graded" && (
             <Badge variant="success" label="telah diniliai" />
@@ -26,7 +26,7 @@ const AttachmentCard = ({ status, score }) => {
       {status === "graded" && (
         <h3 className="text-xl font-bold text-center py-4">{score}/100</h3>
       )}
-      {status === "pending" && (
+      {status === "pending" && isExpired && (
         <form onSubmit={handleSubmit}>
           {files?.length > 0 && (
             <ul className="flex flex-col gap-2 mb-2">

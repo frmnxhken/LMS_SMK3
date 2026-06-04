@@ -8,8 +8,7 @@ import useAssesmentDetail from "../hooks/useAssessmentDetail";
 import { formatDateDMY } from "@/shared/lib/formatDate";
 import useGradeSubmission from "../hooks/useGradeSubmission";
 import FileViewer from "@/shared/ui/media/FileViewer";
-const image =
-  "https://cdn.idn.media/idnaccount/avatar/500/71e9df185dcc84e99ddf1dc97cc37467.webp?v=1768211620";
+import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
 
 export const AssessmentDetailPage = () => {
   const { id_class, id_post, id_submission } = useParams();
@@ -29,7 +28,7 @@ export const AssessmentDetailPage = () => {
         <div className="flex items-center gap-4">
           <img
             className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] object-cover rounded-full"
-            src={image}
+            src={BASE_IMAGE_PROFILE + data?.student?.user?.photo}
             alt="profile"
           />
           <div>

@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { storeSubmission } from "../api/courseSubmissionApi";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const useCourseSubmission = (id_class, id_post) => {
+  const queryClient = useQueryClient();
   const [files, setFiles] = useState([]);
   const [errors, setErrors] = useState(null);
 
@@ -11,6 +12,7 @@ const useCourseSubmission = (id_class, id_post) => {
     onSuccess: (data) => {
       setFiles([]);
       setErrors(null);
+      queryClient.invalidateQueries(["coursePostDetail", id_class, id_post]);
     },
     onError: (err) => {
       setErrors(err.response?.data?.errors);

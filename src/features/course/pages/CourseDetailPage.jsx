@@ -57,6 +57,7 @@ export const CourseDetail = () => {
       <CourseSideDetail
         type={type}
         submission={submission}
+        due={data?.due}
         id_class={id_class}
         id_post={id_post}
       />

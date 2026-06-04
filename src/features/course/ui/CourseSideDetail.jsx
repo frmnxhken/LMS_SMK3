@@ -3,8 +3,9 @@ import AttachmentCard from "./AttachmentCard";
 import { useAuth } from "@/app/contexts/AuthContext";
 import Button from "@/shared/ui/buttons/Button";
 import { useNavigate } from "react-router";
+import { isExpired } from "@/shared/lib/formatDate";
 
-const CourseSideDetail = ({ type, submission, id_class, id_post }) => {
+const CourseSideDetail = ({ type, submission, id_class, id_post, due }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
 
@@ -16,6 +17,7 @@ const CourseSideDetail = ({ type, submission, id_class, id_post }) => {
             <AttachmentCard
               status={submission?.status}
               score={submission?.score}
+              isExpired={isExpired(due)}
             />
           ) : (
             <Button
