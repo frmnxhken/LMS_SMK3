@@ -12,7 +12,7 @@ const CourseSideDetail = ({ type, submission, id_class, id_post, due }) => {
   return (
     <>
       {type === "assignment" && (
-        <div className="sticky sm:relative bottom-0 w-full sm:w-[40%] pt-4 sm:pt-0">
+        <div className="sticky sm:relative bottom-0 w-full sm:w-[40%] pt-4 sm:pt-0 overflow-hidden">
           {user.role === "student" ? (
             <AttachmentCard
               status={submission?.status}

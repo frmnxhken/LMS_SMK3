@@ -15,7 +15,7 @@ const FileViewer = ({ file, onClose }) => {
         <DocViewer
           documents={[
             {
-              uri: "http://127.0.0.1:8000/api/files/" + file?.split("/").at(-1),
+              uri: "http://127.0.0.1:8000/api/files/" + file,
             },
           ]}
           config={{

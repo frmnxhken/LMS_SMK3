@@ -5,10 +5,11 @@ import { MdInsertDriveFile } from "react-icons/md";
 import useCourseSubmission from "../hooks/useCourseSubmission";
 import { useParams } from "react-router";
 import Badge from "@/shared/ui/Feedback/Badge";
+import FormInput from "@/shared/ui/forms/FormInput";
 
 const AttachmentCard = ({ status, score, isExpired }) => {
   const { id_class, id_post } = useParams();
-  const { files, handleFileChange, handleRemoveFile, handleSubmit } =
+  const { files, handleFileChange, handleRemoveFile, handleSubmit, errors } =
     useCourseSubmission(id_class, id_post);
 
   return (
@@ -35,9 +36,9 @@ const AttachmentCard = ({ status, score, isExpired }) => {
                   key={index}
                   className="flex justify-between items-center border border-gray-200 rounded-lg px-3 py-2 bg-white"
                 >
-                  <div className="flex items-center gap-2">
-                    <MdInsertDriveFile className="text-xl text-blue-500" />
-                    <span className="text-sm truncate">{file.name}</span>
+                  <div className="flex items-center gap-2 min-w-0">
+                    <MdInsertDriveFile className="text-xl text-blue-500 flex-shrink-0" />
+                    <p className="text-sm truncate">{file.name}</p>
                   </div>
                   <button
                     type="button"
@@ -51,12 +52,13 @@ const AttachmentCard = ({ status, score, isExpired }) => {
             </ul>
           )}
           <div className="flex flex-col gap-2">
-            <input
+            <FormInput
               onChange={handleFileChange}
               name="files"
               type="file"
               id="file-upload"
               className="hidden"
+              feedback={errors?.files?.[0]}
               multiple
             />
             <label
