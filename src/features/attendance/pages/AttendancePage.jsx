@@ -1,16 +1,64 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AttendanceCard from "../ui/AttendanceCard";
+import Badge from "@/shared/ui/Feedback/Badge";
+import { Haversine } from "@/shared/lib/Haversine";
 
 const AttendancePage = () => {
+  const [locationState, setLocationState] = useState({
+    status: "searching",
+    distance: 0,
+    isInRange: false,
+  });
+
+  const OFFICE_COORD = { lat: -7.158017, lng: 113.470154 };
+  const MAX_RADIUS = 50;
+
+  const updateLocation = () => {
+    setLocationState((prev) => ({ ...prev, status: "searching" }));
+
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const myPosition = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude,
+        };
+        const dist = Haversine(myPosition, OFFICE_COORD);
+
+        setLocationState({
+          status: "active",
+          distance: Math.round(dist),
+          isInRange: dist <= MAX_RADIUS,
+        });
+      },
+      (error) => {
+        setLocationState({
+          status: error.code === 1 ? "denied" : "disabled",
+          distance: 0,
+          isInRange: false,
+        });
+      },
+      { enableHighAccuracy: true, timeout: 5000 },
+    );
+  };
+
+  useEffect(() => {
+    navigator.permissions.query({ name: "geolocation" }).then((result) => {
+      if (result.state === "denied") {
+        setLocationState((prev) => ({ ...prev, status: "denied" }));
+      } else {
+        updateLocation();
+      }
+    });
+  }, []);
   return (
     <div className="p-6 max-w-[1080px] mx-auto">
       <h1 className="text-xl font-bold text-text-heading mb-6">Absensi</h1>
 
       <AttendanceCard
-        status="active"
-        distance={120}
-        isInRange={true}
-        onRefresh={() => console.log("Refresh lokasi...")}
+        status={locationState.status}
+        distance={locationState.distance}
+        isInRange={locationState.isInRange}
+        onRefresh={updateLocation}
         onAbsen={() => console.log("Proses absen...")}
       />
 
@@ -33,13 +81,15 @@ const AttendancePage = () => {
               <th className="table-head-cell text-center">Status</th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="text-xs">
             <tr className="table-body-row">
               <td className="table-body-cell">1</td>
               <td className="table-body-cell">10 Mar 2026</td>
               <td className="table-body-cell text-center">07:45:12</td>
               <td className="table-body-cell text-center">
-                <span className="badge badge-done">Tepat Waktu</span>
+                <span className="badge badge-done">
+                  <Badge variant="success" label="Hadir" />
+                </span>
               </td>
             </tr>
             <tr className="table-body-row">
