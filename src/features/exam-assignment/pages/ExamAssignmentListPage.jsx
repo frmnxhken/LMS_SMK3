@@ -8,6 +8,7 @@ import useExamAssignment from "../hooks/useExamAssignment";
 import useExamAssignmentAction from "../hooks/useExamAssignmentAction";
 import { useAuth } from "@/app/contexts/AuthContext";
 import ExamAssignmentCardSkeleton from "../ui/skeletons/ExamAssignmentCardSkeleton";
+import { MdAdd } from "react-icons/md";
 
 const ExamAssignmentListPage = () => {
   const { id_class } = useParams();
@@ -32,7 +33,10 @@ const ExamAssignmentListPage = () => {
         </h1>
         {user.role === "teacher" && (
           <div>
-            <Button onClick={handleOpenCreate}>Tambah</Button>
+            <Button onClick={handleOpenCreate}>
+              <MdAdd size={18} />
+              Tambah
+            </Button>
           </div>
         )}
       </div>

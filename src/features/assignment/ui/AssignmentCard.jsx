@@ -40,7 +40,10 @@ const AssignmentCard = ({ assignment, idClass }) => {
         </div>
         <div className="flex justify-end w-full sm:w-auto">
           {user.role === "teacher" && (
-            <Button onClick={() => navigate(`${assignment.id}/assessment`)}>
+            <Button
+              variant="outline"
+              onClick={() => navigate(`${assignment.id}/assessment`)}
+            >
               Lihat Pengumpulan
             </Button>
           )}

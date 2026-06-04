@@ -1,18 +1,33 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import AssignmentCard from "../ui/AssignmentCard";
 import AssignmentCardSkeleton from "../ui/skeletons/AssignmentCardSkeleton";
 import useAssignmentList from "../hooks/useAssignmentList";
+import { useAuth } from "@/app/contexts/AuthContext";
+import Button from "@/shared/ui/buttons/Button";
+import { MdAdd } from "react-icons/md";
 
 export const AssignmentListPage = () => {
+  const { user } = useAuth();
   const { id_class } = useParams();
   const { data, isLoading } = useAssignmentList(id_class);
+  const navigate = useNavigate();
 
   return (
     <div className="max-w-[800px] container mx-auto p-6">
-      <h1 className="text-heading font-bold text-md sm:text-xl mb-4">
-        Daftar Tugas
-      </h1>
+      <div className="flex justify-between items-center mb-4">
+        <h1 className="text-heading font-bold text-md sm:text-xl">
+          Daftar Tugas
+        </h1>
+        {user.role === "teacher" && (
+          <div>
+            <Button onClick={() => navigate("create")}>
+              <MdAdd size={18} />
+              Tambah
+            </Button>
+          </div>
+        )}
+      </div>
       <div className="space-y-2">
         {isLoading && <AssignmentCardSkeleton />}
         {data?.[0].posts?.map((assignment, index) => (
