@@ -29,3 +29,8 @@ export const activateAcademicYear = async (id) => {
   const res = await api.put(`/admin/academic/${id}/activate`);
   return res;
 };
+
+export const updateAcademicYearStatus = async (id, status) => {
+  const res = await api.put(`/admin/academic/${id}/status`, { status });
+  return res.data;
+};

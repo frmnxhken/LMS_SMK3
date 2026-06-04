@@ -4,7 +4,7 @@ import FormInput from "@/shared/ui/forms/FormInput";
 
 const AcademicForm = ({ initData = {}, onSubmit, errors }) => {
   const [formData, setFormData] = useState({
-    start: initData?.start || "",
+    start: initData?.start || new Date().toISOString().substring(0, 10),
     end: initData?.end || "",
   });
 
@@ -21,16 +21,17 @@ const AcademicForm = ({ initData = {}, onSubmit, errors }) => {
     <form onSubmit={handleSubmit} className="space-y-2" method="post">
       <div className="flex gap-x-2">
         <FormInput
+          type="date"
           onInput={handleInput}
-          label="Tahun Mulai"
+          label="Tanggal Mulai"
           name="start"
-          placeholder="2025"
           value={formData?.start}
           feedback={errors?.start?.[0]}
         />
         <FormInput
+          type="date"
           onInput={handleInput}
-          label="Tahun Akhir"
+          label="Tanggal Akhir"
           name="end"
           placeholder="2026"
           value={formData?.end}

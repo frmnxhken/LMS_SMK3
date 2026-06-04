@@ -5,17 +5,20 @@ import useAcademicActivate from "../hooks/useAcademicActivate";
 import AcademicTableSkeleton from "./skeletons/AcademicTableSkeleton";
 import EmptyState from "@/shared/ui/Feedback/EmptyState";
 import { MdDelete, MdEdit } from "react-icons/md";
+import { useAcademicStatus } from "../hooks/useAcademicStatus";
 
 const AcademicTable = ({ academies, onEdit, onDelete, isLoading }) => {
   const { handleActivate } = useAcademicActivate();
+  const { handleStatus } = useAcademicStatus();
 
   return (
     <table className="table-custom">
       <thead className="">
         <tr>
           <th className="table-head-cell">No</th>
-          <th className="table-head-cell">Tahun Mulai Akademik</th>
-          <th className="table-head-cell">Tahun Akhir Akademik</th>
+          <th className="table-head-cell">Tahun Ajaran</th>
+          <th className="table-head-cell">Masa Berlaku</th>
+          <th className="table-head-cell">Tahun Aktif</th>
           <th className="table-head-cell">Status</th>
           <th className="table-head-cell">Aksi</th>
         </tr>
@@ -32,15 +35,34 @@ const AcademicTable = ({ academies, onEdit, onDelete, isLoading }) => {
           academies?.data?.map((item, index) => (
             <tr className="table-body-row">
               <td className="table-body-cell">{index + 1}</td>
-              <td className="table-body-cell">{item.start}</td>
-              <td className="table-body-cell">{item.end}</td>
+              <td className="table-body-cell">
+                {item.start.split("-")[0]}/{item.end.split("-")[0]}
+              </td>
+              <td className="table-body-cell">
+                {item.start.replaceAll("-", "/")} -
+                {item.end.replaceAll("-", "/")}
+              </td>
               <td className="table-body-cell">
                 <Badge
-                  variant={item.is_active === 1 ? "success" : "dark"}
+                  variant={item.is_active === 1 ? "success" : "primary"}
                   label={item.is_active === 1 ? "aktif" : "tidak aktif"}
                 />
               </td>
+              <td>
+                <Badge
+                  variant={item.status === "active" ? "success" : "primary"}
+                  label={item.status}
+                />
+              </td>
               <td className="table-body-cell flex items-center justify-between gap-2">
+                <select
+                  value={item.status}
+                  onChange={(e) => handleStatus(item.id, e.target.value)}
+                >
+                  <option value="draft">Draft</option>
+                  <option value="active">Active</option>
+                  <option value="completed">Completed</option>
+                </select>
                 <div>
                   {item.is_active === 0 ? (
                     <Button
