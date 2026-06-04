@@ -8,23 +8,25 @@ const AcademicCalendarItem = ({ day }) => {
       className={`min-h-[120px] p-2 border transition-all ${
         day.isSchoolDay
           ? "bg-white border-app-border hover:border-black"
-          : "bg-gray-50 border-app-border"
+          : "bg-slate-100/50 border-app-border"
       }`}
     >
       <span
         className={`text-sm font-semibold ${
-          day.isSchoolDay ? "text-gray-700" : "text-gray-400"
+          day.isSchoolDay ? "text-primary" : "text-text-muted"
         }`}
       >
         {day.date}
       </span>
 
       <div className="mt-2">
-        {day.isSchoolDay ? (
-          <Badge label="Pembelajaran" />
-        ) : (
-          <Badge variant="success" label={day.description} />
-        )}
+        {day.id ? (
+          day.isSchoolDay ? (
+            <Badge label={day.description} />
+          ) : (
+            <Badge variant="success" label={day.description} />
+          )
+        ) : null}
       </div>
     </div>
   );

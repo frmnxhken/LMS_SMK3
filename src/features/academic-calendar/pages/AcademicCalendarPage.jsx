@@ -1,17 +1,16 @@
 import React, { useState } from "react";
 import { dayNames as days, monthNames } from "@/shared/lib/Constants";
 import AcademicCalendarItem from "../ui/AcademicCalendarItem";
-import data from "@/shared/data/dummy/calendar.json";
 import AcademicCalendarNav from "../ui/AcademicCalendarNav";
+import useAcademicCalendar from "../hooks/useAcademicCalendar";
 
 const AcademicCalendarPage = () => {
+  const { data, isLoading } = useAcademicCalendar();
   const [currentDate, setCurrentDate] = useState(new Date());
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
-
-  const calendarMap = new Map(data.map((item) => [item.date, item]));
+  const calendarMap = new Map(data?.dates.map((item) => [item.date, item]));
   const monthName = monthNames[month];
-
   const totalDays = new Date(year, month + 1, 0).getDate();
   const offset = new Date(year, month, 1).getDay();
   const pad = (n) => String(n).padStart(2, "0");
@@ -28,8 +27,8 @@ const AcademicCalendarPage = () => {
     return {
       id: apiItem?.id,
       date: d,
-      isSchoolDay: isWeekend ? false : (apiItem?.is_school_day ?? true),
-      description: isWeekend ? "Libur Akhir Pekan" : apiItem?.description || "",
+      isSchoolDay: apiItem?.is_school_day,
+      description: apiItem?.description,
     };
   });
 
