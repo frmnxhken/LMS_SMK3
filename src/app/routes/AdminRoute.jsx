@@ -17,6 +17,8 @@ import {
 } from "@/features/teacher";
 import TeachingAssignmentEditPage from "@/features/teaching-assignment/pages/TeachingAssignmentEditPage";
 import AcademicCalendarPage from "@/features/academic-calendar/pages/AcademicCalendarPage";
+import { ProfilePage } from "@/features/profile/pages/ProfilePage";
+import { ChangePasswordPage } from "@/features/profile/pages/ChangePasswordPage";
 
 const AdminRoute = () => {
   return (
@@ -43,6 +45,8 @@ const AdminRoute = () => {
         path="teaching-assignment/:id/edit"
         element={<TeachingAssignmentEditPage />}
       />
+      <Route path="profile" element={<ProfilePage />} />
+      <Route path="profile/change-password" element={<ChangePasswordPage />} />
     </Route>
   );
 };

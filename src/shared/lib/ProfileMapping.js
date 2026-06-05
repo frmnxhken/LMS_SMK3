@@ -11,5 +11,6 @@ export const getInformationProfile = (data) => {
       { label: "Nama lengkap", value: data.name },
       { label: "nisn", value: data.student?.nis || "-" },
     ],
+    admin: [{ label: "Nama lengkap", value: data.name }],
   };
 };
