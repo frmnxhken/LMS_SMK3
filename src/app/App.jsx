@@ -8,6 +8,7 @@ import ScrollToTop from "@/shared/lib/ScrollToTop";
 import LoginPage from "@/features/authentication/pages/LoginPage";
 import { useIsFetching } from "@tanstack/react-query";
 import TopLoader from "@/shared/ui/Feedback/TopLoader";
+import NotFoundPage from "@/shared/pages/NotFoundPage";
 
 const App = () => {
   const isFetching = useIsFetching();
@@ -16,6 +17,7 @@ const App = () => {
       <TopLoader isLoading={isFetching} />
       <ScrollToTop />
       <Routes>
+        <Route path="*" element={<NotFoundPage />} />
         <Route
           element={<ProtectedRoute allowedRoles={["student", "teacher"]} />}
         >
