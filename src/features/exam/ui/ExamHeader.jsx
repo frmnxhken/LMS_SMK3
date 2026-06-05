@@ -8,7 +8,11 @@ const ExamHeader = ({ title, subject, startedAt, duration, attemptId }) => {
   return (
     <div className="bg-white p-6 rounded-xl border border-app-border flex justify-between items-center">
       <div>
-        <h1 className="text-xl font-bold text-text-heading">{title}</h1>
+        <h1 className="text-xl font-bold text-text-heading">
+          {title === "uts" && "Ujian Tengah Semester"}
+          {title === "uas" && "Ujian Akhir Semester"}
+          {title === "harian" && "Ujian Harian"}
+        </h1>
         <p className="text-sm text-text-muted font-medium">
           Mata Pelajaran: {subject}
         </p>

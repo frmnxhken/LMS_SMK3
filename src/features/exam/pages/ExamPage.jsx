@@ -50,8 +50,8 @@ const ExamPage = () => {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div className="lg:col-span-8 space-y-6">
           <ExamHeader
-            title="Ujian Akhir Semester"
-            subject="Pemrograman Web"
+            title={data?.type}
+            subject={data?.subject}
             startedAt={data?.started_at}
             duration={data?.duration}
             attemptId={data?.attempt_id}
