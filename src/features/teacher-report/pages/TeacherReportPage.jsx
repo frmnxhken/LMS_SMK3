@@ -13,7 +13,7 @@ const TeacherReportPage = () => {
 
   return (
     <div className="container max-w-[1200px] mx-auto p-6">
-      <TeacherReportHeader />
+      <TeacherReportHeader meta={data?.meta} />
       <div className="table-responsive border-app-border">
         <TeacherReportTable reports={data?.data} />
       </div>

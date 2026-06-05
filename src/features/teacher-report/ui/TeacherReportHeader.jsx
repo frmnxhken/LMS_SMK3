@@ -4,7 +4,7 @@ import Button from "@/shared/ui/buttons/Button";
 import { MdSettings } from "react-icons/md";
 import { PiMicrosoftExcelLogo } from "react-icons/pi";
 
-const TeacherReportHeader = () => {
+const TeacherReportHeader = ({ meta }) => {
   const navigate = useNavigate();
 
   return (
@@ -13,10 +13,11 @@ const TeacherReportHeader = () => {
       <div className="flex flex-col sm:flex-row gap-4 justify-between items-baseline">
         <div>
           <p className="text-sm font-medium text-text-muted">
-            Mata Pelajaran: Pemerograman Web
+            Mata Pelajaran: {meta.subject.name}
           </p>
           <p className="text-sm font-medium text-text-muted">
-            Kelas : 12 RPL 3
+            Kelas : {meta.school_class.level} {meta.school_class.major}{" "}
+            {meta.school_class.section}
           </p>
         </div>
         <div className="flex gap-2 justify-end w-full sm:w-auto">
