@@ -12,9 +12,10 @@ import NotFoundPage from "@/shared/pages/NotFoundPage";
 
 const App = () => {
   const isFetching = useIsFetching();
+  const isLoading = isFetching > 0;
   return (
     <BrowserRouter>
-      <TopLoader isLoading={isFetching} />
+      <TopLoader isLoading={isLoading} />
       <ScrollToTop />
       <Routes>
         <Route path="*" element={<NotFoundPage />} />
