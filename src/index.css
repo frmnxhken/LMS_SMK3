@@ -40,3 +40,12 @@ body {
 body {
   font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 }
+
+@keyframes shrink {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 0%;
+  }
+}
