@@ -3,10 +3,17 @@ import { dayNames as days, monthNames } from "@/shared/lib/Constants";
 import AcademicCalendarItem from "../ui/AcademicCalendarItem";
 import AcademicCalendarNav from "../ui/AcademicCalendarNav";
 import useAcademicCalendar from "../hooks/useAcademicCalendar";
+import Modal from "@/shared/ui/modal/Modal";
+import AcademicCalendarForm from "../ui/AcademicCalendarForm";
+import useAcademicCalendarUpdate from "../hooks/useAcademicCalendarUpdate";
 
 const AcademicCalendarPage = () => {
   const { data, isLoading } = useAcademicCalendar();
+  const { handleUpdate, isUpdating, errors, clearErrors } =
+    useAcademicCalendarUpdate();
   const [currentDate, setCurrentDate] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(null);
+
   const year = currentDate.getFullYear();
   const month = currentDate.getMonth();
   const calendarMap = new Map(data?.dates.map((item) => [item.date, item]));
@@ -27,6 +34,7 @@ const AcademicCalendarPage = () => {
     return {
       id: apiItem?.id,
       date: d,
+      fullDate: isoDate,
       isSchoolDay: apiItem?.is_school_day,
       description: apiItem?.description,
     };
@@ -48,11 +56,30 @@ const AcademicCalendarPage = () => {
     });
   };
 
+  const handleCloseModal = () => {
+    setSelectedDate(null);
+    clearErrors();
+  };
+
   return (
     <div className="p-6 max-w-[1200px] mx-auto">
       <h1 className="text-lg font-semibold pb-6 text-text-heading">
         Kalender Akademik
       </h1>
+
+      <Modal
+        title={selectedDate?.fullDate}
+        isOpen={selectedDate}
+        onClose={handleCloseModal}
+      >
+        <AcademicCalendarForm
+          initData={selectedDate}
+          onSubmit={handleUpdate}
+          onPending={isUpdating}
+          errors={errors}
+          closeModal={handleCloseModal}
+        />
+      </Modal>
 
       <div className="border border-app-border p-4 rounded-xl h-full">
         <AcademicCalendarNav
@@ -79,8 +106,12 @@ const AcademicCalendarPage = () => {
                 <div key={`empty-${index}`} className="min-h-[120px]" />
               ))}
 
-              {calendarDays.map((day) => (
-                <AcademicCalendarItem day={day} />
+              {calendarDays.map((day, index) => (
+                <AcademicCalendarItem
+                  key={index}
+                  day={day}
+                  onEdit={(day) => day?.id && setSelectedDate(day)}
+                />
               ))}
             </div>
           </div>

@@ -1,10 +1,10 @@
 import React from "react";
 import Badge from "@/shared/ui/Feedback/Badge";
 
-const AcademicCalendarItem = ({ day }) => {
+const AcademicCalendarItem = ({ day, onEdit }) => {
   return (
     <div
-      key={day.date}
+      onClick={() => onEdit(day)}
       className={`min-h-[120px] p-2 border transition-all ${
         day.isSchoolDay
           ? "bg-white border-app-border hover:border-black"
