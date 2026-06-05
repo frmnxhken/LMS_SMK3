@@ -10,7 +10,7 @@ const FormInput = ({
   ...props
 }) => {
   return (
-    <div>
+    <div className="w-full">
       {label && (
         <label htmlFor={id} className="text-sm font-medium text-text-body mb-2">
           {label}
