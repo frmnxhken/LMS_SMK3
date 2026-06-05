@@ -21,8 +21,6 @@ const ClassTable = ({ data, isLoading }) => {
         <thead className="">
           <tr>
             <th className="table-head-cell">No</th>
-            <th className="table-head-cell">Tingkatan</th>
-            <th className="table-head-cell">Jurusan</th>
             <th className="table-head-cell">Kelas</th>
             <th className="table-head-cell">Aksi</th>
           </tr>
@@ -31,7 +29,7 @@ const ClassTable = ({ data, isLoading }) => {
         <tbody className="text-xs">
           {!isLoading && data.length === 0 ? (
             <tr>
-              <td colSpan={5} className="py-6 border-b border-app-border">
+              <td colSpan={3} className="py-6 border-b border-app-border">
                 <EmptyState />
               </td>
             </tr>
@@ -39,9 +37,9 @@ const ClassTable = ({ data, isLoading }) => {
             data?.map((item, index) => (
               <tr className="table-body-row">
                 <td className="table-body-cell">{index + 1}</td>
-                <td className="table-body-cell">{item.level}</td>
-                <td className="table-body-cell">{item.major}</td>
-                <td className="table-body-cell">{item.section}</td>
+                <td className="table-body-cell">
+                  {item.level}-{item.major}-{item.section}
+                </td>
                 <td className="table-body-cell flex space-x-2">
                   <Button
                     variant="table"

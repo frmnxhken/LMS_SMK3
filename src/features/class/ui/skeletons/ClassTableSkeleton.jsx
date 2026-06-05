@@ -12,12 +12,6 @@ const ClassTableSkeleton = () => {
           <td className="table-body-cell">
             <SkeletonBar className="h-4 w-20" />
           </td>
-          <td className="table-body-cell">
-            <SkeletonBar className="h-4 w-32" />
-          </td>
-          <td className="table-body-cell">
-            <SkeletonBar className="h-4 w-12" />
-          </td>
           <td className="table-body-cell flex space-x-2">
             <SkeletonBar className="h-8 w-14" />
             <SkeletonBar className="h-8 w-16" />
