@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import AttendanceCard from "../ui/AttendanceCard";
 import Badge from "@/shared/ui/Feedback/Badge";
 import { Haversine } from "@/shared/lib/Haversine";
+import useAttendanceCreate from "../hooks/useAttendanceCreate";
 
 const AttendancePage = () => {
   const [locationState, setLocationState] = useState({
@@ -9,9 +10,14 @@ const AttendancePage = () => {
     distance: 0,
     isInRange: false,
   });
+  const [position, setPosition] = useState({
+    latitude: "",
+    longitude: "",
+  });
 
   const OFFICE_COORD = { lat: -7.158017, lng: 113.470154 };
-  const MAX_RADIUS = 50;
+  const MAX_RADIUS = 150;
+  const { handleSubmit } = useAttendanceCreate();
 
   const updateLocation = () => {
     setLocationState((prev) => ({ ...prev, status: "searching" }));
@@ -22,6 +28,12 @@ const AttendancePage = () => {
           lat: position.coords.latitude,
           lng: position.coords.longitude,
         };
+
+        setPosition({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
+
         const dist = Haversine(myPosition, OFFICE_COORD);
 
         setLocationState({
@@ -50,6 +62,13 @@ const AttendancePage = () => {
       }
     });
   }, []);
+
+  const onSubmit = () => {
+    if (handleSubmit) {
+      handleSubmit(position);
+    }
+  };
+
   return (
     <div className="p-6 max-w-[1080px] mx-auto">
       <h1 className="text-xl font-bold text-text-heading mb-6">Absensi</h1>
@@ -59,7 +78,7 @@ const AttendancePage = () => {
         distance={locationState.distance}
         isInRange={locationState.isInRange}
         onRefresh={updateLocation}
-        onAbsen={() => console.log("Proses absen...")}
+        onAbsen={onSubmit}
       />
 
       <div className="flex items-center justify-between mb-4 mt-6">
