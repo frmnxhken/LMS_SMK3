@@ -1,9 +1,8 @@
 import React from "react";
 import TeacherReportTableSkeleton from "./skeletons/TeacherReportTableSkeleton";
+import { Link } from "react-router";
 
-const TeacherReportTable = ({ reports }) => {
-  const isLoading = false;
-
+const TeacherReportTable = ({ reports, isLoading }) => {
   return (
     <table className="table-custom">
       <thead className="">
@@ -27,7 +26,9 @@ const TeacherReportTable = ({ reports }) => {
                 {index + 1}
               </td>
               <td className="table-body-cell border-r border-app-border">
-                {report.name}
+                <Link to={`${report.id}/student`} className="underline">
+                  {report.name}
+                </Link>
               </td>
               <td className="table-body-cell border-r border-app-border">
                 {report.nis}
@@ -36,7 +37,7 @@ const TeacherReportTable = ({ reports }) => {
               <td className="table-body-cell">{report.daily}</td>
               <td className="table-body-cell">{report.uts}</td>
               <td className="table-body-cell">{report.uas}</td>
-              <td className="table-body-cell"></td>
+              <td className="table-body-cell">{report.final_score}</td>
             </tr>
           ))}
       </tbody>

@@ -13,11 +13,11 @@ const TeacherReportHeader = ({ meta }) => {
       <div className="flex flex-col sm:flex-row gap-4 justify-between items-baseline">
         <div>
           <p className="text-sm font-medium text-text-muted">
-            Mata Pelajaran: {meta.subject.name}
+            Mata Pelajaran: {meta?.subject.name}
           </p>
           <p className="text-sm font-medium text-text-muted">
-            Kelas : {meta.school_class.level} {meta.school_class.major}{" "}
-            {meta.school_class.section}
+            Kelas : {meta?.school_class.level} {meta?.school_class.major}{" "}
+            {meta?.school_class.section}
           </p>
         </div>
         <div className="flex gap-2 justify-end w-full sm:w-auto">

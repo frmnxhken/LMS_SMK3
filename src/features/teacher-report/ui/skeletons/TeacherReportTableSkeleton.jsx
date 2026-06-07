@@ -27,6 +27,9 @@ const TeacherReportTableSkeleton = () => {
           <td className="table-body-cell">
             <SkeletonBar className="h-4 w-20" />
           </td>
+          <td className="table-body-cell">
+            <SkeletonBar className="h-4 w-20" />
+          </td>
         </tr>
       ))}
     </tbody>

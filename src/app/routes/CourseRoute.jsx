@@ -18,6 +18,7 @@ import ExamPreparePage from "@/features/exam/pages/ExamPreparePage";
 import ExamPage from "@/features/exam/pages/ExamPage";
 import TeacherReportPage from "@/features/teacher-report/pages/TeacherReportPage";
 import TeacherReportWeightPage from "@/features/teacher-report/pages/TeacherReportWeightPage";
+import TeacherReportPerformancePage from "@/features/teacher-report/pages/TeacherReportPerformancePage";
 
 const CourseRoute = () => {
   return (
@@ -55,6 +56,10 @@ const CourseRoute = () => {
 
         <Route path="report" element={<TeacherReportPage />} />
         <Route path="report/weight" element={<TeacherReportWeightPage />} />
+        <Route
+          path="report/:id_student/student"
+          element={<TeacherReportPerformancePage />}
+        />
       </Route>
     </Route>
   );
