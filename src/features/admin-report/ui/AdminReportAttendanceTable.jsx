@@ -4,7 +4,7 @@ import Button from "@/shared/ui/buttons/Button";
 import { MdEdit } from "react-icons/md";
 import AdminReportAttendanceTableSkeleton from "./skeletons/AdminReportAttendanceTableSkeleton";
 
-const AdminReportAttendanceTable = ({ data, isLoading }) => {
+const AdminReportAttendanceTable = ({ data, isLoading, onEdit }) => {
   const statusMapping = {
     late: "Terlambat",
     sick: "Sakit",
@@ -45,7 +45,7 @@ const AdminReportAttendanceTable = ({ data, isLoading }) => {
                 )}
               </td>
               <td>
-                <Button variant="table">
+                <Button onClick={() => onEdit(item)} variant="table">
                   <MdEdit size={18} />
                 </Button>
               </td>

@@ -19,3 +19,8 @@ export const getReportHistory = async (
   });
   return res.data;
 };
+
+export const updateAttendance = async (payload) => {
+  const res = await api.put("/admin/attendance", payload);
+  return res;
+};
