@@ -1,6 +1,7 @@
-import React from "react";
+import React, { lazy } from "react";
 import Modal from "@/shared/ui/modal/Modal";
-import DocViewer, { DocViewerRenderers } from "@iamjariwala/react-doc-viewer";
+import { DocViewerRenderers } from "@iamjariwala/react-doc-viewer";
+const DocViewer = lazy(() => import("@iamjariwala/react-doc-viewer"));
 import "@iamjariwala/react-doc-viewer/dist/index.css";
 
 const FileViewer = ({ file, onClose }) => {
