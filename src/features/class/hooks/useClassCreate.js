@@ -1,33 +1,31 @@
 import { useState } from "react";
+import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { storeClass } from "../api/classApi";
-import { useNavigate } from "react-router";
 import { useToast } from "@/app/contexts/ToastContext";
 
 const useClassCreate = () => {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
-  const { addToast } = useToast();
   const [errors, setErrors] = useState(null);
+  const { addToast } = useToast();
 
   const mutation = useMutation({
     mutationFn: (payload) => storeClass(payload),
     onSuccess: () => {
       queryClient.invalidateQueries(["classes"]);
       navigate(-1);
-      addToast("Data berhasil ditambahkan");
+      addToast("Data berhasil ditambahkan!");
     },
     onError: (error) => {
       setErrors(error.response?.data?.errors);
     },
   });
 
-  const handleSubmit = (values) => {
-    mutation.mutate(values);
-  };
+  const handleCreate = (values) => mutation.mutate(values);
 
   return {
-    handleSubmit,
+    handleCreate,
     isCreating: mutation.isPending,
     errors,
   };

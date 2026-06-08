@@ -1,8 +1,8 @@
 import React from "react";
-import ClassForm from "../ui/ClassForm";
-import useClassUpdate from "../hooks/useClassUpdate";
 import { useParams } from "react-router";
+import ClassForm from "../ui/ClassForm";
 import ClassEditSkeleton from "../ui/skeletons/ClassEditSkeleton";
+import useClassUpdate from "../hooks/useClassUpdate";
 
 export const ClassEditPage = () => {
   const { id } = useParams();
@@ -19,7 +19,7 @@ export const ClassEditPage = () => {
           <ClassForm
             initData={data}
             onSubmit={handleUpdate}
-            onPending={isUpdating}
+            isPending={isUpdating}
             errors={errors}
           />
         )}

@@ -1,19 +1,14 @@
 import React from "react";
-import Button from "@/shared/ui/buttons/Button";
-import useClassDelete from "../hooks/useClassDelete";
 import { useNavigate } from "react-router";
-import ClassTableSkeleton from "./skeletons/ClassTableSkeleton";
+import Button from "@/shared/ui/buttons/Button";
 import EmptyState from "@/shared/ui/Feedback/EmptyState";
+import ClassTableSkeleton from "./skeletons/ClassTableSkeleton";
+import useClassDelete from "../hooks/useClassDelete";
 import { MdDelete, MdEdit } from "react-icons/md";
 
-const ClassTable = ({ data, isLoading }) => {
+const ClassTable = ({ data = [], isLoading }) => {
   const navigate = useNavigate();
-  const { handleDelete } = useClassDelete();
-
-  const onDelete = (id) => {
-    let confirmed = confirm("Anda yakin untuk dihapus ?");
-    if (confirmed) handleDelete(id);
-  };
+  const { onDelete } = useClassDelete();
 
   return (
     <>
@@ -25,9 +20,10 @@ const ClassTable = ({ data, isLoading }) => {
             <th className="table-head-cell">Aksi</th>
           </tr>
         </thead>
-        {isLoading && <ClassTableSkeleton />}
         <tbody className="text-xs">
-          {!isLoading && data.length === 0 ? (
+          {isLoading ? (
+            <ClassTableSkeleton />
+          ) : data?.length === 0 ? (
             <tr>
               <td colSpan={3} className="py-6 border-b border-app-border">
                 <EmptyState />
