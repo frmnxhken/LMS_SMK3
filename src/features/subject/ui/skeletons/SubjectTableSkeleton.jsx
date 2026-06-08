@@ -3,7 +3,7 @@ import SkeletonBar from "@/shared/ui/Feedback/SkeletonBar";
 
 const SubjectTableSkeleton = () => {
   return (
-    <tbody>
+    <>
       {Array.from({ length: 5 }).map((_, index) => (
         <tr key={`skeleton-${index}`} className="table-body-row">
           <td className="table-body-cell">
@@ -18,7 +18,7 @@ const SubjectTableSkeleton = () => {
           </td>
         </tr>
       ))}
-    </tbody>
+    </>
   );
 };
 

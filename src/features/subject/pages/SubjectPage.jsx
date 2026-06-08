@@ -1,43 +1,40 @@
-import React, { useState } from "react";
-import Button from "@/shared/ui/buttons/Button";
+import React from "react";
 import Modal from "@/shared/ui/modal/Modal";
 import SubjectForm from "../ui/SubjectForm";
 import SubjectTable from "../ui/SubjectTable";
+import SubjectHeader from "../ui/SubjectHeader";
 import useSubject from "../hooks/useSubject";
-import useSubjectCreate from "../hooks/useSubjectCreate";
-import { MdAdd } from "react-icons/md";
+import useSubjectAction from "../hooks/useSubjectAction";
 
 const SubjectPage = () => {
-  const [open, setOpen] = useState(false);
-  const { handleSubmit, isCreating, errors, clearErrors } = useSubjectCreate();
   const { isLoading, data } = useSubject();
-
-  const handleCloseModal = () => {
-    clearErrors();
-    setOpen(false);
-  };
+  const { isOpen, isPending, selectedData, errors, actions } =
+    useSubjectAction();
 
   return (
     <div className="container mx-auto p-6">
-      <div className="flex items-center justify-between">
-        <h1 className="text-xl font-bold text-text-heading">
-          Daftar Pelajaran
-        </h1>
-        <Button onClick={() => setOpen(true)}>
-          <MdAdd size={18} /> Tambah
-        </Button>
-      </div>
+      <SubjectHeader onOpen={actions.handleOpen} />
 
-      <Modal isOpen={open} onClose={handleCloseModal} title="Tambah Mapel">
+      <Modal
+        isOpen={isOpen}
+        onClose={actions.handleClose}
+        title={selectedData ? "Edit Mapel" : "Tambah Mapel"}
+      >
         <SubjectForm
-          onSubmit={handleSubmit}
-          onPending={isCreating}
+          initData={selectedData}
+          onSubmit={actions.onSubmit}
+          isPending={isPending}
           errors={errors}
-          closeModal={handleCloseModal}
         />
       </Modal>
+
       <div className="table-responsive mt-4">
-        <SubjectTable data={data} isLoading={isLoading} />
+        <SubjectTable
+          data={data}
+          isLoading={isLoading}
+          onEdit={actions.onEdit}
+          onDelete={actions.onDelete}
+        />
       </div>
     </div>
   );

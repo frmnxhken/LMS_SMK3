@@ -2,10 +2,8 @@ import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
 
-const SubjectForm = ({ initData, onSubmit, onPending, errors, closeModal }) => {
-  const [formData, setFormData] = useState({
-    name: initData?.name || "",
-  });
+const SubjectForm = ({ initData, onSubmit, isPending, errors }) => {
+  const [formData, setFormData] = useState({ name: initData?.name || "" });
 
   const handleInput = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,13 +11,7 @@ const SubjectForm = ({ initData, onSubmit, onPending, errors, closeModal }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit(formData, {
-        onSuccess: () => {
-          closeModal();
-        },
-      });
-    }
+    if (onSubmit) onSubmit(formData, initData?.id);
   };
 
   return (
@@ -31,9 +23,9 @@ const SubjectForm = ({ initData, onSubmit, onPending, errors, closeModal }) => {
         name="name"
         value={formData?.name}
         placeholder="Pemerograman dasar"
-        feedback={errors && errors?.name?.[0]}
+        feedback={errors?.name?.[0]}
       />
-      <Button isLoading={onPending}>Simpan</Button>
+      <Button isLoading={isPending}>Simpan</Button>
     </form>
   );
 };

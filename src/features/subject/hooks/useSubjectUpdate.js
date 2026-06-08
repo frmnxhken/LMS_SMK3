@@ -1,15 +1,18 @@
 import { useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { updateSubject } from "../api/subjectApi";
+import { useToast } from "@/app/contexts/ToastContext";
 
-const useSubjectUpdate = (id) => {
+const useSubjectUpdate = () => {
   const queryClient = useQueryClient();
   const [errors, setErrors] = useState(null);
+  const { addToast } = useToast();
 
   const mutation = useMutation({
-    mutationFn: (payload) => updateSubject(id, payload),
+    mutationFn: ({ payload, id }) => updateSubject(id, payload),
     onSuccess: () => {
       queryClient.invalidateQueries(["subjects"]);
+      addToast("Data berhasil dirubah!");
       setErrors(null);
     },
     onError: (error) => {
@@ -17,8 +20,8 @@ const useSubjectUpdate = (id) => {
     },
   });
 
-  const handleUpdate = (values, options) => {
-    mutation.mutate(values, options);
+  const handleUpdate = ({ values, id }, option) => {
+    mutation.mutate({ payload: values, id: id }, option);
   };
 
   const clearErrors = () => setErrors(null);
@@ -26,8 +29,8 @@ const useSubjectUpdate = (id) => {
   return {
     handleUpdate,
     isUpdating: mutation.isPending,
-    errors,
-    clearErrors,
+    updateErrors: errors,
+    clearUpdate: clearErrors,
   };
 };
 
