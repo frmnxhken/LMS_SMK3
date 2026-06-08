@@ -7,7 +7,7 @@ import FormSelect from "@/shared/ui/forms/FormSelect";
 import { useNavigate } from "react-router";
 import useAdminReportHistory from "../hooks/useAdminReportHistory";
 
-const AdminReportHistoryHeader = ({ onExportMonthly }) => {
+const AdminReportHistoryHeader = () => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const [startDate, setStartDate] = useState("");
@@ -35,7 +35,7 @@ const AdminReportHistoryHeader = ({ onExportMonthly }) => {
           <MdChevronLeft size={18} />
         </Button>
         <Button
-          onClick={() => onExportMonthly(filterMonth)}
+          onClick={() => navigate("/dashboard/attendance/export")}
           variant="outline"
           className="flex items-center"
         >

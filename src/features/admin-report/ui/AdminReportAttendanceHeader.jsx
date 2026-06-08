@@ -7,7 +7,7 @@ import FormSelect from "@/shared/ui/forms/FormSelect";
 import { useNavigate } from "react-router";
 import useAdminReportToday from "../hooks/useAdminReportToday";
 
-const AdminReportAttendanceHeader = ({ onExport }) => {
+const AdminReportAttendanceHeader = () => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const { status, handleStatusChange, handleSearchChange } =
@@ -22,7 +22,7 @@ const AdminReportAttendanceHeader = ({ onExport }) => {
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-6">
       <div className="flex gap-2">
         <Button
-          onClick={onExport}
+          onClick={() => navigate("export")}
           variant="outline"
           className="flex items-center"
         >

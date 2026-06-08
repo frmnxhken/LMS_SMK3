@@ -24,3 +24,10 @@ export const updateAttendance = async (payload) => {
   const res = await api.put("/admin/attendance", payload);
   return res;
 };
+
+export const exportAttendance = async (payload) => {
+  const res = await api.post("/admin/attendance-report/export", payload, {
+    responseType: "blob",
+  });
+  return res.data;
+};

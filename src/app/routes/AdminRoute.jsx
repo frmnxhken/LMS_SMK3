@@ -21,6 +21,7 @@ import { ProfilePage } from "@/features/profile/pages/ProfilePage";
 import { ChangePasswordPage } from "@/features/profile/pages/ChangePasswordPage";
 import AdminReportAttendancePage from "@/features/admin-report/pages/AdminReportAttendancePage";
 import AdminReportHistoryPage from "@/features/admin-report/pages/AdminReportHistoryPage";
+import AdminReportExportPage from "@/features/admin-report/pages/AdminReportExportPage";
 
 const AdminRoute = () => {
   return (
@@ -49,6 +50,7 @@ const AdminRoute = () => {
       />
       <Route path="attendance" element={<AdminReportAttendancePage />} />
       <Route path="attendance/history" element={<AdminReportHistoryPage />} />
+      <Route path="attendance/export" element={<AdminReportExportPage />} />
       <Route path="profile" element={<ProfilePage />} />
       <Route path="profile/change-password" element={<ChangePasswordPage />} />
     </Route>
