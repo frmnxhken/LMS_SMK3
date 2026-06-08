@@ -7,6 +7,11 @@ export const getReportToday = async (page, status, search) => {
   return res.data;
 };
 
+export const getTodaySummary = async () => {
+  const res = await api.get("/admin/attendance-report/summary");
+  return res.data;
+};
+
 export const getReportHistory = async (
   page,
   status,

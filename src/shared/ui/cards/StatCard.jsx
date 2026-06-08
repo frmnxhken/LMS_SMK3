@@ -15,7 +15,9 @@ const StatCard = ({ title, value, icon: Icon, iconColor, iconBgColor }) => {
       <div>
         <p className="text-sm font-semibold text-text-body">{title}</p>
         <div className="flex items-baseline gap-1">
-          <h3 className="text-2xl font-bold text-text-heading mt-1">{value}</h3>
+          <h3 className="text-2xl font-bold text-text-heading mt-1">
+            {value ? value : "-"}
+          </h3>
         </div>
       </div>
     </div>
