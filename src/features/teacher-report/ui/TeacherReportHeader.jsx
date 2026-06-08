@@ -3,9 +3,11 @@ import { useNavigate } from "react-router";
 import Button from "@/shared/ui/buttons/Button";
 import { MdSettings } from "react-icons/md";
 import { PiMicrosoftExcelLogo } from "react-icons/pi";
+import useTeacherReportExport from "../hooks/useTeacherReportExport";
 
-const TeacherReportHeader = ({ meta }) => {
+const TeacherReportHeader = ({ meta, idClass }) => {
   const navigate = useNavigate();
+  const { handleExport } = useTeacherReportExport();
 
   return (
     <div className="mb-6">
@@ -25,7 +27,7 @@ const TeacherReportHeader = ({ meta }) => {
             <MdSettings size={18} />
             Pengaturan Bobot
           </Button>
-          <Button variant="outline">
+          <Button onClick={() => handleExport(idClass)} variant="outline">
             <PiMicrosoftExcelLogo size={18} />
             Export
           </Button>

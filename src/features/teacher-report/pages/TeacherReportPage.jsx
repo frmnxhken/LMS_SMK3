@@ -10,7 +10,7 @@ const TeacherReportPage = () => {
 
   return (
     <div className="container max-w-[1200px] mx-auto p-6">
-      <TeacherReportHeader meta={data?.meta} />
+      <TeacherReportHeader meta={data?.meta} idClass={id_class} />
       <div className="table-responsive border-app-border">
         <TeacherReportTable reports={data?.data} isLoading={isLoading} />
       </div>
