@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Modal from "@/shared/ui/modal/Modal";
 import Pagination from "@/shared/ui/navigation/Pagination";
 import TeacherHeader from "../ui/TeacherHeader";
@@ -9,24 +9,18 @@ import useTeacherImport from "../hooks/useTeacherImport";
 
 export const TeacherPage = () => {
   const { isLoading, data, page, pagination, handlePageChange } = useTeacher();
-  const [open, setOpen] = useState(null);
-  const { isImporting, handleImport, errors, clearErrors } = useTeacherImport();
-
-  const handleCloseModal = () => {
-    clearErrors();
-    setOpen(false);
-  };
+  const { isOpen, isImporting, handleImport, errors, handleOpen, handleClose } =
+    useTeacherImport();
 
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-xl font-bold text-text-heading mb-2">Daftar Guru</h1>
-      <TeacherHeader openModal={() => setOpen(true)} />
+      <TeacherHeader openModal={handleOpen} />
 
-      <Modal isOpen={open} onClose={handleCloseModal} title="Import Data">
+      <Modal isOpen={isOpen} onClose={handleClose} title="Import Data">
         <TeacherImportForm
-          closeModal={handleCloseModal}
           onSubmit={handleImport}
-          onPending={isImporting}
+          isPending={isImporting}
           errors={errors}
         />
       </Modal>

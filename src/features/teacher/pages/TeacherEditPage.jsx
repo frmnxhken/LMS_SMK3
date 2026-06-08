@@ -6,7 +6,7 @@ import useTeacherUpdate from "../hooks/useTeacherUpdate";
 
 export const TeacherEditPage = () => {
   const { id } = useParams();
-  const { isLoading, teacher, handleUpdate, isUpdating, errors } =
+  const { isLoading, data, handleUpdate, isUpdating, errors } =
     useTeacherUpdate(id);
 
   return (
@@ -17,9 +17,9 @@ export const TeacherEditPage = () => {
           <TeacherEditSkeleton />
         ) : (
           <TeacherForm
-            initData={teacher}
+            initData={data}
             onSubmit={handleUpdate}
-            onPending={isUpdating}
+            isPending={isUpdating}
             errors={errors}
           />
         )}

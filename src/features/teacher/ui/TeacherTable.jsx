@@ -6,14 +6,9 @@ import TeacherTableSkeleton from "./skeletons/TeacherTableSkeleton";
 import useTeacherDelete from "../hooks/useTeacherDelete";
 import { MdDelete, MdEdit } from "react-icons/md";
 
-const TeacherTable = ({ teachers, isLoading }) => {
+const TeacherTable = ({ teachers = [], isLoading }) => {
   const navigate = useNavigate();
-  const { handleDelete } = useTeacherDelete();
-
-  const onDelete = (id) => {
-    let confirmed = confirm("Apakah Anda yakin untuk dihapus?");
-    if (confirmed) handleDelete(id);
-  };
+  const { onDelete } = useTeacherDelete();
 
   return (
     <table className="table-custom">
@@ -27,9 +22,10 @@ const TeacherTable = ({ teachers, isLoading }) => {
           <th className="table-head-cell">Aksi</th>
         </tr>
       </thead>
-      {isLoading && <TeacherTableSkeleton />}
       <tbody className="text-xs">
-        {!isLoading && teachers.length === 0 ? (
+        {isLoading ? (
+          <TeacherTableSkeleton />
+        ) : teachers.length === 0 ? (
           <tr className="table-body-row">
             <td className="table-body-cell" colSpan={6}>
               <EmptyState />

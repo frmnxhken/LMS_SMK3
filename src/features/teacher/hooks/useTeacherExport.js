@@ -2,10 +2,9 @@ import { useMutation } from "@tanstack/react-query";
 import { exportTeachers } from "../api/teacherApi";
 
 const useTeacherExport = () => {
-  return useMutation({
+  const mutation = useMutation({
     mutationFn: exportTeachers,
-
-    onSuccess: (blob, schoolClassId) => {
+    onSuccess: (blob) => {
       const url = window.URL.createObjectURL(blob);
       const link = document.createElement("a");
 
@@ -19,6 +18,10 @@ const useTeacherExport = () => {
       window.URL.revokeObjectURL(url);
     },
   });
+
+  const onExport = () => mutation.mutate();
+
+  return { onExport };
 };
 
 export default useTeacherExport;

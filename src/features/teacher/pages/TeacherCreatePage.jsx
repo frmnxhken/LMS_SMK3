@@ -3,7 +3,7 @@ import TeacherForm from "../ui/TeacherForm";
 import useTeacherCreate from "../hooks/useTeacherCreate";
 
 export const TeacherCreatePage = () => {
-  const { handleSubmit, isCreating, errors } = useTeacherCreate();
+  const { handleCreate, isCreating, errors } = useTeacherCreate();
 
   return (
     <div className="container max-w-[680px] mx-auto p-6">
@@ -12,8 +12,8 @@ export const TeacherCreatePage = () => {
           Tambah Guru
         </h1>
         <TeacherForm
-          onSubmit={handleSubmit}
-          onPending={isCreating}
+          onSubmit={handleCreate}
+          isPending={isCreating}
           errors={errors}
         />
       </div>

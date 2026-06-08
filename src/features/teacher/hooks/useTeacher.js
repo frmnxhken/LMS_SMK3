@@ -38,7 +38,7 @@ const useTeacher = () => {
   };
 
   useEffect(() => {
-    const hasNextPage = data?.meta ? page < data.meta.totalPages : false;
+    const hasNextPage = data?.meta ? page < data.meta.last_page : false;
     if (hasNextPage) {
       const nextPage = page + 1;
       queryClient.prefetchQuery({

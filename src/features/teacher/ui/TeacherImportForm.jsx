@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import FormInput from "@/shared/ui/forms/FormInput";
 import Button from "@/shared/ui/buttons/Button";
 
-const TeacherImportForm = ({ onSubmit, onPending, errors, closeModal }) => {
+const TeacherImportForm = ({ onSubmit, isPending, errors }) => {
   const [formData, setFormData] = useState({ file: null });
 
   const handleFileChange = (e) => {
@@ -14,13 +14,7 @@ const TeacherImportForm = ({ onSubmit, onPending, errors, closeModal }) => {
     const data = new FormData();
     data.append("file", formData.file);
 
-    if (onSubmit) {
-      onSubmit(data, {
-        onSuccess: () => {
-          closeModal();
-        },
-      });
-    }
+    if (onSubmit) onSubmit(data);
   };
   return (
     <form className="space-y-2" onSubmit={handleSubmit}>
@@ -32,7 +26,7 @@ const TeacherImportForm = ({ onSubmit, onPending, errors, closeModal }) => {
         onChange={handleFileChange}
         feedback={errors?.file?.[0]}
       />
-      <Button isLoading={onPending}>Import</Button>
+      <Button isLoading={isPending}>Import</Button>
     </form>
   );
 };

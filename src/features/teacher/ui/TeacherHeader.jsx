@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router";
-import { MdAdd, MdSearch } from "react-icons/md";
-import { PiMicrosoftExcelLogo } from "react-icons/pi";
 import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
 import useTeacherExport from "../hooks/useTeacherExport";
 import useTeacher from "../hooks/useTeacher";
+import { MdAdd, MdSearch } from "react-icons/md";
+import { PiMicrosoftExcelLogo } from "react-icons/pi";
 
 const TeacherHeader = ({ openModal }) => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
-  const { mutate: exportTeachers } = useTeacherExport();
+  const { onExport } = useTeacherExport();
   const { handleSearchChange } = useTeacher();
 
   const handleSearch = () => {
@@ -32,7 +32,7 @@ const TeacherHeader = ({ openModal }) => {
           <PiMicrosoftExcelLogo size={18} />
           Import
         </Button>
-        <Button onClick={exportTeachers} variant="outline">
+        <Button onClick={onExport} variant="outline">
           <PiMicrosoftExcelLogo size={18} />
           Export
         </Button>

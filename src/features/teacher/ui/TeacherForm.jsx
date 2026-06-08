@@ -2,13 +2,7 @@ import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
 
-const TeacherForm = ({
-  classes,
-  initData = {},
-  onSubmit,
-  onPending,
-  errors,
-}) => {
+const TeacherForm = ({ initData = {}, onSubmit, isPending, errors }) => {
   const [formData, setFormData] = useState({
     nip: initData?.nip || "",
     name: initData?.name || "",
@@ -22,13 +16,11 @@ const TeacherForm = ({
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (onSubmit) {
-      onSubmit(formData);
-    }
+    if (onSubmit) onSubmit(formData);
   };
 
   return (
-    <form onSubmit={handleSubmit} method="post" className="space-y-2">
+    <form onSubmit={handleSubmit} className="space-y-2">
       <FormInput
         label="NIP"
         onInput={handleInput}
@@ -59,7 +51,7 @@ const TeacherForm = ({
         feedback={errors?.phone?.[0]}
       />
 
-      <Button isLoading={onPending}>Simpan</Button>
+      <Button isLoading={isPending}>Simpan</Button>
     </form>
   );
 };
