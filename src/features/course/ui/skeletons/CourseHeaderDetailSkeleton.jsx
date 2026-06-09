@@ -2,7 +2,7 @@ import React from "react";
 import SkeletonBar from "@/shared/ui/Feedback/SkeletonBar"; // Sesuaikan path jika berbeda
 import SkeletonCircle from "@/shared/ui/Feedback/SkeletonCircle";
 
-const CourseHeaderDetailSkeleton = ({ type = "material" }) => {
+const CourseHeaderDetailSkeleton = () => {
   return (
     <div className="flex items-start gap-4 w-full">
       <SkeletonCircle />
@@ -25,10 +25,6 @@ const CourseHeaderDetailSkeleton = ({ type = "material" }) => {
           <div className="flex items-center gap-2 text-sm text-text-muted">
             <SkeletonBar className="w-24 h-2 sm:h-4" />
           </div>
-
-          {type === "assignment" && (
-            <SkeletonBar className="w-40 h-4 sm:h-6 rounded-full" />
-          )}
         </div>
       </div>
     </div>

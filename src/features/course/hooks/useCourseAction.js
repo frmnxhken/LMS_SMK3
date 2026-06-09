@@ -24,10 +24,8 @@ export const useCoursePostAction = (id, id_class, type) => {
   const { handleDelete } = useCoursePostDelete(id_class, id);
 
   const onDelete = () => {
-    const sure = confirm("Yakin untuk dihapus?");
-    if (sure) {
-      handleDelete();
-    }
+    const confirm = confirm("Yakin untuk dihapus?");
+    if (confirm) handleDelete();
   };
 
   return [

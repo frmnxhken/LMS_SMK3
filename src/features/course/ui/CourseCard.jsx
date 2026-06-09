@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useAuth } from "@/app/contexts/AuthContext";
 import { courseVariantColors } from "@/shared/lib/Constants";
 import Badge from "@/shared/ui/Feedback/Badge";

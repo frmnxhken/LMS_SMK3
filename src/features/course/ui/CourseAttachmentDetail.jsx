@@ -5,7 +5,7 @@ const CourseAttachmentDetail = ({ files, onView }) => {
   return (
     <div className="py-6">
       <h2 className="text-text-heading font-bold text-md sm:text-lg mb-4">
-        Lampiran
+        {files?.length > 0 ? "Lampiran" : "Tidak ada Lampiran"}
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         {files?.map((file, index) => (

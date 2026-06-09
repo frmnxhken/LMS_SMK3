@@ -8,7 +8,7 @@ const useCourseComments = (id_class, id_post) => {
       const [, idClass, idPost] = queryKey;
       return getComments(idClass, idPost);
     },
-    staleTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 5,
     enabled: !!id_class,
   });
 };

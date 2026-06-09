@@ -4,6 +4,7 @@ import CommentCard from "./CommentCard";
 import { IoChatbubbleOutline } from "react-icons/io5";
 import useCourseComments from "../hooks/useCourseComments";
 import CommentInput from "./CommentInput";
+import CommentSectionSkeleton from "./skeletons/CommentSectionSkeleton";
 
 const CommentSection = ({ isOpen, toggle }) => {
   const { id_class, id_post } = useParams();
@@ -31,12 +32,16 @@ const CommentSection = ({ isOpen, toggle }) => {
           onClick={toggle}
         />
 
-        <div className="hidden sm:flex items-center gap-2 mb-6">
-          <IoChatbubbleOutline className="text-text-muted" size={20} />
-          <h2 className="text-text-heading font-bold text-lg">
-            Komentar Kelas
-          </h2>
-        </div>
+        {isLoading ? (
+          <CommentSectionSkeleton />
+        ) : (
+          <div className="hidden sm:flex items-center gap-2 mb-6">
+            <IoChatbubbleOutline className="text-text-muted" size={20} />
+            <h2 className="text-text-heading font-bold text-lg">
+              {comments?.length > 0 ? "Komentar Kelas" : "Tidak ada Komentar"}
+            </h2>
+          </div>
+        )}
 
         <div className="relative h-full">
           <div className="space-y-6 overflow-y-auto lg:overflow-visible max-h-[64vh] lg:max-h-none pb-12">
