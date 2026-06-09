@@ -1,8 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { storeClass } from "../api/classApi";
 import { useToast } from "@/app/contexts/ToastContext";
+import { storeClass } from "../api/classApi";
 
 const useClassCreate = () => {
   const queryClient = useQueryClient();
