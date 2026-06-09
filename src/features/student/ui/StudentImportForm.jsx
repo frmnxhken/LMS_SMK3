@@ -6,7 +6,7 @@ import FormSelect from "@/shared/ui/forms/FormSelect";
 const StudentImportForm = ({
   classes,
   onSubmit,
-  onPending,
+  isPending,
   errors,
   closeModal,
 }) => {
@@ -61,13 +61,13 @@ const StudentImportForm = ({
 
         {classes?.map((c, i) => (
           <FormSelect.Option key={i} value={c.id}>
-            {`${c.level} ${c.major}`}
+            {`${c.level} ${c.major} ${c.section}`}
           </FormSelect.Option>
         ))}
 
         <FormSelect.Option value="other">Pilih...</FormSelect.Option>
       </FormSelect>
-      <Button isLoading={onPending} type="submit">
+      <Button isLoading={isPending} type="submit">
         Import
       </Button>
     </form>

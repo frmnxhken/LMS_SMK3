@@ -1,21 +1,14 @@
-import React, { useState } from "react";
-import Button from "@/shared/ui/buttons/Button";
+import React from "react";
 import { useNavigate } from "react-router";
-import useStudentDelete from "../hooks/useStudentDelete";
-import StudentTableSkeleton from "./skeletons/StudentTableSkeleton";
+import Button from "@/shared/ui/buttons/Button";
 import EmptyState from "@/shared/ui/Feedback/EmptyState";
+import useStudentDelete from "../hooks/useStudentDelete";
 import { MdDelete, MdEdit } from "react-icons/md";
+import StudentTableSkeleton from "./skeletons/StudentTableSkeleton";
 
 const StudentTable = ({ students, page, isLoading }) => {
   const navigate = useNavigate();
-  const [selectedId, setSelectedId] = useState(null);
-  const { handleDelete } = useStudentDelete(selectedId);
-
-  const onDelete = (id) => {
-    setSelectedId(id);
-    let confirmed = confirm("Apakah Anda Yakin Untuk Dihapus?");
-    if (confirmed) handleDelete();
-  };
+  const { onDelete } = useStudentDelete();
 
   return (
     <table className="table-custom">

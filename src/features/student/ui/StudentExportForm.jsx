@@ -2,13 +2,15 @@ import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import FormSelect from "@/shared/ui/forms/FormSelect";
 
-const StudentExportForm = ({ classes, onSubmit, onPending, closeModal }) => {
+const StudentExportForm = ({ classes, onSubmit, isPending, closeModal }) => {
   const [schoolClassId, setSchoolClassId] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    onSubmit(schoolClassId ? Number(schoolClassId) : null);
-    closeModal();
+    if (onSubmit) {
+      onSubmit(schoolClassId);
+      closeModal();
+    }
   };
 
   return (
@@ -26,13 +28,13 @@ const StudentExportForm = ({ classes, onSubmit, onPending, closeModal }) => {
 
         {classes?.map((c, i) => (
           <FormSelect.Option key={i} value={c.id}>
-            {`${c.level} ${c.major}`}
+            {`${c.level} ${c.major} ${c.section}`}
           </FormSelect.Option>
         ))}
 
         <FormSelect.Option value="other">Pilih...</FormSelect.Option>
       </FormSelect>
-      <Button isLoading={onPending} type="submit">
+      <Button isLoading={isPending} type="submit">
         Export
       </Button>
     </form>

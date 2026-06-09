@@ -7,7 +7,7 @@ const StudentForm = ({
   classes,
   initData = {},
   onSubmit,
-  onPending,
+  isPending,
   errors,
 }) => {
   const [formData, setFormData] = useState({
@@ -71,7 +71,7 @@ const StudentForm = ({
 
         <FormSelect.Option value="other">Pilih...</FormSelect.Option>
       </FormSelect>
-      <Button isLoading={onPending}>Simpan</Button>
+      <Button isLoading={isPending}>Simpan</Button>
     </form>
   );
 };

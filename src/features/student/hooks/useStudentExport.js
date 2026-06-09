@@ -2,18 +2,15 @@ import { useMutation } from "@tanstack/react-query";
 import { exportStudents } from "../api/studentApi";
 
 const useStudentExport = () => {
-  return useMutation({
-    mutationFn: exportStudents,
+  const mutation = useMutation({
+    mutationFn: (id) => exportStudents(id),
 
-    onSuccess: (blob, schoolClassId) => {
+    onSuccess: (blob) => {
       const url = window.URL.createObjectURL(blob);
-
       const link = document.createElement("a");
-      link.href = url;
 
-      link.download = schoolClassId
-        ? `students-class-${schoolClassId}.xlsx`
-        : "students.xlsx";
+      link.href = url;
+      link.download = "students.xlsx";
 
       document.body.appendChild(link);
       link.click();
@@ -22,6 +19,13 @@ const useStudentExport = () => {
       window.URL.revokeObjectURL(url);
     },
   });
+
+  const handleExport = (id) => mutation.mutate(id);
+
+  return {
+    handleExport,
+    isExporting: mutation.isPending,
+  };
 };
 
 export default useStudentExport;

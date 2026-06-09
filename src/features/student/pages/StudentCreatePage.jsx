@@ -1,11 +1,11 @@
 import React from "react";
-import useClass from "@/features/class/hooks/useClass";
 import StudentForm from "../ui/StudentForm";
+import useClass from "@/features/class/hooks/useClass";
 import useStudentCreate from "../hooks/useStudentCreate";
 
 const StudentCreatePage = () => {
   const { data: classes } = useClass();
-  const { handleSubmit, isCreating, errors } = useStudentCreate();
+  const { handleCreate, isCreating, errors } = useStudentCreate();
 
   return (
     <div className="container max-w-[680px] mx-auto p-6">
@@ -16,8 +16,8 @@ const StudentCreatePage = () => {
         <StudentForm
           classes={classes}
           errors={errors}
-          onSubmit={handleSubmit}
-          onPending={isCreating}
+          onSubmit={handleCreate}
+          isPending={isCreating}
         />
       </div>
     </div>

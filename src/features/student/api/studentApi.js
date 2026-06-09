@@ -40,10 +40,10 @@ export const importStudents = async (payload) => {
   return res.data;
 };
 
-export const exportStudents = async (schoolClassId = null) => {
+export const exportStudents = async (id = null) => {
   const res = await api.get("/admin/student/export", {
     params: {
-      school_class_id: schoolClassId,
+      school_class_id: id,
     },
     responseType: "blob",
   });

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Modal from "@/shared/ui/modal/Modal";
 import Pagination from "@/shared/ui/navigation/Pagination";
 import useClass from "@/features/class/hooks/useClass";
@@ -7,54 +7,41 @@ import StudentHeader from "../ui/StudentHeader";
 import StudentImportForm from "../ui/StudentImportForm";
 import StudentExportForm from "../ui/StudentExportForm";
 import useStudent from "../hooks/useStudent";
-import useStudentImport from "../hooks/useStudentImport";
-import useStudentExport from "../hooks/useStudentExport";
+import useStudentAction from "../hooks/useStudentAction";
 
 const StudentPage = () => {
-  const [openImport, setOpenImport] = useState(false);
-  const [openExport, setOpenExport] = useState(false);
   const { isLoading, data, page, handlePageChange, pagination } = useStudent();
   const { data: classes } = useClass();
-  const { isImporting, handleImport, errors, clearErrors } = useStudentImport();
-  const { mutate: exportStudents, isPending: isExporting } = useStudentExport();
-
-  const handleCloseModal = () => {
-    clearErrors();
-    setOpenImport(false);
-  };
+  const { isOpen, isImporting, isExporting, errors, actions } =
+    useStudentAction();
 
   return (
     <div className="container mx-auto p-6">
       <h1 className="text-xl font-bold text-text-heading mb-2">Daftar Siswa</h1>
 
-      <StudentHeader
-        openImport={openImport}
-        setOpenImport={setOpenImport}
-        openExport={openExport}
-        setOpenExport={setOpenExport}
-      />
-
-      <Modal isOpen={openImport} onClose={handleCloseModal} title="Import Data">
-        <StudentImportForm
-          closeModal={handleCloseModal}
-          classes={classes}
-          errors={errors}
-          onSubmit={handleImport}
-          onPending={isImporting}
-        />
-      </Modal>
+      <StudentHeader handleOpen={actions.handleOpen} />
 
       <Modal
-        isOpen={openExport}
-        onClose={() => setOpenExport(false)}
-        title="Export Data"
+        isOpen={isOpen}
+        onClose={actions.handleClose}
+        title={isOpen === "import" ? "Import Data" : "Export Data"}
       >
-        <StudentExportForm
-          closeModal={() => setOpenExport(false)}
-          classes={classes}
-          onSubmit={exportStudents}
-          onPending={isExporting}
-        />
+        {isOpen === "import" ? (
+          <StudentImportForm
+            classes={classes}
+            closeModal={actions.handleClose}
+            onSubmit={actions.handleImport}
+            isPending={isImporting}
+            errors={errors}
+          />
+        ) : (
+          <StudentExportForm
+            classes={classes}
+            closeModal={actions.handleClose}
+            onSubmit={actions.handleExport}
+            isPending={isExporting}
+          />
+        )}
       </Modal>
 
       <div className="table-responsive mt-4">

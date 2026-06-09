@@ -8,12 +8,7 @@ import useClass from "@/features/class/hooks/useClass";
 import FormSelect from "@/shared/ui/forms/FormSelect";
 import useStudent from "../hooks/useStudent";
 
-const StudentHeader = ({
-  openImport,
-  setOpenImport,
-  openExport,
-  setOpenExport,
-}) => {
+const StudentHeader = ({ handleOpen }) => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const { filter, handleFilterChange, handleSearchChange } = useStudent();
@@ -32,7 +27,7 @@ const StudentHeader = ({
           Tambah
         </Button>
         <Button
-          onClick={() => setOpenImport(!openImport)}
+          onClick={() => handleOpen("import")}
           variant="outline"
           className="flex items-center"
         >
@@ -40,7 +35,7 @@ const StudentHeader = ({
           Import
         </Button>
         <Button
-          onClick={() => setOpenExport(!openExport)}
+          onClick={() => handleOpen("export")}
           variant="outline"
           className="flex items-center"
         >
