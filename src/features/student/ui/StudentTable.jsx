@@ -6,7 +6,7 @@ import useStudentDelete from "../hooks/useStudentDelete";
 import { MdDelete, MdEdit } from "react-icons/md";
 import StudentTableSkeleton from "./skeletons/StudentTableSkeleton";
 
-const StudentTable = ({ students, page, isLoading }) => {
+const StudentTable = ({ students = [], page, isLoading }) => {
   const navigate = useNavigate();
   const { onDelete } = useStudentDelete();
 
@@ -22,9 +22,10 @@ const StudentTable = ({ students, page, isLoading }) => {
           <th className="table-head-cell">Aksi</th>
         </tr>
       </thead>
-      {isLoading && <StudentTableSkeleton />}
       <tbody className="text-xs">
-        {!isLoading && students.length === 0 ? (
+        {isLoading ? (
+          <StudentTableSkeleton />
+        ) : students.length === 0 ? (
           <tr className="table-body-row">
             <td className="table-body-cell" colSpan={6}>
               <EmptyState />
