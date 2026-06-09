@@ -1,8 +1,8 @@
-import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
-import { formatDateDMY } from "@/shared/lib/formatDate";
+import React from "react";
 import Badge from "@/shared/ui/Feedback/Badge";
 import Button from "@/shared/ui/buttons/Button";
-import React from "react";
+import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
+import { formatDateDMY } from "@/shared/lib/formatDate";
 import { IoTimeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router";
 

@@ -1,14 +1,14 @@
-import Button from "@/shared/ui/buttons/Button";
-import FileCard from "@/shared/ui/cards/FileCard";
-import FormInput from "@/shared/ui/forms/FormInput";
 import React, { useState } from "react";
-import { IoTimeOutline } from "react-icons/io5";
 import { useParams } from "react-router";
-import useAssesmentDetail from "../hooks/useAssessmentDetail";
-import { formatDateDMY } from "@/shared/lib/formatDate";
-import useGradeSubmission from "../hooks/useGradeSubmission";
+import Button from "@/shared/ui/buttons/Button";
+import FormInput from "@/shared/ui/forms/FormInput";
 import FileViewer from "@/shared/ui/media/FileViewer";
-import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
+import AssesmentFile from "../ui/AssesmentFile";
+import AssesmentProfile from "../ui/AssesmentProfile";
+import AssesmentProfileSkeleton from "../ui/skeletons/AssesmentProfileSkeleton";
+import AssesmentFileSkeleton from "../ui/skeletons/AssesmentFileSkeleton";
+import useAssesmentDetail from "../hooks/useAssessmentDetail";
+import useGradeSubmission from "../hooks/useGradeSubmission";
 
 export const AssessmentDetailPage = () => {
   const { id_class, id_post, id_submission } = useParams();
@@ -25,40 +25,21 @@ export const AssessmentDetailPage = () => {
   return (
     <div className="container relative max-w-[780px] mx-auto py-6 px-4 flex flex-col sm:flex-row gap-4 justify-between">
       <div className="w-full">
-        <div className="flex items-center gap-4">
-          <img
-            className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] object-cover rounded-full"
-            src={BASE_IMAGE_PROFILE + data?.student?.user?.photo}
-            alt="profile"
+        {isLoading ? (
+          <AssesmentProfileSkeleton />
+        ) : (
+          <AssesmentProfile
+            photo={data?.student?.user?.photo}
+            name={data?.student?.user?.name}
+            date={data?.updated_at}
           />
-          <div>
-            <h3 className="text-sm sm:text-md font-semibold">
-              {data?.student?.user?.name}
-            </h3>
-            <div className="flex items-center gap-2 text-text-muted">
-              <IoTimeOutline size={18} />
-              <span className="text-xs">{formatDateDMY(data?.updated_at)}</span>
-            </div>
-          </div>
-        </div>
-
+        )}
         <FileViewer file={docView} onClose={() => setDocView(null)} />
-
-        <div className="py-6">
-          <h2 className="text-text-heading font-bold text-md sm:text-lg mb-4">
-            Lampiran
-          </h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-            {files?.map((file, index) => (
-              <FileCard
-                onClick={() => setDocView(file.file_path)}
-                key={index}
-                {...file}
-                isDeletable={false}
-              />
-            ))}
-          </div>
-        </div>
+        {isLoading ? (
+          <AssesmentFileSkeleton />
+        ) : (
+          <AssesmentFile files={files} onView={(file) => setDocView(file)} />
+        )}
       </div>
       <div className="w-full sm:w-80">
         <div className="border border-app-border p-4 rounded-xl">
