@@ -3,7 +3,7 @@ import useTeachingAssignmentStore from "../hooks/useTeachingAssignmentCreate";
 import TeachingAssignmentForm from "../ui/TeachingAssignmentForm";
 
 const TeachingAssignmentCreatePage = () => {
-  const { handleSubmit, isCreating, errors } = useTeachingAssignmentStore();
+  const { handleCreate, isCreating, errors } = useTeachingAssignmentStore();
 
   return (
     <div className="container max-w-[780px] mx-auto p-6">
@@ -12,8 +12,8 @@ const TeachingAssignmentCreatePage = () => {
           Tambah Pengajar
         </h1>
         <TeachingAssignmentForm
-          onSubmit={handleSubmit}
-          onPending={isCreating}
+          onSubmit={handleCreate}
+          isPending={isCreating}
           errors={errors}
         />
       </div>

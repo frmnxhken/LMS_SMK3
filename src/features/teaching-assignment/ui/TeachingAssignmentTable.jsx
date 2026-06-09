@@ -8,12 +8,7 @@ import { MdDelete, MdEdit } from "react-icons/md";
 
 const TeachingAssignmentTable = ({ isLoading, data }) => {
   const navigate = useNavigate();
-  const { handleDelete } = useTeachingAssignmentDelete();
-
-  const onDelete = (id) => {
-    let confirmed = confirm("Apakah Anda Yakin ?");
-    if (confirmed) handleDelete(id);
-  };
+  const { onDelete } = useTeachingAssignmentDelete();
 
   return (
     <table className="table-custom">
@@ -27,9 +22,10 @@ const TeachingAssignmentTable = ({ isLoading, data }) => {
           <th className="table-head-cell">Aksi</th>
         </tr>
       </thead>
-      {isLoading && <TeachingAssignmentTableSkeleton />}
       <tbody className="text-xs">
-        {!isLoading && data.length === 0 ? (
+        {isLoading ? (
+          <TeachingAssignmentTableSkeleton />
+        ) : data.length === 0 ? (
           <tr className="table-body-row">
             <td className="table-body-cell" colSpan={6}>
               <EmptyState />

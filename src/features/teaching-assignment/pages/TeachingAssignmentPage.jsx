@@ -1,8 +1,8 @@
 import React from "react";
-import useTeachingAssignment from "../hooks/useTeachingAssignment";
 import TeachingAssignmentTable from "../ui/TeachingAssignmentTable";
 import TeachingAssignmentHeader from "../ui/TeachingAssignmentHeader";
 import Pagination from "@/shared/ui/navigation/Pagination";
+import useTeachingAssignment from "../hooks/useTeachingAssignment";
 
 const TeachingAssignmentPage = () => {
   const { isLoading, data, page, handlePageChange, pagination } =

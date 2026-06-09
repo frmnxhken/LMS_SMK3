@@ -29,9 +29,7 @@ const useTeachingAssignmentUpdate = (id) => {
     },
   });
 
-  const handleUpdate = (values) => {
-    mutation.mutate(values);
-  };
+  const handleUpdate = (values) => mutation.mutate(values);
 
   return {
     handleUpdate,

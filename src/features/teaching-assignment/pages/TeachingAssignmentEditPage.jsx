@@ -1,7 +1,7 @@
 import React from "react";
+import { useParams } from "react-router";
 import TeachingAssignmentForm from "../ui/TeachingAssignmentForm";
 import useTeachingAssignmentUpdate from "../hooks/useTeachingAssignmentUpdate";
-import { useParams } from "react-router";
 import TeachingAssignmentEditSkeleton from "../ui/skeletons/TeachingAssignmentEditSkeleton";
 
 const TeachingAssignmentEditPage = () => {
@@ -21,7 +21,7 @@ const TeachingAssignmentEditPage = () => {
           <TeachingAssignmentForm
             initData={data}
             onSubmit={handleUpdate}
-            onPending={isUpdating}
+            isPending={isUpdating}
             errors={errors}
           />
         )}

@@ -8,7 +8,7 @@ import useTeacher from "@/features/teacher/hooks/useTeacher";
 const TeachingAssignmentForm = ({
   initData = {},
   onSubmit,
-  onPending,
+  isPending,
   errors,
 }) => {
   const { data: classes } = useClass();
@@ -92,7 +92,7 @@ const TeachingAssignmentForm = ({
         <FormSelect.Option value="other">Pilih...</FormSelect.Option>
       </FormSelect>
 
-      <Button isLoading={onPending}>Simpan</Button>
+      <Button isLoading={isPending}>Simpan</Button>
     </form>
   );
 };
