@@ -4,15 +4,13 @@ import FormInput from "@/shared/ui/forms/FormInput";
 import Button from "@/shared/ui/buttons/Button";
 import { MdAdd, MdSearch } from "react-icons/md";
 import { PiMicrosoftExcelLogo } from "react-icons/pi";
-import useClass from "@/features/class/hooks/useClass";
 import FormSelect from "@/shared/ui/forms/FormSelect";
 import useStudent from "../hooks/useStudent";
 
-const StudentHeader = ({ handleOpen }) => {
+const StudentHeader = ({ classes, handleOpen }) => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const { filter, handleFilterChange, handleSearchChange } = useStudent();
-  const { data: classes } = useClass();
 
   const handleSearch = () => {
     handleSearchChange(keyword);

@@ -19,7 +19,7 @@ const StudentPage = () => {
     <div className="container mx-auto p-6">
       <h1 className="text-xl font-bold text-text-heading mb-2">Daftar Siswa</h1>
 
-      <StudentHeader handleOpen={actions.handleOpen} />
+      <StudentHeader classes={classes} handleOpen={actions.handleOpen} />
 
       <Modal
         isOpen={isOpen}
