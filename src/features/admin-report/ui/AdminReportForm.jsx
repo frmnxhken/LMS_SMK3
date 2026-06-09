@@ -8,7 +8,7 @@ const AdminReportForm = ({
   onSubmit,
   errors,
   closeModal,
-  onPending,
+  isPending,
 }) => {
   const [formData, setFormData] = useState({
     student_id: initData?.student_id || "",
@@ -70,7 +70,7 @@ const AdminReportForm = ({
         <FormSelect.Option value="sick">Sakit</FormSelect.Option>
         <FormSelect.Option value="alpha">Alpha</FormSelect.Option>
       </FormSelect>
-      <Button isLoading={onPending}>Simpan</Button>
+      <Button isLoading={isPending}>Simpan</Button>
     </form>
   );
 };
