@@ -3,9 +3,9 @@ import { getExamAssignment } from "../api/examAssignmentApi";
 
 const useExamAssignment = (id_class) => {
   return useQuery({
-    queryKey: ["examAssignments"],
+    queryKey: ["examAssignments", id_class],
     queryFn: () => getExamAssignment(id_class),
-    staleTime: 1000 * 60 * 10,
+    staleTime: 1000 * 60 * 5,
     enabled: !!id_class,
   });
 };
