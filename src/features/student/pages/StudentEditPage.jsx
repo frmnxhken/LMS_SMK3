@@ -2,12 +2,12 @@ import React from "react";
 import { useParams } from "react-router";
 import StudentForm from "../ui/StudentForm";
 import StudentEditSkeleton from "../ui/skeletons/StudentEditSkeleton";
-import useClass from "@/features/class/hooks/useClass";
 import useStudentUpdate from "../hooks/useStudentUpdate";
+import useClassList from "@/features/class/hooks/useClassList";
 
 export const StudentEditPage = () => {
   const { id } = useParams();
-  const { data: classes } = useClass();
+  const { data: classes } = useClassList();
   const { handleUpdate, isUpdating, errors, data, isLoading } =
     useStudentUpdate(id);
 

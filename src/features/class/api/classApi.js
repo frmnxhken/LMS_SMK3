@@ -5,6 +5,11 @@ export const getClasses = async () => {
   return res.data;
 };
 
+export const getClassList = async () => {
+  const res = await api.get("/admin/class/list");
+  return res.data;
+};
+
 export const getDetailClass = async (id) => {
   const res = await api.get(`/admin/class/${id}`);
   return res.data;

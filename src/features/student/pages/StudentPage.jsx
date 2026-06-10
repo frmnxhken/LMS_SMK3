@@ -1,17 +1,17 @@
 import React from "react";
 import Modal from "@/shared/ui/modal/Modal";
 import Pagination from "@/shared/ui/navigation/Pagination";
-import useClass from "@/features/class/hooks/useClass";
 import StudentTable from "../ui/StudentTable";
 import StudentHeader from "../ui/StudentHeader";
 import StudentImportForm from "../ui/StudentImportForm";
 import StudentExportForm from "../ui/StudentExportForm";
 import useStudent from "../hooks/useStudent";
 import useStudentAction from "../hooks/useStudentAction";
+import useClassList from "@/features/class/hooks/useClassList";
 
 export const StudentPage = () => {
   const { isLoading, data, page, handlePageChange, pagination } = useStudent();
-  const { data: classes } = useClass();
+  const { data: classes } = useClassList();
   const { isOpen, isImporting, isExporting, errors, actions } =
     useStudentAction();
 

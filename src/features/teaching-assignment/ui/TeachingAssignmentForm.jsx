@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import FormSelect from "@/shared/ui/forms/FormSelect";
-import useClass from "@/features/class/hooks/useClass";
-import useSubject from "@/features/subject/hooks/useSubject";
-import useTeacher from "@/features/teacher/hooks/useTeacher";
+import useSubjectList from "@/features/subject/hooks/useSubjectList";
+import useTeacherList from "@/features/teacher/hooks/useTeacherList";
+import useClassList from "@/features/class/hooks/useClassList";
 
 const TeachingAssignmentForm = ({
   initData = {},
@@ -11,9 +11,9 @@ const TeachingAssignmentForm = ({
   isPending,
   errors,
 }) => {
-  const { data: classes } = useClass();
-  const { data: subjects } = useSubject();
-  const { data: teachers } = useTeacher();
+  const { data: classes } = useClassList();
+  const { data: subjects } = useSubjectList();
+  const { data: teachers } = useTeacherList();
 
   const [formData, setFormData] = useState({
     school_class_id: initData?.school_class_id || "",

@@ -3,14 +3,14 @@ import { useNavigate } from "react-router";
 import Button from "@/shared/ui/buttons/Button";
 import FormSelect from "@/shared/ui/forms/FormSelect";
 import { MdAdd } from "react-icons/md";
-import useClass from "@/features/class/hooks/useClass";
-import useSubject from "@/features/subject/hooks/useSubject";
 import useTeachingAssignment from "../hooks/useTeachingAssignment";
+import useClassList from "@/features/class/hooks/useClassList";
+import useSubjectList from "@/features/subject/hooks/useSubjectList";
 
 const TeachingAssignmentHeader = () => {
   const navigate = useNavigate();
-  const { data: classes } = useClass();
-  const { data: subjects } = useSubject();
+  const { data: classes } = useClassList();
+  const { data: subjects } = useSubjectList();
   const { handleClassChange, handleSubjectChange } = useTeachingAssignment();
 
   return (

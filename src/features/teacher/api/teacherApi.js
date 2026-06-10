@@ -10,6 +10,11 @@ export const getTeachers = async (page, search = "") => {
   return res.data;
 };
 
+export const getTeacherList = async () => {
+  const res = await api.get("/admin/teacher/list");
+  return res.data;
+};
+
 export const getTeacherDetail = async (id) => {
   const res = await api.get(`/admin/teacher/${id}`);
   return res.data;

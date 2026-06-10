@@ -9,7 +9,7 @@ const useTeachingAssignmentDelete = () => {
   const mutation = useMutation({
     mutationFn: (id) => deleteTeachingAssignment(id),
     onSuccess: () => {
-      queryClient.invalidateQueries(["teachingAssignments"]);
+      queryClient.invalidateQueries({ queryKey: ["teachingAssignments"] });
       addToast("Data berhasil dihapus!");
     },
   });

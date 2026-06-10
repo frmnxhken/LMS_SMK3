@@ -13,7 +13,7 @@ const useTeachingAssignmentCreate = () => {
   const mutation = useMutation({
     mutationFn: (payload) => createTeachingAssignment(payload),
     onSuccess: () => {
-      queryClient.invalidateQueries(["teachingAssignments"]);
+      queryClient.invalidateQueries({ queryKey: ["teachingAssignments"] });
       navigate(-1);
       addToast("Data berhasil ditambahkan!");
     },

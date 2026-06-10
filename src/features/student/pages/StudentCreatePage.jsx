@@ -1,10 +1,10 @@
 import React from "react";
 import StudentForm from "../ui/StudentForm";
-import useClass from "@/features/class/hooks/useClass";
 import useStudentCreate from "../hooks/useStudentCreate";
+import useClassList from "@/features/class/hooks/useClassList";
 
 export const StudentCreatePage = () => {
-  const { data: classes } = useClass();
+  const { data: classes } = useClassList();
   const { handleCreate, isCreating, errors } = useStudentCreate();
 
   return (

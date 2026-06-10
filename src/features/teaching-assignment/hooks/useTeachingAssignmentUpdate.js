@@ -14,14 +14,15 @@ const useTeachingAssignmentUpdate = (id) => {
   const { data, isLoading } = useQuery({
     queryKey: ["teachingAssignment", id],
     queryFn: () => getTeachingAssignmentDetail(id),
+    staleTime: 1000 * 60 * 5,
     enabled: !!id,
   });
 
   const mutation = useMutation({
     mutationFn: (payload) => updateTeachingAssignment(id, payload),
     onSuccess: () => {
-      queryClient.invalidateQueries(["teachingAssignments"]);
-      queryClient.invalidateQueries(["teachingAssignment", id]);
+      queryClient.invalidateQueries({ queryKey: ["teachingAssignments", id] });
+      queryClient.invalidateQueries({ queryKey: ["teachingAssignments"] });
       navigate(-1);
     },
     onError: (error) => {

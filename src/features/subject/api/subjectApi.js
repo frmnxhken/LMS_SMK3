@@ -5,6 +5,11 @@ export const getSubjects = async () => {
   return res.data;
 };
 
+export const getSubjectList = async () => {
+  const res = await api.get("/admin/subject/list");
+  return res.data;
+};
+
 export const storeSubject = async (payload) => {
   const res = await api.post("/admin/subject", payload, {
     headers: { "Content-Type": "application/json" },

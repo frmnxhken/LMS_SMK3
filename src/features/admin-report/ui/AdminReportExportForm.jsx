@@ -2,14 +2,14 @@ import React, { useState } from "react";
 import FormSelect from "@/shared/ui/forms/FormSelect";
 import { monthNames } from "@/shared/lib/Constants";
 import useAcademic from "@/features/academic/hooks/useAcademic";
-import useClass from "@/features/class/hooks/useClass";
 import Button from "@/shared/ui/buttons/Button";
 import useAdminReportExport from "../hooks/useAdminReportExport";
 import AdminReportExportFormSkeleton from "./skeletons/AdminReportExportFormSkeleton";
+import useClassList from "@/features/class/hooks/useClassList";
 
 const AdminReportExportForm = () => {
   const { data: academies, isLoading: loadAcademies } = useAcademic();
-  const { data: classes, isLoading: loadClasses } = useClass();
+  const { data: classes, isLoading: loadClasses } = useClassList();
   const { handleExport, isExporting, errors } = useAdminReportExport();
 
   const [formData, setFormData] = useState({
