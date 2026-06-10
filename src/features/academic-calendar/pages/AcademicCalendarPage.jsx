@@ -7,7 +7,7 @@ import Modal from "@/shared/ui/modal/Modal";
 import AcademicCalendarForm from "../ui/AcademicCalendarForm";
 import useAcademicCalendarUpdate from "../hooks/useAcademicCalendarUpdate";
 
-const AcademicCalendarPage = () => {
+export const AcademicCalendarPage = () => {
   const { data, isLoading } = useAcademicCalendar();
   const { handleUpdate, isUpdating, errors, clearErrors } =
     useAcademicCalendarUpdate();
@@ -120,5 +120,3 @@ const AcademicCalendarPage = () => {
     </div>
   );
 };
-
-export default AcademicCalendarPage;

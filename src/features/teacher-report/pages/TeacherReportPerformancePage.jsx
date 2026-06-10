@@ -10,7 +10,7 @@ import TeacherReportPersonCardSkeleton from "../ui/skeletons/TeacherReportPerson
 import TeacherReportPersonProfileSkeleton from "../ui/skeletons/TeacherReportPersonProfileSkeleton";
 import TeacherReportPersonHeader from "../ui/TeacherReportPersonHeader";
 
-const TeacherReportPerformancePage = () => {
+export const TeacherReportPerformancePage = () => {
   const { id_class, id_student } = useParams();
   const { data, isLoading } = useTeacherReportPerson(id_class, id_student);
   const dailyExams = data?.exams.filter((exam) => exam.type === "harian");
@@ -77,5 +77,3 @@ const TeacherReportPerformancePage = () => {
     </div>
   );
 };
-
-export default TeacherReportPerformancePage;

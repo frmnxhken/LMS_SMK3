@@ -10,7 +10,7 @@ import { useAuth } from "@/app/contexts/AuthContext";
 import ExamAssignmentCardSkeleton from "../ui/skeletons/ExamAssignmentCardSkeleton";
 import { MdAdd } from "react-icons/md";
 
-const ExamAssignmentListPage = () => {
+export const ExamAssignmentListPage = () => {
   const { id_class } = useParams();
   const { user } = useAuth();
   const { data, isLoading } = useExamAssignment(id_class);
@@ -67,5 +67,3 @@ const ExamAssignmentListPage = () => {
     </div>
   );
 };
-
-export default ExamAssignmentListPage;

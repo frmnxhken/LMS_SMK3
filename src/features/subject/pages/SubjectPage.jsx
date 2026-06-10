@@ -6,7 +6,7 @@ import SubjectHeader from "../ui/SubjectHeader";
 import useSubject from "../hooks/useSubject";
 import useSubjectAction from "../hooks/useSubjectAction";
 
-const SubjectPage = () => {
+export const SubjectPage = () => {
   const { isLoading, data } = useSubject();
   const { isOpen, isPending, selectedData, errors, actions } =
     useSubjectAction();
@@ -39,5 +39,3 @@ const SubjectPage = () => {
     </div>
   );
 };
-
-export default SubjectPage;

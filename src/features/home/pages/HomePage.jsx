@@ -4,7 +4,7 @@ import HomeHeader from "../ui/HomeHeader";
 import useHome from "../hooks/useHome";
 import HomeCourse from "../ui/HomeCourse";
 
-const HomePage = () => {
+export const HomePage = () => {
   const { user } = useAuth();
   const { courses, isLoading } = useHome();
 
@@ -15,5 +15,3 @@ const HomePage = () => {
     </div>
   );
 };
-
-export default HomePage;

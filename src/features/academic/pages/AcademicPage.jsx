@@ -7,7 +7,7 @@ import useAcademic from "../hooks/useAcademic";
 import useAcademicAction from "../hooks/useAcademicAction";
 import { MdAdd } from "react-icons/md";
 
-const AcademicPage = () => {
+export const AcademicPage = () => {
   const { data, isLoading } = useAcademic();
   const {
     isOpen,
@@ -55,5 +55,3 @@ const AcademicPage = () => {
     </div>
   );
 };
-
-export default AcademicPage;

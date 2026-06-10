@@ -7,7 +7,7 @@ import AdminReportForm from "../ui/AdminReportForm";
 import useAdminReportToday from "../hooks/useAdminReportToday";
 import useAdminReportUpsert from "../hooks/useAdminReportUpsert";
 
-const AdminReportAttendancePage = () => {
+export const AdminReportAttendancePage = () => {
   const { data, isLoading, page, handlePageChange, pagination } =
     useAdminReportToday();
   const {
@@ -47,5 +47,3 @@ const AdminReportAttendancePage = () => {
     </div>
   );
 };
-
-export default AdminReportAttendancePage;

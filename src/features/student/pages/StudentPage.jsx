@@ -9,7 +9,7 @@ import StudentExportForm from "../ui/StudentExportForm";
 import useStudent from "../hooks/useStudent";
 import useStudentAction from "../hooks/useStudentAction";
 
-const StudentPage = () => {
+export const StudentPage = () => {
   const { isLoading, data, page, handlePageChange, pagination } = useStudent();
   const { data: classes } = useClass();
   const { isOpen, isImporting, isExporting, errors, actions } =
@@ -56,5 +56,3 @@ const StudentPage = () => {
     </div>
   );
 };
-
-export default StudentPage;

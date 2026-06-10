@@ -4,7 +4,7 @@ import TeachingAssignmentForm from "../ui/TeachingAssignmentForm";
 import useTeachingAssignmentUpdate from "../hooks/useTeachingAssignmentUpdate";
 import TeachingAssignmentEditSkeleton from "../ui/skeletons/TeachingAssignmentEditSkeleton";
 
-const TeachingAssignmentEditPage = () => {
+export const TeachingAssignmentEditPage = () => {
   const { id } = useParams();
   const { isLoading, data, handleUpdate, isUpdating, errors } =
     useTeachingAssignmentUpdate(id);
@@ -29,5 +29,3 @@ const TeachingAssignmentEditPage = () => {
     </div>
   );
 };
-
-export default TeachingAssignmentEditPage;

@@ -1,7 +1,7 @@
 import React from "react";
 import AdminReportExportForm from "../ui/AdminReportExportForm";
 
-const AdminReportExportPage = () => {
+export const AdminReportExportPage = () => {
   return (
     <div className="p-6 max-w-[600px] mx-auto container">
       <h1 className="text-xl text-text-heading font-bold mb-4">
@@ -13,5 +13,3 @@ const AdminReportExportPage = () => {
     </div>
   );
 };
-
-export default AdminReportExportPage;

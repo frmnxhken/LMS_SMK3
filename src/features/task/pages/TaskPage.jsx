@@ -3,7 +3,7 @@ import TaskCard from "../ui/TaskCard";
 import TaskCardSkeleton from "../ui/skeletons/TaskCardSkeleton";
 import useTask from "../hooks/useTask";
 
-const TaskPage = () => {
+export const TaskPage = () => {
   const { isLoading, data } = useTask();
 
   return (
@@ -18,5 +18,3 @@ const TaskPage = () => {
     </div>
   );
 };
-
-export default TaskPage;

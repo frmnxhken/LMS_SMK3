@@ -8,7 +8,7 @@ import useExamDetail from "../hooks/useExamDetail";
 import ExamGrade from "../ui/ExamGrade";
 import useExamStart from "../hooks/useExamStart";
 
-const ExamPreparePage = () => {
+export const ExamPreparePage = () => {
   const { id_class, id_exam } = useParams();
   const navigate = useNavigate();
   const [isAgreed, setIsAgreed] = useState(false);
@@ -49,5 +49,3 @@ const ExamPreparePage = () => {
     </div>
   );
 };
-
-export default ExamPreparePage;

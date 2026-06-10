@@ -3,7 +3,7 @@ import StudentForm from "../ui/StudentForm";
 import useClass from "@/features/class/hooks/useClass";
 import useStudentCreate from "../hooks/useStudentCreate";
 
-const StudentCreatePage = () => {
+export const StudentCreatePage = () => {
   const { data: classes } = useClass();
   const { handleCreate, isCreating, errors } = useStudentCreate();
 
@@ -23,5 +23,3 @@ const StudentCreatePage = () => {
     </div>
   );
 };
-
-export default StudentCreatePage;

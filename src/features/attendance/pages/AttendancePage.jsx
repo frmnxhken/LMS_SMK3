@@ -4,7 +4,7 @@ import Badge from "@/shared/ui/Feedback/Badge";
 import { Haversine } from "@/shared/lib/Haversine";
 import useAttendanceCreate from "../hooks/useAttendanceCreate";
 
-const AttendancePage = () => {
+export const AttendancePage = () => {
   const [locationState, setLocationState] = useState({
     status: "searching",
     distance: 0,
@@ -125,5 +125,3 @@ const AttendancePage = () => {
     </div>
   );
 };
-
-export default AttendancePage;

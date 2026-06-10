@@ -7,7 +7,7 @@ import Modal from "@/shared/ui/modal/Modal";
 import AdminReportForm from "../ui/AdminReportForm";
 import useAdminReportUpsert from "../hooks/useAdminReportUpsert";
 
-const AdminReportHistoryPage = () => {
+export const AdminReportHistoryPage = () => {
   const { data, isLoading, page, handlePageChange, pagination } =
     useAdminReportHistory();
   const [selectedData, setSelectedData] = useState(null);
@@ -47,5 +47,3 @@ const AdminReportHistoryPage = () => {
     </div>
   );
 };
-
-export default AdminReportHistoryPage;

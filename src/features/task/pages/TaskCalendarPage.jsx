@@ -5,7 +5,7 @@ import useTaskCalendar from "../hooks/useTaskCalendar";
 import useTask from "../hooks/useTask";
 import TaskCalendarControl from "../ui/TaskCalendarControl";
 
-const TaskCalendarPage = () => {
+export const TaskCalendarPage = () => {
   const today = new Date().toDateString();
   const { data, isLoading } = useTask();
   const { dates, getTasksForDate, nextWeek, prevWeek } = useTaskCalendar(data);
@@ -48,5 +48,3 @@ const TaskCalendarPage = () => {
     </div>
   );
 };
-
-export default TaskCalendarPage;

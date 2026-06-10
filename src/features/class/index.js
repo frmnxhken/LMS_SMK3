@@ -1,3 +1,5 @@
-export * from "./pages/ClassPage";
-export * from "./pages/ClassCreatePage";
-export * from "./pages/ClassEditPage";
+import { ClassPage } from "./pages/ClassPage";
+import { ClassCreatePage } from "./pages/ClassCreatePage";
+import { ClassEditPage } from "./pages/ClassEditPage";
+
+export { ClassPage, ClassCreatePage, ClassEditPage };

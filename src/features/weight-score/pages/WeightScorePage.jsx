@@ -3,7 +3,7 @@ import WeightScoreForm from "../ui/WeightScoreForm";
 import { useParams } from "react-router";
 import useWeightScoreUpdate from "../hooks/useWeightScoreUpdate";
 
-const WeightScorePage = () => {
+export const WeightScorePage = () => {
   const { id_class } = useParams();
   const { data, isLoading, handleUpdate, isUpdating, errors } =
     useWeightScoreUpdate(id_class);
@@ -26,5 +26,3 @@ const WeightScorePage = () => {
     </div>
   );
 };
-
-export default WeightScorePage;

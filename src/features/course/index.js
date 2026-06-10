@@ -1,2 +1,2 @@
-export * from "./pages/CoursePage";
-export * from "./pages/CourseDetailPage";
+import { CoursePage } from "./pages/CoursePage";
+import { CourseDetailPage } from "./pages/CourseDetailPage";

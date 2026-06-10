@@ -5,7 +5,7 @@ import StudentEditSkeleton from "../ui/skeletons/StudentEditSkeleton";
 import useClass from "@/features/class/hooks/useClass";
 import useStudentUpdate from "../hooks/useStudentUpdate";
 
-const StudentEditPage = () => {
+export const StudentEditPage = () => {
   const { id } = useParams();
   const { data: classes } = useClass();
   const { handleUpdate, isUpdating, errors, data, isLoading } =
@@ -30,5 +30,3 @@ const StudentEditPage = () => {
     </div>
   );
 };
-
-export default StudentEditPage;

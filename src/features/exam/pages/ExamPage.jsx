@@ -5,7 +5,7 @@ import ExamQuestionNav from "../ui/ExamQuestionNav";
 import { useNavigate, useParams } from "react-router";
 import useExamQuestion from "../hooks/useExamQuestion";
 
-const ExamPage = () => {
+export const ExamPage = () => {
   const { id_class, id_exam } = useParams();
   const { isLoading, data, isError, error } = useExamQuestion(
     id_class,
@@ -77,5 +77,3 @@ const ExamPage = () => {
     </div>
   );
 };
-
-export default ExamPage;

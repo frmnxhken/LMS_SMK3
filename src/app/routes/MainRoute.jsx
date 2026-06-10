@@ -5,16 +5,16 @@ import MainLayout from "../layout/MainLayout";
 import CourseRoute from "./CourseRoute";
 import ProtectedRoute from "./ProtectedRoute";
 
-import AttendancePage from "@/features/attendance/pages/AttendancePage";
-import HomePage from "@/features/home/pages/HomePage";
-import { ProfilePage } from "@/features/profile/pages/ProfilePage";
-import { ChangePasswordPage } from "@/features/profile/pages/ChangePasswordPage";
-import QuizBuilderPage from "@/features/quiz-builder/pages/QuizBuilderPage";
-import QuestionListPage from "@/features/question-bank/pages/QuestionListPage";
-import QuestionCreatePage from "@/features/question-bank/pages/QuestionCreatePage";
-import QuestionEditPage from "@/features/question-bank/pages/QuestionEditPage";
-import TaskPage from "@/features/task/pages/TaskPage";
-import TaskCalendarPage from "@/features/task/pages/TaskCalendarPage";
+import { AttendancePage } from "@/features/attendance";
+import { HomePage } from "@/features/home";
+import { ProfilePage, ChangePasswordPage } from "@/features/profile";
+import { QuizBuilderPage } from "@/features/quiz-builder";
+import {
+  QuestionListPage,
+  QuestionCreatePage,
+  QuestionEditPage,
+} from "@/features/question-bank";
+import { TaskPage, TaskCalendarPage } from "@/features/task";
 
 const MainRoute = () => {
   return (

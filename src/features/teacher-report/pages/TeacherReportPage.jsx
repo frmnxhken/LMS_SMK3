@@ -4,7 +4,7 @@ import TeacherReportHeader from "../ui/TeacherReportHeader";
 import useTeacherReport from "../hooks/useTeacherReport";
 import { useParams } from "react-router";
 
-const TeacherReportPage = () => {
+export const TeacherReportPage = () => {
   const { id_class } = useParams();
   const { data, isLoading } = useTeacherReport(id_class);
 
@@ -17,5 +17,3 @@ const TeacherReportPage = () => {
     </div>
   );
 };
-
-export default TeacherReportPage;

@@ -17,7 +17,7 @@ const createEmptyQuestion = () => ({
   _dirty: true,
 });
 
-export default function QuizBuilderPage() {
+export const QuizBuilderPage = () => {
   const { id: examId } = useParams();
   const [questions, setQuestions] = useState([]);
   const [deletedQuestions, setDeletedQuestions] = useState([]);
@@ -81,4 +81,4 @@ export default function QuizBuilderPage() {
       />
     </div>
   );
-}
+};

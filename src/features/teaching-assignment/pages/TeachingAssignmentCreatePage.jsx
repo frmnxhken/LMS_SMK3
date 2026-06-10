@@ -2,7 +2,7 @@ import React from "react";
 import useTeachingAssignmentStore from "../hooks/useTeachingAssignmentCreate";
 import TeachingAssignmentForm from "../ui/TeachingAssignmentForm";
 
-const TeachingAssignmentCreatePage = () => {
+export const TeachingAssignmentCreatePage = () => {
   const { handleCreate, isCreating, errors } = useTeachingAssignmentStore();
 
   return (
@@ -20,5 +20,3 @@ const TeachingAssignmentCreatePage = () => {
     </div>
   );
 };
-
-export default TeachingAssignmentCreatePage;

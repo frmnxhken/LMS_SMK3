@@ -3,7 +3,7 @@ import QuestionListCard from "../ui/QuestionListCard";
 import QuestionHeader from "../ui/QuestionHeader";
 import useQuestion from "../hooks/useQuestion";
 
-const QuestionListPage = () => {
+export const QuestionListPage = () => {
   const { isLoading, data } = useQuestion();
 
   return (
@@ -17,5 +17,3 @@ const QuestionListPage = () => {
     </div>
   );
 };
-
-export default QuestionListPage;

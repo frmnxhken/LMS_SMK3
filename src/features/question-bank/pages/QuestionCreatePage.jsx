@@ -3,7 +3,7 @@ import QuestionForm from "../ui/QuestionForm";
 import useSubject from "@/features/subject/hooks/useSubject";
 import useQuestionCreate from "../hooks/useQuestionCreate";
 
-const QuestionCreatePage = () => {
+export const QuestionCreatePage = () => {
   const { data: subjects } = useSubject();
   const { handleSubmit, errors } = useQuestionCreate();
 
@@ -19,5 +19,3 @@ const QuestionCreatePage = () => {
     </div>
   );
 };
-
-export default QuestionCreatePage;

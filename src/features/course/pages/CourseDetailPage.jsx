@@ -10,7 +10,7 @@ import CourseHeaderDetailSkeleton from "../ui/skeletons/CourseHeaderDetailSkelet
 import CourseAttachmentDetailSkeleton from "../ui/skeletons/CourseAttachmentDetailSkeleton";
 import FileViewer from "@/shared/ui/media/FileViewer";
 
-export const CourseDetail = () => {
+export const CourseDetailPage = () => {
   const { id_class, id_post } = useParams();
   const { data, isLoading } = useCoursePostDetail(id_class, id_post);
   const [isOpen, setIsOpen] = useState(false);

@@ -8,7 +8,7 @@ import useAdminReportSummaryToday from "@/features/admin-report/hooks/useAdminRe
 import HomeAdminCalendarSkeleton from "../ui/skeletons/HomeAdminCalendarSkeleton";
 import HomeAdminAttendanceChartSkeleton from "../ui/skeletons/HomeAdminAttendanceChartSkeleton";
 
-const HomeAdminPage = () => {
+export const HomeAdminPage = () => {
   const { data: calendars, isLoading: loadingCalendar } =
     useAdminWeeklyCalendar();
   const { data: stats } = useAdminStat();
@@ -23,7 +23,7 @@ const HomeAdminPage = () => {
           {loadingSummary ? (
             <HomeAdminAttendanceChartSkeleton />
           ) : (
-            <HomeAdminAttendanceChart attendance={attendance} />
+            <HomeAdminAttendanceChart attendance={attendance?.data} />
           )}
         </div>
         <div className="w-full col-span-3">
@@ -37,5 +37,3 @@ const HomeAdminPage = () => {
     </div>
   );
 };
-
-export default HomeAdminPage;

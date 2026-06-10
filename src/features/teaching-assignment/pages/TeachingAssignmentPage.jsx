@@ -4,7 +4,7 @@ import TeachingAssignmentHeader from "../ui/TeachingAssignmentHeader";
 import Pagination from "@/shared/ui/navigation/Pagination";
 import useTeachingAssignment from "../hooks/useTeachingAssignment";
 
-const TeachingAssignmentPage = () => {
+export const TeachingAssignmentPage = () => {
   const { isLoading, data, page, handlePageChange, pagination } =
     useTeachingAssignment();
 
@@ -28,5 +28,3 @@ const TeachingAssignmentPage = () => {
     </div>
   );
 };
-
-export default TeachingAssignmentPage;

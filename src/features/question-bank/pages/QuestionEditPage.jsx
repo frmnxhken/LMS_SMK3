@@ -5,7 +5,7 @@ import useQuestionDetail from "../hooks/useQuestionDetail";
 import { useParams } from "react-router";
 import useQuestionUpdate from "../hooks/useQuestionUpdate";
 
-const QuestionEditPage = () => {
+export const QuestionEditPage = () => {
   const { id } = useParams();
   const { data: subjects } = useSubject();
   const { isLoading, data } = useQuestionDetail(id);
@@ -25,5 +25,3 @@ const QuestionEditPage = () => {
     </div>
   );
 };
-
-export default QuestionEditPage;
