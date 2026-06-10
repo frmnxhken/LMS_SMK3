@@ -5,6 +5,7 @@ const useAdminWeeklyCalendar = () => {
   return useQuery({
     queryKey: ["weeklyCalendar"],
     queryFn: () => getWeeklyCalendar(),
+    staleTime: 1000 * 60 * 10,
   });
 };
 
