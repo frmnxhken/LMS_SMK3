@@ -1,20 +1,15 @@
-import { useEffect, createContext, useContext } from "react";
-import { useQuery, useQueryClient } from "@tanstack/react-query";
-
 import api from "@/shared/api/ApiClient";
+import { useEffect, createContext } from "react";
+import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/app/contexts/ToastContext";
-import {
-  registerAcademicYearSetter,
-  registerToast,
-} from "@/shared/api/queryClient";
 
 const AcademicYearContext = createContext(null);
 
 export function AcademicYearProvider({ children }) {
-  const { addToast } = useToast();
   const queryClient = useQueryClient();
+  const { addToast } = useToast();
 
-  const query = useQuery({
+  const { data } = useQuery({
     queryKey: ["academic-year"],
     queryFn: async () => {
       const { data } = await api.get("/academic-years/current");
@@ -24,25 +19,30 @@ export function AcademicYearProvider({ children }) {
   });
 
   useEffect(() => {
-    registerToast(addToast);
-  }, [addToast]);
+    const handleGlobalError = (error) => {
+      const data = error?.response?.data;
 
-  useEffect(() => {
-    registerAcademicYearSetter((data) => {
-      queryClient.setQueryData(["academic-year"], (old) => ({
-        ...old,
-        ...data,
-      }));
+      if (["active", "draft", "complete"].includes(data?.status)) {
+        queryClient.setQueryData(["academic-year"], (old) => ({
+          ...old,
+          status: data.status,
+        }));
+        addToast(data.message, "error");
+      }
+    };
+
+    const mutateSubs = queryClient.getMutationCache().subscribe((event) => {
+      if (event?.action?.type === "error") {
+        handleGlobalError(event.action.error);
+      }
     });
-  }, [queryClient]);
+
+    return () => mutateSubs();
+  }, [queryClient, addToast]);
 
   return (
-    <AcademicYearContext.Provider value={{ status: query?.data?.status }}>
+    <AcademicYearContext.Provider value={{ status: data?.status }}>
       {children}
     </AcademicYearContext.Provider>
   );
-}
-
-export function useAcademicYear() {
-  return useContext(AcademicYearContext);
 }
