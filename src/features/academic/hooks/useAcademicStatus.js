@@ -11,6 +11,7 @@ export const useAcademicStatus = () => {
       queryClient.invalidateQueries({
         queryKey: ["academies"],
       });
+      queryClient.invalidateQueries(["academic-year"]);
     },
   });
 
