@@ -7,7 +7,7 @@ const useExamAssignmentDelete = (id_class) => {
   const mutation = useMutation({
     mutationFn: (id) => deleteExamAssignment(id_class, id),
     onSuccess: () => {
-      queryClient.invalidateQueries(["examAssignments"]);
+      queryClient.invalidateQueries(["examAssignments", id_class]);
     },
   });
 

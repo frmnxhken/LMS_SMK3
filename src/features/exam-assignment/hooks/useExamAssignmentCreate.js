@@ -8,7 +8,7 @@ const useExamAssignmentCreate = (id_class) => {
   const mutation = useMutation({
     mutationFn: (payload) => createExamAssignment(id_class, payload),
     onSuccess: () => {
-      queryClient.invalidateQueries(["examAssignments"]);
+      queryClient.invalidateQueries(["examAssignments", id_class]);
     },
     onError: (error) => {
       setErrors(error.response?.data?.errors);

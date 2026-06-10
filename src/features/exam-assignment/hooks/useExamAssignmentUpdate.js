@@ -9,7 +9,7 @@ const useExamAssignmentUpdate = (id_class) => {
     mutationFn: ({ payload, id }) =>
       updateExamAssignment(id_class, id, payload),
     onSuccess: () => {
-      queryClient.invalidateQueries(["examAssignments"]);
+      queryClient.invalidateQueries(["examAssignments", id_class]);
     },
     onError: (error) => {
       setErrors(error.response?.data?.errors);
