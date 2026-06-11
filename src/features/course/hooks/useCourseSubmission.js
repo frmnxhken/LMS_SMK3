@@ -37,7 +37,14 @@ const useCourseSubmission = (id_class, id_post) => {
     mutation.mutate(formData);
   };
 
-  return { files, handleFileChange, handleRemoveFile, handleSubmit, errors };
+  return {
+    files,
+    handleFileChange,
+    handleRemoveFile,
+    handleSubmit,
+    isPending: mutation.isPending,
+    errors,
+  };
 };
 
 export default useCourseSubmission;

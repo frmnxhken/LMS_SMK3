@@ -8,7 +8,7 @@ const PhotoProfile = ({ fullname, role, photo }) => {
   const fileInputRef = useRef(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
-  const { handleUpdate } = useUpdatePhoto();
+  const { handleUpdate, isPending } = useUpdatePhoto();
 
   const handleOpenFileManger = () => {
     fileInputRef.current?.click();
@@ -33,10 +33,16 @@ const PhotoProfile = ({ fullname, role, photo }) => {
       handleUpdate(formData, {
         onSuccess: () => {
           setSelectedFile(null);
+          if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+          }
         },
         onError: () => {
           setPreviewUrl(null);
           setSelectedFile(null);
+          if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+          }
         },
       });
     }
@@ -82,6 +88,7 @@ const PhotoProfile = ({ fullname, role, photo }) => {
       </div>
 
       <Button
+        isLoading={isPending}
         variant={selectedFile ? "primary" : "outline"}
         onClick={handleMainButtonClick}
       >

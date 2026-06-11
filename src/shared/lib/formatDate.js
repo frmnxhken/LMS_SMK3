@@ -8,10 +8,12 @@ export function formatDateDMY(str) {
 }
 
 export const isExpired = (timestamp) => {
-  if (!timestamp) return false;
-  const deadline = new Date(timestamp.replace(/-/g, "/"));
-  const now = new Date();
-  return now < deadline;
+  const deadline = new Date(timestamp);
+  if (isNaN(deadline.getTime())) return false;
+
+  deadline.setHours(23, 59, 59, 999);
+
+  return Date.now() > deadline.getTime();
 };
 
 export const formatTimeStamp = (timestamp) => {

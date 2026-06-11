@@ -9,15 +9,21 @@ import FormInput from "@/shared/ui/forms/FormInput";
 
 const AttachmentCard = ({ status, score, isExpired }) => {
   const { id_class, id_post } = useParams();
-  const { files, handleFileChange, handleRemoveFile, handleSubmit, errors } =
-    useCourseSubmission(id_class, id_post);
+  const {
+    files,
+    handleFileChange,
+    handleRemoveFile,
+    handleSubmit,
+    isPending,
+    errors,
+  } = useCourseSubmission(id_class, id_post);
 
   return (
     <div className="p-4 border border-app-border rounded-xl bg-app-surface">
       <div className="flex justify-between items-center mb-6">
         <h2 className="text-md sm:text-lg font-medium">Tugas</h2>
         <p className="text-sm text-text-muted">
-          {status === "pending" ? (!isExpired ? "Berlalu" : "Ditugaskan") : ""}
+          {status === "pending" ? (isExpired ? "Berlalu" : "Ditugaskan") : ""}
           {status === "done" && "Diserahkan"}
           {status === "graded" && (
             <Badge variant="success" label="telah diniliai" />
@@ -27,7 +33,7 @@ const AttachmentCard = ({ status, score, isExpired }) => {
       {status === "graded" && (
         <h3 className="text-xl font-bold text-center py-4">{score}/100</h3>
       )}
-      {status === "pending" && isExpired && (
+      {status === "pending" && !isExpired && (
         <form onSubmit={handleSubmit}>
           {files?.length > 0 && (
             <ul className="flex flex-col gap-2 mb-2">
@@ -71,7 +77,9 @@ const AttachmentCard = ({ status, score, isExpired }) => {
               </span>
             </label>
           </div>
-          <Button className="w-full mt-2">Serahkan</Button>
+          <Button isLoading={isPending} className="w-full mt-2">
+            Serahkan
+          </Button>
         </form>
       )}
     </div>

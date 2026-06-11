@@ -2,10 +2,12 @@ import { useMutation } from "@tanstack/react-query";
 import { updatePhotoProfile } from "../api/profileApi";
 import { useState } from "react";
 import { useAuth } from "@/app/contexts/AuthContext";
+import { useToast } from "@/app/contexts/ToastContext";
 
 const useUpdatePhoto = () => {
   const { setUser } = useAuth();
   const [errors, setErrors] = useState(null);
+  const { addToast } = useToast();
 
   const mutation = useMutation({
     mutationFn: (payload) => updatePhotoProfile(payload),
@@ -20,7 +22,7 @@ const useUpdatePhoto = () => {
     },
     onError: (error) => {
       setErrors(error.response?.data?.errors);
-      alert(error.response?.data?.errors?.photo?.[0]);
+      addToast(error.response?.data?.message, "error");
     },
   });
 
@@ -28,6 +30,7 @@ const useUpdatePhoto = () => {
 
   return {
     handleUpdate,
+    isPending: mutation.isPending,
     errors,
   };
 };
