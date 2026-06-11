@@ -3,8 +3,20 @@ import AttendanceCard from "../ui/AttendanceCard";
 import Badge from "@/shared/ui/Feedback/Badge";
 import { Haversine } from "@/shared/lib/Haversine";
 import useAttendanceCreate from "../hooks/useAttendanceCreate";
+import useAttendance from "../hooks/useAttendance";
+import { useToast } from "@/app/contexts/ToastContext";
 
 export const AttendancePage = () => {
+  const { data, isLoading } = useAttendance();
+  const { addToast } = useToast();
+
+  useEffect(() => {
+    if (!data) return;
+    if (data?.meta?.is_school_day !== 1) {
+      addToast(data?.meta?.description, "error");
+    }
+  }, [data?.meta?.is_school_day]);
+
   const [locationState, setLocationState] = useState({
     status: "searching",
     distance: 0,
@@ -79,6 +91,7 @@ export const AttendancePage = () => {
         isInRange={locationState.isInRange}
         onRefresh={updateLocation}
         onAbsen={onSubmit}
+        isSchoolDay={data?.meta?.is_school_day}
       />
 
       <div className="flex items-center justify-between mb-4 mt-6">

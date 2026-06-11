@@ -4,7 +4,7 @@ import { useAcademicYear } from "../contexts/AcademicYearContext";
 
 const ProtectedRoute = ({ allowedRoles }) => {
   const { user } = useAuth();
-  const { status } = useAcademicYear();
+  const { status, isLoading } = useAcademicYear();
 
   if (!user) {
     return <Navigate to="/login" replace />;
@@ -13,14 +13,19 @@ const ProtectedRoute = ({ allowedRoles }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (user?.role !== "admin") {
+  if (isLoading) {
+    return null;
+  }
+
+  if (user.role !== "admin") {
     if (status === "active") {
       return <Outlet />;
     }
-    localStorage.removeItem("user");
     localStorage.removeItem("token");
-    return <Navigate to="/404" replace />;
+    localStorage.removeItem("user");
+    return <Navigate to="/403" replace />;
   }
+
   return <Outlet />;
 };
 

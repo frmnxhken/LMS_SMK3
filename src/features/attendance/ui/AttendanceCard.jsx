@@ -10,6 +10,7 @@ const AttendanceCard = ({
   isInRange,
   onRefresh,
   onAbsen,
+  isSchoolDay,
 }) => {
   const isGpsOff = ["disabled", "denied"].includes(status);
   const isLoading = status === "searching";
@@ -66,14 +67,18 @@ const AttendanceCard = ({
         </div>
 
         <div className="w-full md:w-auto flex flex-col items-center gap-2">
-          <Button size="md" disabled={!canAbsen} onClick={onAbsen}>
-            <FiNavigation className={canAbsen ? "animate-bounce" : ""} />
-            Absen
-          </Button>
-          {!canAbsen && status === "active" && (
-            <p className="text-[10px] font-bold text-orange-500 uppercase">
-              Radius Maksimal 50 Meter
-            </p>
+          {isSchoolDay && (
+            <>
+              <Button size="md" disabled={!canAbsen} onClick={onAbsen}>
+                <FiNavigation className={canAbsen ? "animate-bounce" : ""} />
+                Absen
+              </Button>
+              {!canAbsen && status === "active" && (
+                <p className="text-[10px] font-bold text-orange-500 uppercase">
+                  Radius Maksimal 50 Meter
+                </p>
+              )}
+            </>
           )}
         </div>
       </div>

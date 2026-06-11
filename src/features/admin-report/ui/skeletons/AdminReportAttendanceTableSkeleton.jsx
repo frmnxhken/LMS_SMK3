@@ -3,7 +3,7 @@ import SkeletonBar from "@/shared/ui/Feedback/SkeletonBar";
 
 const AdminReportAttendanceTableSkeleton = () => {
   return (
-    <tbody>
+    <>
       {Array.from({ length: 5 }).map((_, index) => (
         <tr key={`skeleton-${index}`} className="table-body-row">
           <td className="table-body-cell">
@@ -23,7 +23,7 @@ const AdminReportAttendanceTableSkeleton = () => {
           </td>
         </tr>
       ))}
-    </tbody>
+    </>
   );
 };
 

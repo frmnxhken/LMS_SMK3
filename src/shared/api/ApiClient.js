@@ -18,4 +18,26 @@ api.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
+api.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    const status = error.response?.status;
+    const message = error.response?.data?.message;
+
+    if (status === 401) {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "/login";
+    }
+
+    if (status === 403 && message === "invalid academic") {
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      window.location.href = "/403";
+    }
+
+    return Promise.reject(error);
+  },
+);
+
 export default api;

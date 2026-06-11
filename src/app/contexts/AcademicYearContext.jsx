@@ -9,7 +9,7 @@ export function AcademicYearProvider({ children }) {
   const queryClient = useQueryClient();
   const { addToast } = useToast();
 
-  const { data } = useQuery({
+  const { data, isLoading } = useQuery({
     queryKey: ["academic-year"],
     queryFn: async () => {
       const { data } = await api.get("/academic-years/current");
@@ -41,7 +41,7 @@ export function AcademicYearProvider({ children }) {
   }, [queryClient, addToast]);
 
   return (
-    <AcademicYearContext.Provider value={{ status: data?.status }}>
+    <AcademicYearContext.Provider value={{ status: data?.status, isLoading }}>
       {children}
     </AcademicYearContext.Provider>
   );
