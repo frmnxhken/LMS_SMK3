@@ -34,7 +34,7 @@ const ClassForm = ({ initData = {}, onSubmit, isPending, errors }) => {
         label="Jurusan"
         name="major"
         value={formData?.major}
-        placeholder="RPL 3"
+        placeholder="RPL"
         feedback={errors?.major?.[0]}
       />
       <FormInput
