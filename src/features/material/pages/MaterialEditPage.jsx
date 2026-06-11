@@ -9,6 +9,7 @@ export const MaterialEditPage = () => {
     data,
     errors,
     isLoading,
+    isPending,
     handleDeleteFile,
     existingFiles,
     handleSubmit,
@@ -24,6 +25,7 @@ export const MaterialEditPage = () => {
           onSubmit={(data) => handleSubmit(data)}
           onDelete={handleDeleteFile}
           existingFiles={existingFiles}
+          isPending={isPending}
         />
       </div>
     </div>

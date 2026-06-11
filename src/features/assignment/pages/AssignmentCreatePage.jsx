@@ -5,13 +5,14 @@ import AssignmentForm from "../ui/AssignmentForm";
 
 export const AssignmentCreatePage = () => {
   const { id_class } = useParams();
-  const { handleSubmit, isLoading, errors } = useAssignmentCreate(id_class);
+  const { handleSubmit, isPending, errors } = useAssignmentCreate(id_class);
   return (
     <div className="container max-w-[780px] p-6 mx-auto">
       <div className="border border-app-border p-4 rounded-xl">
         <AssignmentForm
           errors={errors}
           onSubmit={(data) => handleSubmit(data)}
+          isPending={isPending}
         />
       </div>
     </div>

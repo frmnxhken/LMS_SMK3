@@ -10,6 +10,7 @@ const MaterialForm = ({
   onSubmit,
   errors,
   onDelete,
+  isPending,
   existingFiles = [],
 }) => {
   const [formData, setFormData] = useState({
@@ -74,7 +75,9 @@ const MaterialForm = ({
         ))}
       </div>
 
-      <Button className="w-full">Submit</Button>
+      <Button isLoading={isPending} className="w-full">
+        Simpan
+      </Button>
     </form>
   );
 };

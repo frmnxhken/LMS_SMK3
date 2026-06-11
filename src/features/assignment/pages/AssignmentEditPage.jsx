@@ -9,6 +9,7 @@ export const AssignmentEditPage = () => {
     data,
     errors,
     isLoading,
+    isPending,
     handleDeleteFile,
     existingFiles,
     handleSubmit,
@@ -23,6 +24,7 @@ export const AssignmentEditPage = () => {
           onSubmit={(data) => handleSubmit(data)}
           onDelete={handleDeleteFile}
           existingFiles={existingFiles}
+          isPending={isPending}
         />
       </div>
     </div>

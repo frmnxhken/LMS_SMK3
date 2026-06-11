@@ -10,6 +10,7 @@ const AssignmentForm = ({
   onSubmit,
   errors,
   onDelete,
+  isPending,
   existingFiles = [],
 }) => {
   const [formData, setFormData] = useState({
@@ -83,7 +84,9 @@ const AssignmentForm = ({
         ))}
       </div>
 
-      <Button className="w-full">Submit</Button>
+      <Button isLoading={isPending} className="w-full">
+        Simpan
+      </Button>
     </form>
   );
 };

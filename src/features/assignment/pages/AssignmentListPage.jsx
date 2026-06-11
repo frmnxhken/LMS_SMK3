@@ -6,6 +6,7 @@ import useAssignmentList from "../hooks/useAssignmentList";
 import { useAuth } from "@/app/contexts/AuthContext";
 import Button from "@/shared/ui/buttons/Button";
 import { MdAdd } from "react-icons/md";
+import EmptyState from "@/shared/ui/Feedback/EmptyState";
 
 export const AssignmentListPage = () => {
   const { user } = useAuth();
@@ -29,14 +30,19 @@ export const AssignmentListPage = () => {
         )}
       </div>
       <div className="space-y-2">
-        {isLoading && <AssignmentCardSkeleton />}
-        {data?.[0].posts?.map((assignment, index) => (
-          <AssignmentCard
-            key={index}
-            assignment={assignment}
-            idClass={id_class}
-          />
-        ))}
+        {isLoading ? (
+          <AssignmentCardSkeleton />
+        ) : data?.[0].posts?.length === 0 ? (
+          <EmptyState title="Belum Ada Tugas" />
+        ) : (
+          data?.[0].posts?.map((assignment, index) => (
+            <AssignmentCard
+              key={index}
+              assignment={assignment}
+              idClass={id_class}
+            />
+          ))
+        )}
       </div>
     </div>
   );

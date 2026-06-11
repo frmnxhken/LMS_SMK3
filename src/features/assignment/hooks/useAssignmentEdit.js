@@ -55,6 +55,7 @@ const useAssignmentEdit = (id_class, id_post) => {
 
   return {
     isLoading: materialQuery.isLoading,
+    isPending: mutation.isPending,
     data: materialQuery.data,
     existingFiles,
     handleDeleteFile,

@@ -26,7 +26,7 @@ const CommentInput = () => {
           onInput={handleInput}
           type="text"
           placeholder="Tambahkan komentar kelas..."
-          className="flex-1 border border-app-border rounded-full px-4 py-2 text-sm focus:ring-1 focus:ring-primary outline-none transition-all"
+          className="w-full border border-app-border rounded-full px-4 py-2 text-sm focus:ring-1 focus:ring-primary outline-none transition-all"
         />
         <Button className="h-8">
           <MdSend />

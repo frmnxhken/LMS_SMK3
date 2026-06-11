@@ -9,6 +9,7 @@ import useExamAssignmentAction from "../hooks/useExamAssignmentAction";
 import { useAuth } from "@/app/contexts/AuthContext";
 import ExamAssignmentCardSkeleton from "../ui/skeletons/ExamAssignmentCardSkeleton";
 import { MdAdd } from "react-icons/md";
+import EmptyState from "@/shared/ui/Feedback/EmptyState";
 
 export const ExamAssignmentListPage = () => {
   const { id_class } = useParams();
@@ -54,15 +55,20 @@ export const ExamAssignmentListPage = () => {
       </Modal>
 
       <div className="mt-4 space-y-3">
-        {isLoading && <ExamAssignmentCardSkeleton />}
-        {data?.data?.map((exam, index) => (
-          <ExamAssignmentCard
-            key={index}
-            exam={exam}
-            onEdit={handleEdit}
-            onDelete={onDelete}
-          />
-        ))}
+        {isLoading ? (
+          <ExamAssignmentCardSkeleton />
+        ) : data?.data?.length === 0 ? (
+          <EmptyState title="Belum Ada Ujian" />
+        ) : (
+          data?.data?.map((exam, index) => (
+            <ExamAssignmentCard
+              key={index}
+              exam={exam}
+              onEdit={handleEdit}
+              onDelete={onDelete}
+            />
+          ))
+        )}
       </div>
     </div>
   );

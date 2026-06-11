@@ -34,7 +34,7 @@ const useMaterialCreate = (id_class) => {
 
   return {
     handleSubmit,
-    isLoading: mutation.isPending,
+    isPending: mutation.isPending,
     errors,
   };
 };
