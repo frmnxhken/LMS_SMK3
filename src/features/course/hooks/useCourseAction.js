@@ -23,11 +23,6 @@ export const useCoursePostAction = (id, id_class, type) => {
   const navigate = useNavigate();
   const { handleDelete } = useCoursePostDelete(id_class, id);
 
-  const onDelete = () => {
-    const confirm = confirm("Yakin untuk dihapus?");
-    if (confirm) handleDelete();
-  };
-
   return [
     {
       label: "Edit",
@@ -37,7 +32,7 @@ export const useCoursePostAction = (id, id_class, type) => {
     {
       label: "Delete",
       icon: IoTrash,
-      onClick: onDelete,
+      onClick: () => handleDelete(),
     },
   ];
 };

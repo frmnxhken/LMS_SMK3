@@ -13,7 +13,10 @@ const useCoursePostDelete = (id_class, id_post) => {
       return navigate(`/course/${id_class}`);
     },
   });
-  const handleDelete = () => mutation.mutate();
+  const handleDelete = () => {
+    let confirmed = confirm("Yakin untuk dihapus?");
+    if (confirmed) mutation.mutate();
+  };
 
   return {
     handleDelete,
