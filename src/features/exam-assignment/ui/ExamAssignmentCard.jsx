@@ -9,7 +9,7 @@ import {
 import Badge from "@/shared/ui/Feedback/Badge";
 import Dropdown from "@/shared/ui/buttons/DropDown";
 import { useAuth } from "@/app/contexts/AuthContext";
-import { formatTimeStamp, isExpired } from "@/shared/lib/formatDate";
+import { formatTimeStamp } from "@/shared/lib/formatDate";
 import { Link } from "react-router";
 
 const ExamAssignmentCard = ({ exam, onEdit, onDelete }) => {
