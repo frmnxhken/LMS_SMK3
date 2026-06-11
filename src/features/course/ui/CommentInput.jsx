@@ -3,8 +3,8 @@ import useCourseCommentStore from "../hooks/useCourseCommentStore";
 import { useParams } from "react-router";
 import Button from "@/shared/ui/buttons/Button";
 import { MdSend } from "react-icons/md";
-import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
 import { useAuth } from "@/app/contexts/AuthContext";
+import { env } from "@/shared/lib/Config";
 
 const CommentInput = () => {
   const { user } = useAuth();
@@ -19,7 +19,7 @@ const CommentInput = () => {
       <div className="w-full flex items-center gap-3">
         <img
           className="w-[35px] sm:w-[40px] h-[35px] sm:h-[40px] rounded-full object-cover"
-          src={BASE_IMAGE_PROFILE + user.photo}
+          src={env.IMAGE_URL + user.photo}
           alt="profile"
         />
         <input

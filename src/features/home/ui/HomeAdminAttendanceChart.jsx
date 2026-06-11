@@ -2,7 +2,7 @@ import Button from "@/shared/ui/buttons/Button";
 import { useNavigate } from "react-router";
 import { PieChart, Pie, Cell, ResponsiveContainer, Tooltip } from "recharts";
 
-const HomeAdminAttendanceChart = ({ attendance }) => {
+const HomeAdminAttendanceChart = ({ attendance = [] }) => {
   const navigate = useNavigate();
   const total_data =
     attendance && Object.values(attendance).reduce((a, b) => a + b);
@@ -54,7 +54,7 @@ const HomeAdminAttendanceChart = ({ attendance }) => {
 
           <div className="absolute flex flex-col items-center">
             <span className="text-3xl font-bold text-slate-800">
-              {(attendance?.present / total_data) * 100}%
+              {(attendance?.present && attendance?.present / total_data) * 100}%
             </span>
             <span className="text-[10px] text-slate-400 uppercase font-bold">
               Hadir

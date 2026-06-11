@@ -1,5 +1,3 @@
-export const BASE_IMAGE_PROFILE = "http://127.0.0.1:8000/profiles/";
-
 export const monthNames = [
   "Januari",
   "Februari",

@@ -1,12 +1,12 @@
 import React from "react";
-import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
+import { env } from "@/shared/lib/Config";
 
 const TeacherReportPersonProfile = ({ student, subject }) => {
   return (
     <div className="flex items-center items-start gap-4">
       <div className="flex-shrink-0">
         <img
-          src={BASE_IMAGE_PROFILE + student?.photo}
+          src={env.IMAGE_URL + student?.photo}
           className="w-[50px] sm:w-[80px] h-[50px] sm:h-[80px] rounded-full object-cover"
         />
       </div>

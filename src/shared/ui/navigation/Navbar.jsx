@@ -1,9 +1,9 @@
 import React from "react";
 import { useAuth } from "@/app/contexts/AuthContext";
-import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
 import { MdMenu } from "react-icons/md";
 import { useNavigate } from "react-router";
 import BreadCrumb from "./BreadCrumb";
+import { env } from "@/shared/lib/Config";
 
 const Navbar = ({ onMenuClick }) => {
   const { user } = useAuth();
@@ -19,7 +19,7 @@ const Navbar = ({ onMenuClick }) => {
         <p className="text-sm font-medium">{user.name}</p>
         <img
           onClick={() => navigate("profile")}
-          src={BASE_IMAGE_PROFILE + user.photo}
+          src={env.IMAGE_URL + user.photo}
           className="w-[40px] h-[40px] object-cover rounded-full cursor-pointer"
           alt="profile"
         />

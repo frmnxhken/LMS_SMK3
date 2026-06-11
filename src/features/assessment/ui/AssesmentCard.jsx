@@ -1,10 +1,10 @@
 import React from "react";
 import Badge from "@/shared/ui/Feedback/Badge";
 import Button from "@/shared/ui/buttons/Button";
-import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
 import { formatDateDMY } from "@/shared/lib/formatDate";
 import { IoTimeOutline } from "react-icons/io5";
 import { useNavigate } from "react-router";
+import { env } from "@/shared/lib/Config";
 
 const AssesmentCard = ({ id, name, photo, updated_at, score, status }) => {
   const navigate = useNavigate();
@@ -14,7 +14,7 @@ const AssesmentCard = ({ id, name, photo, updated_at, score, status }) => {
       <div className="flex items-center gap-4">
         <img
           className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] object-cover rounded-full"
-          src={BASE_IMAGE_PROFILE + photo}
+          src={env.IMAGE_URL + photo}
           alt="profile"
         />
         <div>

@@ -2,7 +2,7 @@ import Button from "@/shared/ui/buttons/Button";
 import React, { useRef, useState } from "react";
 import { HiCamera } from "react-icons/hi";
 import useUpdatePhoto from "../hooks/useUpdatePhoto";
-import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
+import { env } from "@/shared/lib/Config";
 
 const PhotoProfile = ({ fullname, role, photo }) => {
   const fileInputRef = useRef(null);
@@ -56,7 +56,7 @@ const PhotoProfile = ({ fullname, role, photo }) => {
         <div className="relative group">
           <div className="w-32 h-32 rounded-full overflow-hidden ring-4 ring-white shadow-lg">
             <img
-              src={previewUrl || BASE_IMAGE_PROFILE + photo}
+              src={previewUrl || env.IMAGE_URL + photo}
               alt="Profile"
               className="w-full h-full object-cover bg-primary"
             />

@@ -1,5 +1,5 @@
+import { env } from "@/shared/lib/Config";
 import React from "react";
-import { BASE_IMAGE_PROFILE } from "@/shared/lib/Constants";
 
 const MemberCard = ({ name, photo, nip = null }) => {
   return (
@@ -7,7 +7,7 @@ const MemberCard = ({ name, photo, nip = null }) => {
       <div className="flex items-center gap-4">
         <img
           className="w-[40px] sm:w-[50px] h-[40px] sm:h-[50px] rounded-full object-cover"
-          src={BASE_IMAGE_PROFILE + photo}
+          src={env.IMAGE_URL + photo}
           alt="profile"
         />
         <div>

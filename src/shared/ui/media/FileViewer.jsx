@@ -3,6 +3,7 @@ import Modal from "@/shared/ui/modal/Modal";
 import { DocViewerRenderers } from "@iamjariwala/react-doc-viewer";
 const DocViewer = lazy(() => import("@iamjariwala/react-doc-viewer"));
 import "@iamjariwala/react-doc-viewer/dist/index.css";
+import { env } from "@/shared/lib/Config";
 
 const FileViewer = ({ file, onClose }) => {
   return (
@@ -16,7 +17,7 @@ const FileViewer = ({ file, onClose }) => {
         <DocViewer
           documents={[
             {
-              uri: "http://127.0.0.1:8000/api/files/" + file,
+              uri: env.FILE_URL + file,
             },
           ]}
           config={{
