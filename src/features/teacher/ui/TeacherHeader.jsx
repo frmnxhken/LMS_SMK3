@@ -7,7 +7,7 @@ import useTeacher from "../hooks/useTeacher";
 import { MdAdd, MdSearch } from "react-icons/md";
 import { PiMicrosoftExcelLogo } from "react-icons/pi";
 
-const TeacherHeader = ({ openModal }) => {
+const TeacherHeader = ({ openModal, status }) => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const { onExport } = useTeacherExport();
