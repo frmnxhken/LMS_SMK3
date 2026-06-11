@@ -1,13 +1,17 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteAcademicYear } from "../api/academicApi";
+import { useToast } from "@/app/contexts/ToastContext";
 
 const useAcademicDelete = () => {
   const queryClient = useQueryClient();
+  const { addToast } = useToast();
 
   const mutation = useMutation({
     mutationFn: (id) => deleteAcademicYear(id),
     onSuccess: () => {
       queryClient.invalidateQueries(["examAssignments"]);
+      queryClient.invalidateQueries(["academic-year"]);
+      addToast("Data berhasil dihapus!");
     },
   });
 
