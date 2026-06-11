@@ -22,6 +22,7 @@
 body {
   background-color: var(--color-app-bg);
   color: var(--color-text-body);
+  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer components {
@@ -39,10 +40,6 @@ body {
   .table-body-cell {
     @apply p-4 font-medium text-text-body border-b border-app-border;
   }
-}
-
-body {
-  font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
 @keyframes shrink {

@@ -12,7 +12,7 @@ export const TeachingAssignmentPage = () => {
 
   return (
     <div className="container mx-auto p-6">
-      <h1 className="text-xl font-bold text-text-heading mb-4">
+      <h1 className="text-lg sm:text-xl font-bold text-text-heading mb-4">
         Daftar Pengajar
       </h1>
 

@@ -23,7 +23,7 @@ export const AcademicPage = () => {
   return (
     <div className="container mx-auto p-6">
       <div className="flex justify-between">
-        <h1 className="text-xl font-bold text-text-heading mb-2">
+        <h1 className="text-lg sm:text-xl font-bold text-text-heading mb-2">
           Daftar Tahun Ajaran
         </h1>
         <Button onClick={handleOpenCreate}>

@@ -41,7 +41,7 @@ const TeacherHeader = ({ openModal, status }) => {
           Export
         </Button>
       </div>
-      <div className="">
+      <div className="w-full sm:w-1/2">
         <div className="flex items-center w-full">
           <FormInput
             onInput={(e) => setKeyword(e.target.value)}

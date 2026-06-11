@@ -8,7 +8,7 @@ export const TeacherCreatePage = () => {
   return (
     <div className="container max-w-[680px] mx-auto p-6">
       <div className="border border-app-border p-4 rounded-xl">
-        <h1 className="text-xl text-text-heading font-bold mb-4">
+        <h1 className="text-lg sm:text-xl font-bold text-text-heading mb-4">
           Tambah Guru
         </h1>
         <TeacherForm

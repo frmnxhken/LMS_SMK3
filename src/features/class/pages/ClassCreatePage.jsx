@@ -8,7 +8,7 @@ export const ClassCreatePage = () => {
   return (
     <div className="p-6 container mx-auto max-w-[600px]">
       <div className="border border-app-border p-4 rounded-xl">
-        <h1 className="text-xl text-text-heading font-bold mb-4">
+        <h1 className="text-lg sm:text-xl font-bold text-text-heading mb-4">
           Tambah Kelas
         </h1>
         <ClassForm

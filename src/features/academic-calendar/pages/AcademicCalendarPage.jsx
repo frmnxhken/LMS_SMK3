@@ -63,7 +63,7 @@ export const AcademicCalendarPage = () => {
 
   return (
     <div className="p-6 max-w-[1200px] mx-auto">
-      <h1 className="text-lg font-semibold pb-6 text-text-heading">
+      <h1 className="text-lg sm:text-xl font-bold text-text-heading mb-4">
         Kalender Akademik
       </h1>
 

@@ -32,19 +32,19 @@ const HomeAdminCalendar = ({ calendars }) => {
                         : "bg-slate-100 text-text-heading"
                   }`}
                 >
-                  <span className="text-lg font-bold">
+                  <span className="text-md sm:text-lg font-bold">
                     {String(date.getDate()).padStart(2, "0")}
                   </span>
                 </div>
 
                 <div className="flex-1 min-w-0">
                   <div className="flex items-center justify-between mb-0.5">
-                    <h3 className="font-semibold text-text-heading">
+                    <h3 className="text-sm sm:text-lg font-semibold text-text-heading">
                       {isToday ? "Hari Ini" : formatter.format(date)}
                     </h3>
                   </div>
 
-                  <p className="text-sm font-medium text-text-muted truncate">
+                  <p className="text-xs sm:text-sm font-medium text-text-muted truncate">
                     {calendar.description}
                   </p>
                 </div>

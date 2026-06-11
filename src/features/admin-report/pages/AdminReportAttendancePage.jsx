@@ -21,7 +21,9 @@ export const AdminReportAttendancePage = () => {
 
   return (
     <div className="p-6">
-      <h1 className="text-xl font-bold text-text-heading">Absensi Hari Ini</h1>
+      <h1 className="text-lg sm:text-xl font-bold text-text-heading">
+        Absensi Hari Ini
+      </h1>
       <div className="mt-4">
         <Modal isOpen={selectedData} title="Edit" onClose={handleClose}>
           <AdminReportForm
