@@ -7,7 +7,7 @@ import useTeachingAssignment from "../hooks/useTeachingAssignment";
 import useClassList from "@/features/class/hooks/useClassList";
 import useSubjectList from "@/features/subject/hooks/useSubjectList";
 
-const TeachingAssignmentHeader = () => {
+const TeachingAssignmentHeader = ({ status }) => {
   const navigate = useNavigate();
   const { data: classes } = useClassList();
   const { data: subjects } = useSubjectList();
@@ -44,10 +44,17 @@ const TeachingAssignmentHeader = () => {
           ))}
         </FormSelect>
       </div>
-      <Button onClick={() => navigate("create")}>
-        <MdAdd size={18} />
-        Tambah
-      </Button>
+      {status === "completed" ? (
+        <></>
+      ) : (
+        <Button
+          disabled={status !== "draft"}
+          onClick={() => navigate("create")}
+        >
+          <MdAdd size={18} />
+          Tambah
+        </Button>
+      )}
     </div>
   );
 };

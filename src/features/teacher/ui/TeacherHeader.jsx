@@ -21,10 +21,14 @@ const TeacherHeader = ({ openModal }) => {
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
       <div className="flex gap-2">
-        <Button onClick={() => navigate("create")}>
+        <Button
+          disabled={status !== "draft"}
+          onClick={() => navigate("create")}
+        >
           <MdAdd size={18} /> Tambah
         </Button>
         <Button
+          disabled={status !== "draft"}
           onClick={() => openModal()}
           variant="outline"
           className="flex items-center"

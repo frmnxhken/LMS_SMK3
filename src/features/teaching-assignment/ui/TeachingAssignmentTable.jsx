@@ -6,7 +6,7 @@ import { useNavigate } from "react-router";
 import useTeachingAssignmentDelete from "../hooks/useTeachingAssignmentDelete";
 import { MdDelete, MdEdit } from "react-icons/md";
 
-const TeachingAssignmentTable = ({ isLoading, data }) => {
+const TeachingAssignmentTable = ({ isLoading, data, status }) => {
   const navigate = useNavigate();
   const { onDelete } = useTeachingAssignmentDelete();
 
@@ -19,7 +19,7 @@ const TeachingAssignmentTable = ({ isLoading, data }) => {
           <th className="table-head-cell">Kelas</th>
           <th className="table-head-cell">NIP</th>
           <th className="table-head-cell">Guru</th>
-          <th className="table-head-cell">Aksi</th>
+          {status !== "completed" && <th className="table-head-cell">Aksi</th>}
         </tr>
       </thead>
       <tbody className="text-xs">
@@ -41,17 +41,24 @@ const TeachingAssignmentTable = ({ isLoading, data }) => {
               </td>
               <td className="table-body-cell">{item.nip}</td>
               <td className="table-body-cell">{item.teacher}</td>
-              <td className="table-body-cell flex space-x-2">
-                <Button
-                  variant="table"
-                  onClick={() => navigate(`${item.id}/edit`)}
-                >
-                  <MdEdit size={18} />
-                </Button>
-                <Button variant="table" onClick={() => onDelete(item.id)}>
-                  <MdDelete size={18} />
-                </Button>
-              </td>
+              {status !== "completed" && (
+                <td className="table-body-cell flex space-x-2">
+                  <Button
+                    disabled={status !== "draft"}
+                    variant="table"
+                    onClick={() => navigate(`${item.id}/edit`)}
+                  >
+                    <MdEdit size={18} />
+                  </Button>
+                  <Button
+                    disabled={status !== "draft"}
+                    variant="table"
+                    onClick={() => onDelete(item.id)}
+                  >
+                    <MdDelete size={18} />
+                  </Button>
+                </td>
+              )}
             </tr>
           ))
         )}

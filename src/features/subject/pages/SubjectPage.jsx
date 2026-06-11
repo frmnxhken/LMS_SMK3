@@ -5,15 +5,17 @@ import SubjectTable from "../ui/SubjectTable";
 import SubjectHeader from "../ui/SubjectHeader";
 import useSubject from "../hooks/useSubject";
 import useSubjectAction from "../hooks/useSubjectAction";
+import { useAcademicYear } from "@/app/contexts/AcademicYearContext";
 
 export const SubjectPage = () => {
   const { isLoading, data } = useSubject();
+  const { status } = useAcademicYear();
   const { isOpen, isPending, selectedData, errors, actions } =
     useSubjectAction();
 
   return (
     <div className="container mx-auto p-6">
-      <SubjectHeader onOpen={actions.handleOpen} />
+      <SubjectHeader onOpen={actions.handleOpen} status={status} />
 
       <Modal
         isOpen={isOpen}

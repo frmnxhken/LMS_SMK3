@@ -1,5 +1,5 @@
 import api from "@/shared/api/ApiClient";
-import { useEffect, createContext } from "react";
+import { useEffect, createContext, useContext } from "react";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useToast } from "@/app/contexts/ToastContext";
 
@@ -45,4 +45,8 @@ export function AcademicYearProvider({ children }) {
       {children}
     </AcademicYearContext.Provider>
   );
+}
+
+export function useAcademicYear() {
+  return useContext(AcademicYearContext);
 }

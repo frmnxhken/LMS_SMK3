@@ -7,7 +7,7 @@ import { PiMicrosoftExcelLogo } from "react-icons/pi";
 import FormSelect from "@/shared/ui/forms/FormSelect";
 import useStudent from "../hooks/useStudent";
 
-const StudentHeader = ({ classes, handleOpen }) => {
+const StudentHeader = ({ classes, handleOpen, status }) => {
   const navigate = useNavigate();
   const [keyword, setKeyword] = useState("");
   const { filter, handleFilterChange, handleSearchChange } = useStudent();
@@ -20,18 +20,29 @@ const StudentHeader = ({ classes, handleOpen }) => {
   return (
     <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
       <div className="flex gap-2">
-        <Button onClick={() => navigate("create")}>
-          <MdAdd size={18} />
-          Tambah
-        </Button>
-        <Button
-          onClick={() => handleOpen("import")}
-          variant="outline"
-          className="flex items-center"
-        >
-          <PiMicrosoftExcelLogo size={18} />
-          Import
-        </Button>
+        {status === "completed" ? (
+          <></>
+        ) : (
+          <>
+            <Button
+              disabled={status !== "draft"}
+              onClick={() => navigate("create")}
+            >
+              <MdAdd size={18} />
+              Tambah
+            </Button>
+            <Button
+              disabled={status !== "draft"}
+              onClick={() => handleOpen("import")}
+              variant="outline"
+              className="flex items-center"
+            >
+              <PiMicrosoftExcelLogo size={18} />
+              Import
+            </Button>
+          </>
+        )}
+
         <Button
           onClick={() => handleOpen("export")}
           variant="outline"

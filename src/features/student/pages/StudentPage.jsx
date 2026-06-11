@@ -8,10 +8,12 @@ import StudentExportForm from "../ui/StudentExportForm";
 import useStudent from "../hooks/useStudent";
 import useStudentAction from "../hooks/useStudentAction";
 import useClassList from "@/features/class/hooks/useClassList";
+import { useAcademicYear } from "@/app/contexts/AcademicYearContext";
 
 export const StudentPage = () => {
   const { isLoading, data, page, handlePageChange, pagination } = useStudent();
   const { data: classes } = useClassList();
+  const { status } = useAcademicYear();
   const { isOpen, isImporting, isExporting, errors, actions } =
     useStudentAction();
 
@@ -19,7 +21,11 @@ export const StudentPage = () => {
     <div className="container mx-auto p-6">
       <h1 className="text-xl font-bold text-text-heading mb-2">Daftar Siswa</h1>
 
-      <StudentHeader classes={classes} handleOpen={actions.handleOpen} />
+      <StudentHeader
+        classes={classes}
+        handleOpen={actions.handleOpen}
+        status={status}
+      />
 
       <Modal
         isOpen={isOpen}
@@ -45,7 +51,12 @@ export const StudentPage = () => {
       </Modal>
 
       <div className="table-responsive mt-4">
-        <StudentTable students={data} page={page} isLoading={isLoading} />
+        <StudentTable
+          students={data}
+          page={page}
+          isLoading={isLoading}
+          status={status}
+        />
       </div>
 
       <Pagination

@@ -6,7 +6,7 @@ import TeacherTableSkeleton from "./skeletons/TeacherTableSkeleton";
 import useTeacherDelete from "../hooks/useTeacherDelete";
 import { MdDelete, MdEdit } from "react-icons/md";
 
-const TeacherTable = ({ teachers = [], isLoading }) => {
+const TeacherTable = ({ teachers = [], isLoading, status }) => {
   const navigate = useNavigate();
   const { onDelete } = useTeacherDelete();
 
@@ -41,12 +41,17 @@ const TeacherTable = ({ teachers = [], isLoading }) => {
               <td className="table-body-cell">{teacher.phone}</td>
               <td className="table-body-cell flex space-x-2">
                 <Button
+                  disabled={status !== "draft"}
                   variant="table"
                   onClick={() => navigate(`${teacher.id}/edit`)}
                 >
                   <MdEdit size={18} />
                 </Button>
-                <Button variant="table" onClick={() => onDelete(teacher.id)}>
+                <Button
+                  disabled={status !== "draft"}
+                  variant="table"
+                  onClick={() => onDelete(teacher.id)}
+                >
                   <MdDelete size={18} />
                 </Button>
               </td>

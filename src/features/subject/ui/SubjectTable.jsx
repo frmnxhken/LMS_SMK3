@@ -4,7 +4,7 @@ import EmptyState from "@/shared/ui/Feedback/EmptyState";
 import SubjectTableSkeleton from "./skeletons/SubjectTableSkeleton";
 import { MdDelete, MdEdit } from "react-icons/md";
 
-const SubjectTable = ({ data = [], isLoading, onEdit, onDelete }) => {
+const SubjectTable = ({ data = [], isLoading, onEdit, onDelete, status }) => {
   return (
     <table className="table-custom">
       <thead className="">
@@ -29,10 +29,18 @@ const SubjectTable = ({ data = [], isLoading, onEdit, onDelete }) => {
               <td className="table-body-cell">{index + 1}</td>
               <td className="table-body-cell">{item.name}</td>
               <td className="table-body-cell flex space-x-2">
-                <Button variant="table" onClick={() => onEdit(item)}>
+                <Button
+                  disabled={status !== "draft"}
+                  variant="table"
+                  onClick={() => onEdit(item)}
+                >
                   <MdEdit size={18} />
                 </Button>
-                <Button variant="table" onClick={() => onDelete(item.id)}>
+                <Button
+                  disabled={status !== "draft"}
+                  variant="table"
+                  onClick={() => onDelete(item.id)}
+                >
                   <MdDelete size={18} />
                 </Button>
               </td>

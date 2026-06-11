@@ -6,7 +6,7 @@ import useStudentDelete from "../hooks/useStudentDelete";
 import { MdDelete, MdEdit } from "react-icons/md";
 import StudentTableSkeleton from "./skeletons/StudentTableSkeleton";
 
-const StudentTable = ({ students = [], page, isLoading }) => {
+const StudentTable = ({ students = [], page, isLoading, status }) => {
   const navigate = useNavigate();
   const { onDelete } = useStudentDelete();
 
@@ -19,7 +19,7 @@ const StudentTable = ({ students = [], page, isLoading }) => {
           <th className="table-head-cell">Nama</th>
           <th className="table-head-cell">Username</th>
           <th className="table-head-cell">Kelas</th>
-          <th className="table-head-cell">Aksi</th>
+          {status !== "completed" && <th className="table-head-cell">Aksi</th>}
         </tr>
       </thead>
       <tbody className="text-xs">
@@ -41,17 +41,24 @@ const StudentTable = ({ students = [], page, isLoading }) => {
               <td className="table-body-cell">
                 {student.level + " " + student.major + " " + student.section}
               </td>
-              <td className="table-body-cell flex space-x-2">
-                <Button
-                  variant="table"
-                  onClick={() => navigate(`${student.id}/edit`)}
-                >
-                  <MdEdit size={18} />
-                </Button>
-                <Button variant="table" onClick={() => onDelete(student.id)}>
-                  <MdDelete size={18} />
-                </Button>
-              </td>
+              {status !== "completed" && (
+                <td className="table-body-cell flex space-x-2">
+                  <Button
+                    disabled={status !== "draft"}
+                    variant="table"
+                    onClick={() => navigate(`${student.id}/edit`)}
+                  >
+                    <MdEdit size={18} />
+                  </Button>
+                  <Button
+                    disabled={status !== "draft"}
+                    variant="table"
+                    onClick={() => onDelete(student.id)}
+                  >
+                    <MdDelete size={18} />
+                  </Button>
+                </td>
+              )}
             </tr>
           ))
         )}
