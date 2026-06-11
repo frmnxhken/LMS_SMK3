@@ -1,3 +1,4 @@
+import { formatBytes } from "@/shared/lib/formatByte";
 import React from "react";
 import { IoDocument, IoTrashOutline } from "react-icons/io5";
 
@@ -51,7 +52,7 @@ const FileCard = ({
             {original_name}
           </p>
           <p className="text-[11px] font-medium text-text-muted uppercase tracking-wider">
-            {extension} • {size}
+            {extension} • {formatBytes(size)}
           </p>
         </div>
       </div>
