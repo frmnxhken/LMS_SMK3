@@ -5,6 +5,7 @@ const useQuizBuilderDetail = (id) => {
   return useQuery({
     queryKey: ["question", id],
     queryFn: () => getDetailQuestion(id),
+    staleTime: 1000 * 60 * 10,
   });
 };
 

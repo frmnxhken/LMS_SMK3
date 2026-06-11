@@ -58,8 +58,14 @@ export const QuizBuilderPage = () => {
   }
 
   return (
-    <div className="max-w-[800px] mx-auto p-6 space-y-8 min-h-screen">
-      <h1 className="text-2xl font-bold text-text-heading">Question Builder</h1>
+    <div className="max-w-[800px] mx-auto p-6 space-y-6 min-h-screen">
+      <h1 className="text-2xl font-bold text-text-heading">
+        {data?.meta?.subject?.name}
+      </h1>
+      <div>
+        <p className="text-sm">Judul Soal: {data?.meta?.title}</p>
+        <p className="text-sm">Jenis Ujian: {data?.meta?.type}</p>
+      </div>
 
       {questions.map((question, index) => (
         <QuizBuilderForm
