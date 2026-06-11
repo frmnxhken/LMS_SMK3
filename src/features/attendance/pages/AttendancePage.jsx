@@ -5,6 +5,7 @@ import { Haversine } from "@/shared/lib/Haversine";
 import useAttendanceCreate from "../hooks/useAttendanceCreate";
 import useAttendance from "../hooks/useAttendance";
 import { useToast } from "@/app/contexts/ToastContext";
+import AttendanceTable from "../ui/AttendanceTable";
 
 export const AttendancePage = () => {
   const { data, isLoading } = useAttendance();
@@ -13,7 +14,7 @@ export const AttendancePage = () => {
   useEffect(() => {
     if (!data) return;
     if (data?.meta?.is_school_day !== 1) {
-      addToast(data?.meta?.description, "error");
+      addToast("Libur: " + data?.meta?.description, "error");
     }
   }, [data?.meta?.is_school_day]);
 
@@ -27,8 +28,11 @@ export const AttendancePage = () => {
     longitude: "",
   });
 
-  const OFFICE_COORD = { lat: -7.158017, lng: 113.470154 };
-  const MAX_RADIUS = 150;
+  const SCHOOL_COORD = {
+    lat: parseFloat(data?.meta?.latitude),
+    lng: parseFloat(data?.meta?.longitude),
+  };
+  const MAX_RADIUS = parseInt(data?.meta?.radius);
   const { handleSubmit } = useAttendanceCreate();
 
   const updateLocation = () => {
@@ -46,7 +50,7 @@ export const AttendancePage = () => {
           longitude: position.coords.longitude,
         });
 
-        const dist = Haversine(myPosition, OFFICE_COORD);
+        const dist = Haversine(myPosition, SCHOOL_COORD);
 
         setLocationState({
           status: "active",
@@ -98,42 +102,10 @@ export const AttendancePage = () => {
         <h3 className="text-md font-semibold text-text-heading px-1">
           Riwayat Kehadiran
         </h3>
-        <button className="text-sm font-semibold text-primary hover:underline">
-          Lihat Semua
-        </button>
       </div>
 
       <div className="table-responsive">
-        <table className="table-custom">
-          <thead>
-            <tr>
-              <th className="table-head-cell">No</th>
-              <th className="table-head-cell">Tanggal</th>
-              <th className="table-head-cell text-center">Waktu Masuk</th>
-              <th className="table-head-cell text-center">Status</th>
-            </tr>
-          </thead>
-          <tbody className="text-xs">
-            <tr className="table-body-row">
-              <td className="table-body-cell">1</td>
-              <td className="table-body-cell">10 Mar 2026</td>
-              <td className="table-body-cell text-center">07:45:12</td>
-              <td className="table-body-cell text-center">
-                <span className="badge badge-done">
-                  <Badge variant="success" label="Hadir" />
-                </span>
-              </td>
-            </tr>
-            <tr className="table-body-row">
-              <td className="table-body-cell">2</td>
-              <td className="table-body-cell">9 Mar 2026</td>
-              <td className="table-body-cell text-center">07:45:12</td>
-              <td className="table-body-cell text-center">
-                <span className="badge badge-done">Tepat Waktu</span>
-              </td>
-            </tr>
-          </tbody>
-        </table>
+        <AttendanceTable data={data?.data} isLoading={isLoading} />
       </div>
     </div>
   );
