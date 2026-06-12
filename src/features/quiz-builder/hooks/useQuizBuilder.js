@@ -6,17 +6,25 @@ import {
   updateQuestion,
   deleteQuestion,
 } from "../api/quizBuilderApi";
+import { useToast } from "@/app/contexts/ToastContext";
 
 const useQuizBuilder = (examId) => {
   const queryClient = useQueryClient();
   const [errors, setErrors] = useState({});
+  const { addToast } = useToast();
 
   const createMutation = useMutation({
     mutationFn: ({ id, payload }) => createQuestion(id, payload),
+    onSuccess: () => {
+      addToast("Data berhasil disimpan!");
+    },
   });
 
   const updateMutation = useMutation({
     mutationFn: ({ id, payload }) => updateQuestion(id, payload),
+    onSuccess: () => {
+      addToast("Data berhasil diperbarui!");
+    },
   });
 
   const deleteMutation = useMutation({
