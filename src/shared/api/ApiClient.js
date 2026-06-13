@@ -24,6 +24,7 @@ api.interceptors.response.use(
   (error) => {
     const status = error.response?.status;
     const message = error.response?.data?.message;
+    const status_academic = error.response?.data?.status;
 
     if (status === 401) {
       localStorage.removeItem("token");
@@ -34,7 +35,11 @@ api.interceptors.response.use(
     if (status === 403 && message === "invalid academic") {
       localStorage.removeItem("token");
       localStorage.removeItem("user");
-      window.location.href = "/403";
+      if (status_academic === "draft") {
+        window.location.href = "/inactive/draft";
+      } else {
+        window.location.href = "/inactive/completed";
+      }
     }
 
     return Promise.reject(error);

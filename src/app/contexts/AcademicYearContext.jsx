@@ -15,7 +15,7 @@ export function AcademicYearProvider({ children }) {
       const { data } = await api.get("/academic-years/current");
       return data;
     },
-    staleTime: Infinity,
+    staleTime: 1000 * 60 * 10,
   });
 
   useEffect(() => {

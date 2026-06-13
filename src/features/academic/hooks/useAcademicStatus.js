@@ -8,10 +8,11 @@ export const useAcademicStatus = () => {
     mutationFn: ({ id, status }) => updateAcademicYearStatus(id, status),
 
     onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["academies"], exact: true });
       queryClient.invalidateQueries({
-        queryKey: ["academies"],
+        queryKey: ["academic-year"],
+        exact: true,
       });
-      queryClient.invalidateQueries(["academic-year"]);
     },
   });
 

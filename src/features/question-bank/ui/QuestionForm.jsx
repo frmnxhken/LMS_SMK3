@@ -1,7 +1,7 @@
+import React, { useState } from "react";
 import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
 import FormSelect from "@/shared/ui/forms/FormSelect";
-import React, { useState } from "react";
 
 const QuestionForm = ({ subjects, initData = {}, onSubmit, errors }) => {
   const [formData, setFormData] = useState({
@@ -29,7 +29,7 @@ const QuestionForm = ({ subjects, initData = {}, onSubmit, errors }) => {
         name="title"
         value={formData.title}
         onInput={handleInput}
-        feedback={errors?.duration?.[0]}
+        feedback={errors?.title?.[0]}
       />
       <FormInput
         label="Durasi"

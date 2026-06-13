@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router";
 import AssesmentCard from "../ui/AssesmentCard";
 import useAssesment from "../hooks/useAssessment";
+import { MdPerson } from "react-icons/md";
 
 export const AssessmentPage = () => {
   const { id_class, id_post } = useParams();
@@ -17,9 +18,12 @@ export const AssessmentPage = () => {
         <h1 className="text-heading font-bold text-md sm:text-xl">
           Daftar Pengumpulan
         </h1>
-        <h1 className="text-heading font-bold text-md sm:text-xl">
-          {done} / {total}
-        </h1>
+        <div className="flex items-center gap-2">
+          <h1 className="text-heading font-bold text-md sm:text-xl">
+            {done} / {total}
+          </h1>
+          <MdPerson size={24} />
+        </div>
       </div>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {data?.map((assesment, index) => (

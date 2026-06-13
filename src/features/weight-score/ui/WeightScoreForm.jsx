@@ -3,7 +3,7 @@ import Button from "@/shared/ui/buttons/Button";
 import FormInput from "@/shared/ui/forms/FormInput";
 import { useToast } from "@/app/contexts/ToastContext";
 
-const WeightScoreForm = ({ initData = {}, onSubmit, onPending, errors }) => {
+const WeightScoreForm = ({ initData = {}, onSubmit, isPending, errors }) => {
   const { addToast } = useToast();
   const [formData, setFormData] = useState({
     assignment_weight: initData?.assignment_weight * 100 || "",
@@ -58,7 +58,7 @@ const WeightScoreForm = ({ initData = {}, onSubmit, onPending, errors }) => {
         onInput={handleInput}
         feedback={errors?.uas_weight?.[0]}
       />
-      <Button isLoading={onPending} size="md">
+      <Button isLoading={isPending} size="md">
         Simpan
       </Button>
     </form>

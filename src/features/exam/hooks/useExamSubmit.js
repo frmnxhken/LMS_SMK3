@@ -3,7 +3,7 @@ import { useState } from "react";
 import { submitExam } from "../api/examApi";
 import { useNavigate } from "react-router";
 
-const useExamSubmit = (id_class, id_exam) => {
+const useExamSubmit = (id_class, id_exam, attemptId) => {
   const [errors, setErrors] = useState(null);
   const queryClient = useQueryClient();
   const navigate = useNavigate();
@@ -11,7 +11,8 @@ const useExamSubmit = (id_class, id_exam) => {
     mutationFn: (payload) => submitExam(id_class, id_exam, payload),
     onSuccess: () => {
       queryClient.invalidateQueries(["examDetail", id_class, id_exam]);
-      navigate(`/course/${id_class}/exam`);
+      navigate(`/course/${id_class}/exam/${id_exam}/prepare`);
+      localStorage.removeItem(`exam_attempt_${attemptId}`);
     },
   });
 

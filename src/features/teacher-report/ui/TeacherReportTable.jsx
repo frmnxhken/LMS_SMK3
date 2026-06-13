@@ -3,6 +3,8 @@ import TeacherReportTableSkeleton from "./skeletons/TeacherReportTableSkeleton";
 import { Link } from "react-router";
 
 const TeacherReportTable = ({ reports, isLoading }) => {
+  const rankColors = ["bg-yellow-200", "bg-slate-200", "bg-orange-200"];
+
   return (
     <table className="table-custom">
       <thead className="">
@@ -21,7 +23,10 @@ const TeacherReportTable = ({ reports, isLoading }) => {
       <tbody className="text-xs">
         {!isLoading &&
           reports?.map((report, index) => (
-            <tr className="table-body-row">
+            <tr
+              key={report.id}
+              className={`table-body-row ${rankColors[index]}`}
+            >
               <td className="table-body-cell border-r border-app-border">
                 {index + 1}
               </td>

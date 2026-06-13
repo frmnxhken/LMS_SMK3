@@ -12,7 +12,7 @@ const ExamQuestionNav = ({
   attemptId,
 }) => {
   const { id_class, id_exam } = useParams();
-  const { handleSubmit } = useExamSubmit(id_class, id_exam);
+  const { handleSubmit } = useExamSubmit(id_class, id_exam, attemptId);
   const { getAnswers } = useExamAnswer(attemptId);
   const onSubmit = () => {
     const answers = getAnswers();

@@ -21,9 +21,10 @@ const ProtectedRoute = ({ allowedRoles }) => {
     if (status === "active") {
       return <Outlet />;
     }
-    localStorage.removeItem("token");
-    localStorage.removeItem("user");
-    return <Navigate to="/403" replace />;
+    if (status === "draft") {
+      return <Navigate to="/inactive/draft" replace />;
+    }
+    return <Navigate to="/inactive/completed" replace />;
   }
 
   return <Outlet />;

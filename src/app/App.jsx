@@ -9,6 +9,7 @@ import LoginPage from "@/features/authentication/pages/LoginPage";
 import { useIsFetching } from "@tanstack/react-query";
 import TopLoader from "@/shared/ui/Feedback/TopLoader";
 import NotFoundPage from "@/shared/pages/NotFoundPage";
+import AcademicStatusPage from "@/shared/pages/AcademicStatusPage";
 
 const App = () => {
   const isFetching = useIsFetching();
@@ -19,6 +20,7 @@ const App = () => {
       <ScrollToTop />
       <Routes>
         <Route path="*" element={<NotFoundPage />} />
+        <Route path="inactive/:type" element={<AcademicStatusPage />} />
         <Route
           element={<ProtectedRoute allowedRoles={["student", "teacher"]} />}
         >

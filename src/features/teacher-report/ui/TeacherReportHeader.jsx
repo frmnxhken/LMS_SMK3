@@ -11,7 +11,9 @@ const TeacherReportHeader = ({ meta, idClass }) => {
 
   return (
     <div className="mb-6">
-      <h1 className="text-lg text-text-heading font-bold">Data Nilai Siswa</h1>
+      <h1 className="text-md sm:text-xl text-text-heading font-bold">
+        Data Nilai Siswa
+      </h1>
       <div className="flex flex-col sm:flex-row gap-4 justify-between items-baseline">
         <div>
           <p className="text-sm font-medium text-text-muted">

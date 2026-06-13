@@ -4,7 +4,7 @@ import { getListAcademicYears } from "../api/academicApi";
 const useAcademic = () => {
   return useQuery({
     queryKey: ["academies"],
-    queryFn: getListAcademicYears,
+    queryFn: () => getListAcademicYears(),
     staleTime: 1000 * 60 * 10,
   });
 };
