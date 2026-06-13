@@ -32,7 +32,7 @@ const QuestionForm = ({ subjects, initData = {}, onSubmit, errors }) => {
         feedback={errors?.title?.[0]}
       />
       <FormInput
-        label="Durasi"
+        label="Durasi (menit)"
         type="number"
         name="duration"
         value={formData.duration}

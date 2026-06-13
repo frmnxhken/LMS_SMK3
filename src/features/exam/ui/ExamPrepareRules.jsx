@@ -13,7 +13,7 @@ const ExamPrepareRules = () => {
       <h2 className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">
         Tata Tertib & Petunjuk Ujian
       </h2>
-      <ol className="space-y-4 text-sm text-slate-600 list-decimal list-inside pl-1">
+      <ol className="space-y-4 text-sm text-text-muted list-decimal list-inside pl-4">
         {rules.map((rule, index) => (
           <li key={index} className="leading-relaxed pl-2 -indent-5">
             {rule}

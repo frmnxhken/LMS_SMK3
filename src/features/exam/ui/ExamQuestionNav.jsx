@@ -17,7 +17,10 @@ const ExamQuestionNav = ({
   const onSubmit = () => {
     const answers = getAnswers();
     if (handleSubmit) {
-      handleSubmit(answers);
+      let confirmed = confirm(
+        "Pastikan semua jawaban sudah terisi dengan benar. Apakah Anda siap untuk menyelesaikan dan mengumpulkan ujian ini sekarang?",
+      );
+      if (confirmed) handleSubmit(answers);
     }
   };
   return (

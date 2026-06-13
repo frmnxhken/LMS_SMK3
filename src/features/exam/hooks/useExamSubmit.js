@@ -10,8 +10,11 @@ const useExamSubmit = (id_class, id_exam, attemptId) => {
   const mutation = useMutation({
     mutationFn: (payload) => submitExam(id_class, id_exam, payload),
     onSuccess: () => {
-      queryClient.invalidateQueries(["examDetail", id_class, id_exam]);
-      navigate(`/course/${id_class}/exam/${id_exam}/prepare`);
+      queryClient.refetchQueries({
+        queryKey: ["examDetail", id_class, id_exam],
+        exact: true,
+      });
+      navigate(`/course/${id_class}/exam`);
       localStorage.removeItem(`exam_attempt_${attemptId}`);
     },
   });

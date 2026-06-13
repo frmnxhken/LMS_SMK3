@@ -26,7 +26,7 @@ const useExamTimer = (startedAt, duration, attemptId) => {
         setTimeLeft("00:00:00");
         clearInterval(timer);
         alert("Waktu ujian telah habis! Jawaban Anda akan otomatis dikirim.");
-        return;
+        return navigate(`/course/${id_class}/exam`);
       }
 
       const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
