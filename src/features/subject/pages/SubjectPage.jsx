@@ -36,6 +36,7 @@ export const SubjectPage = () => {
           isLoading={isLoading}
           onEdit={actions.onEdit}
           onDelete={actions.onDelete}
+          status={status}
         />
       </div>
     </div>
