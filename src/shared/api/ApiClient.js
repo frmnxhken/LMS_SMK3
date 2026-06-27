@@ -25,11 +25,14 @@ api.interceptors.response.use(
     const status = error.response?.status;
     const message = error.response?.data?.message;
     const status_academic = error.response?.data?.status;
+    const requestUrl = error.config.url;
 
     if (status === 401) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      window.location.href = "/login";
+      if (!requestUrl.includes("/login")) {
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        window.location.href = "/login";
+      }
     }
 
     if (status === 403 && message === "invalid academic") {
