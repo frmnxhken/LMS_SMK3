@@ -31,6 +31,11 @@ export const deleteStudent = async (id) => {
   return res;
 };
 
+export const resetPassword = async (id) => {
+  const res = await api.post(`/admin/student/${id}/reset-password`);
+  return res.data;
+};
+
 export const importStudents = async (payload) => {
   const res = await api.post("/admin/student/import", payload, {
     headers: {

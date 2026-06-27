@@ -15,16 +15,10 @@ const useQuizBuilder = (examId) => {
 
   const createMutation = useMutation({
     mutationFn: ({ id, payload }) => createQuestion(id, payload),
-    onSuccess: () => {
-      addToast("Data berhasil disimpan!");
-    },
   });
 
   const updateMutation = useMutation({
     mutationFn: ({ id, payload }) => updateQuestion(id, payload),
-    onSuccess: () => {
-      addToast("Data berhasil diperbarui!");
-    },
   });
 
   const deleteMutation = useMutation({
@@ -62,6 +56,8 @@ const useQuizBuilder = (examId) => {
       await queryClient.invalidateQueries({
         queryKey: ["question", examId],
       });
+
+      addToast("Data berhasil disimpan!");
     } catch (error) {
       if (error.response?.status === 422) {
         setErrors(error.response.data.errors ?? {});

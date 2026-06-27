@@ -19,6 +19,7 @@ export const TeacherEditPage = () => {
           <TeacherEditSkeleton />
         ) : (
           <TeacherForm
+            id={id}
             initData={data}
             onSubmit={handleUpdate}
             isPending={isUpdating}

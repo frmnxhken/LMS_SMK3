@@ -44,6 +44,7 @@ export const ExamPreparePage = () => {
               <ExamPrepareMetaCard
                 duration={data?.assignment?.exam?.duration}
                 dueDate={data?.assignment?.end_time}
+                start={data?.assignment?.start_time}
               />
               <ExamPrepareRules />
             </div>
@@ -56,6 +57,8 @@ export const ExamPreparePage = () => {
               isAgreed={isAgreed}
               onAgreeChange={setIsAgreed}
               onStart={handleStartExam}
+              endTime={data?.assignment?.end_time}
+              startTime={data?.assignment?.start_time}
             />
           )}
         </>

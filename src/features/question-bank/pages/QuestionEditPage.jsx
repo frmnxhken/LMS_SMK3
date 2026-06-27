@@ -1,6 +1,5 @@
 import React from "react";
 import QuestionForm from "../ui/QuestionForm";
-import useQuestionDetail from "../hooks/useQuestionDetail";
 import { useParams } from "react-router";
 import useQuestionUpdate from "../hooks/useQuestionUpdate";
 import useSubjectList from "@/features/subject/hooks/useSubjectList";
@@ -8,8 +7,7 @@ import useSubjectList from "@/features/subject/hooks/useSubjectList";
 export const QuestionEditPage = () => {
   const { id } = useParams();
   const { data: subjects } = useSubjectList();
-  const { isLoading, data } = useQuestionDetail(id);
-  const { errors, handleSubmit } = useQuestionUpdate(id);
+  const { data, isLoading, errors, handleSubmit } = useQuestionUpdate(id);
   if (isLoading) return;
 
   return (

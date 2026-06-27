@@ -39,7 +39,7 @@ const Toast = ({ toast }) => {
           className={`h-full ${config.bg}`}
           style={{
             width: "100%",
-            animation: "shrink 3s linear forwards",
+            animation: "shrink 1.5s linear forwards",
           }}
         />
       </div>

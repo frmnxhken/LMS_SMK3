@@ -21,6 +21,7 @@ export const StudentEditPage = () => {
           <StudentEditSkeleton />
         ) : (
           <StudentForm
+            id={id}
             initData={data}
             classes={classes}
             errors={errors}

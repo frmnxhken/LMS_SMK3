@@ -12,7 +12,7 @@ export const AttendancePage = () => {
   const { addToast } = useToast();
 
   useEffect(() => {
-    if (!data) return;
+    if (isLoading) return;
     if (data?.meta?.is_school_day !== 1) {
       addToast("Libur: " + data?.meta?.description, "error");
     }

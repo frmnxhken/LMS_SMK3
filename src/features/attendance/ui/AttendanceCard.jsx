@@ -58,7 +58,7 @@ const AttendanceCard = ({
             </h2>
             <button
               onClick={onRefresh}
-              className="text-[11px] font-bold text-primary flex items-center gap-1 mt-1 underline"
+              className="text-[11px] font-bold text-primary flex items-center gap-1 mt-1 underline cursor-pointer"
             >
               <HiOutlineRefresh className={isLoading ? "animate-spin" : ""} />
               {isGpsOff ? "AKTIFKAN GPS" : "PERBARUI POSISI"}
@@ -67,7 +67,7 @@ const AttendanceCard = ({
         </div>
 
         <div className="w-full md:w-auto flex flex-col items-center gap-2">
-          {isSchoolDay && (
+          {isSchoolDay === 1 && (
             <>
               <Button size="md" disabled={!canAbsen} onClick={onAbsen}>
                 <FiNavigation className={canAbsen ? "animate-bounce" : ""} />

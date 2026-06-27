@@ -5,7 +5,7 @@ import {
   IoInformationCircleOutline,
 } from "react-icons/io5";
 
-const ExamPrepareMetaCard = ({ duration, dueDate }) => {
+const ExamPrepareMetaCard = ({ duration, dueDate, start }) => {
   return (
     <div className="md:col-span-1 space-y-4">
       <div className="p-4 border border-app-border rounded-xl space-y-4 bg-white">
@@ -23,6 +23,17 @@ const ExamPrepareMetaCard = ({ duration, dueDate }) => {
           </div>
         </div>
 
+        <div className="flex items-center gap-3">
+          <div className="p-2 bg-emerald-500 text-white rounded-lg shrink-0">
+            <IoAlertCircleOutline size={18} />
+          </div>
+          <div>
+            <p className="text-xs text-text-muted font-bold uppercase tracking-wide">
+              Ujian Dimulai
+            </p>
+            <p className="text-sm font-semibold text-emerald-600">{start}</p>
+          </div>
+        </div>
         <div className="flex items-center gap-3">
           <div className="p-2 bg-rose-500 text-white rounded-lg shrink-0">
             <IoAlertCircleOutline size={18} />

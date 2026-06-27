@@ -13,6 +13,7 @@ const useStudentUpdate = (id) => {
   const { data, isLoading } = useQuery({
     queryKey: ["student", id],
     queryFn: () => getStudentDetail(id),
+    staleTime: 1000 * 60 * 3,
     enabled: !!id,
   });
 

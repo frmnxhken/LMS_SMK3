@@ -35,6 +35,11 @@ export const deleteTeacher = async (id) => {
   return res.data;
 };
 
+export const resetPassword = async (id) => {
+  const res = await api.post(`/admin/teacher/${id}/reset-password`);
+  return res.data;
+};
+
 export const importTeachers = async (payload) => {
   const res = await api.post("/admin/teacher/import", payload, {
     headers: {

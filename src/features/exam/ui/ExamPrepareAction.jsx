@@ -1,6 +1,19 @@
 import React from "react";
 
-const ExamPrepareAction = ({ isAgreed, onAgreeChange, onStart }) => {
+const ExamPrepareAction = ({
+  isAgreed,
+  onAgreeChange,
+  onStart,
+  startTime,
+  endTime,
+}) => {
+  const now = new Date();
+  const startDate = new Date(startTime.replace(" ", "T"));
+  const endDate = new Date(endTime.replace(" ", "T"));
+  const isNotStarted = now < startDate;
+  const isEndTime = now > endDate;
+  if (isNotStarted || isEndTime) return;
+
   return (
     <div className="border-t border-slate-100 space-y-4 py-4 pt-12">
       <label className="flex items-start gap-3 cursor-pointer group select-none">
