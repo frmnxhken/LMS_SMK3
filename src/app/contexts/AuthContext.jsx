@@ -17,13 +17,21 @@ export const AuthProvider = ({ children }) => {
       const response = await api.post("/login", payload);
       return response.data;
     },
-    onSuccess: (data) => {
+    onSuccess: async (data) => {
       const { user: userData, token } = data;
       setUser(userData);
       setToken(token);
       localStorage.setItem("user", JSON.stringify(userData));
       localStorage.setItem("token", token);
       queryClient.invalidateQueries();
+
+      await queryClient.prefetchQuery({
+        queryKey: ["academic-year"],
+        queryFn: async () => {
+          const { data } = await api.get("/academic-years/current");
+          return data;
+        },
+      });
     },
   });
 
