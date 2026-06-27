@@ -1,28 +1,19 @@
 import React, { useEffect, useState } from "react";
 import AttendanceCard from "../ui/AttendanceCard";
-import Badge from "@/shared/ui/Feedback/Badge";
 import { Haversine } from "@/shared/lib/Haversine";
 import useAttendanceCreate from "../hooks/useAttendanceCreate";
 import useAttendance from "../hooks/useAttendance";
-import { useToast } from "@/app/contexts/ToastContext";
 import AttendanceTable from "../ui/AttendanceTable";
 
 export const AttendancePage = () => {
   const { data, isLoading } = useAttendance();
-  const { addToast } = useToast();
-
-  useEffect(() => {
-    if (isLoading) return;
-    if (data?.meta?.is_school_day !== 1) {
-      addToast("Libur: " + data?.meta?.description, "error");
-    }
-  }, [data?.meta?.is_school_day]);
 
   const [locationState, setLocationState] = useState({
     status: "searching",
     distance: 0,
     isInRange: false,
   });
+
   const [position, setPosition] = useState({
     latitude: "",
     longitude: "",
@@ -88,6 +79,15 @@ export const AttendancePage = () => {
   return (
     <div className="p-6 max-w-[1080px] mx-auto">
       <h1 className="text-xl font-bold text-text-heading mb-6">Absensi</h1>
+
+      {!isLoading && data?.meta.is_school_day !== 1 && (
+        <div className="bg-green-50 border-l-4 border-emerald-500 p-3 mb-6 rounded">
+          <h3 className="text-lg font-semibold text-emerald-600">Libur</h3>
+          <p className="text-emerald-600 text-xs font-medium">
+            {data?.meta?.description}
+          </p>
+        </div>
+      )}
 
       <AttendanceCard
         status={locationState.status}
