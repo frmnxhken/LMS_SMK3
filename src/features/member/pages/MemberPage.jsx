@@ -17,11 +17,7 @@ export const MemberPage = () => {
         {isLoading ? (
           <MemberCardSkeleton />
         ) : (
-          <MemberCard
-            name={data?.teacher?.name}
-            photo={data?.teacher?.photo}
-            nip={data?.teacher?.nip}
-          />
+          <MemberCard name={data?.teacher?.name} photo={data?.teacher?.photo} />
         )}
       </div>
       <div>
