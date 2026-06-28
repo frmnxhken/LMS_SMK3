@@ -23,6 +23,9 @@ import {
 } from "react-icons/md";
 import { Link, useLocation } from "react-router";
 
+const contactSupp =
+  "https://wa.me/6281333745705?text=Halo+tim+support.+Saya+ingin+melaporkan+kendala+terkait:...";
+
 const menuList = [
   {
     label: "Beranda",
@@ -246,7 +249,9 @@ const Sidebar = ({ collapsed, onToggle, isMobileOpen, onNavigation }) => {
           >
             <MdOutlineSupportAgent className="text-lg text-dark" />
             {!collapsed && (
-              <p className="text-sm font-medium">Contact Support </p>
+              <a href={contactSupp} className="text-sm font-medium">
+                Contact Support
+              </a>
             )}
           </button>
         </div>
