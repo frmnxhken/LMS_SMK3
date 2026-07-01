@@ -5,6 +5,11 @@ import { useNavigate } from "react-router";
 import BreadCrumb from "./BreadCrumb";
 import { env } from "@/shared/lib/Config";
 
+const ROLES_MAPPING = {
+  student: "Siswa",
+  teacher: "Guru",
+};
+
 const Navbar = ({ onMenuClick }) => {
   const { user } = useAuth();
   const navigate = useNavigate();
@@ -16,7 +21,12 @@ const Navbar = ({ onMenuClick }) => {
       </button>
       <BreadCrumb />
       <div className="flex items-center gap-2">
-        <p className="text-sm font-medium">{user.name}</p>
+        <div className="text-right">
+          <p className="text-sm font-medium">{user.name}</p>
+          <p className="text-sm font-medium text-text-muted">
+            {ROLES_MAPPING[user?.role]}
+          </p>
+        </div>
         <img
           onClick={() => navigate("profile")}
           src={env.IMAGE_URL + user.photo}
