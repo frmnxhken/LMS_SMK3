@@ -27,6 +27,7 @@ import {
   AdminReportHistoryPage,
   AdminReportExportPage,
 } from "@/features/admin-report";
+import SettingSchoolPage from "@/features/setting/pages/SettingSchoolPage";
 
 const AdminRoute = () => {
   return (
@@ -73,6 +74,7 @@ const AdminRoute = () => {
       </Route>
 
       <Route path="subject" element={<SubjectPage />} />
+      <Route path="setting" element={<SettingSchoolPage />} />
     </Route>
   );
 };
