@@ -7,7 +7,9 @@ const SettingSchoolForm = ({ initData, onSubmit, isPending, errors }) => {
     latitude: initData?.latitude || "",
     longitude: initData?.longitude || "",
     radius: initData?.radius || "",
+    open_time: initData?.open_time || "",
     start_time: initData?.start_time || "",
+    late_time: initData?.late_time || "",
   });
 
   const handleInput = (e) =>
@@ -45,11 +47,27 @@ const SettingSchoolForm = ({ initData, onSubmit, isPending, errors }) => {
       />
       <FormInput
         onInput={handleInput}
-        label="Jam Masuk"
+        label="Jam Buka Absensi"
+        type="time"
+        name="open_time"
+        value={formData.open_time}
+        feedback={errors?.open_time?.[0]}
+      />
+      <FormInput
+        onInput={handleInput}
+        label="Jam Masuk Sekolah"
         type="time"
         name="start_time"
         value={formData.start_time}
         feedback={errors?.start_time?.[0]}
+      />
+      <FormInput
+        onInput={handleInput}
+        label="Jam Maksimal Keterlambatan"
+        type="time"
+        name="late_time"
+        value={formData.late_time}
+        feedback={errors?.late_time?.[0]}
       />
       <Button isLoading={isPending}>Simpan</Button>
     </form>

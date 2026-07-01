@@ -20,6 +20,7 @@ import {
   MdOutlineDashboard,
   MdOutlineDns,
   MdLocationOn,
+  MdSettings,
 } from "react-icons/md";
 import { Link, useLocation } from "react-router";
 
@@ -109,6 +110,12 @@ const menuList = [
     label: "Absensi Siswa",
     icon: MdLocationOn,
     path: "/dashboard/attendance",
+    roles: ["admin"],
+  },
+  {
+    label: "Pengaturan",
+    icon: MdSettings,
+    path: "/dashboard/setting",
     roles: ["admin"],
   },
 ];

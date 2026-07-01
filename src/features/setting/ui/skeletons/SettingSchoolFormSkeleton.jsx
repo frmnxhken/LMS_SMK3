@@ -7,6 +7,8 @@ const SettingSchoolFormSkeleton = () => {
       <SkeletonBar className="w-full h-10" />
       <SkeletonBar className="w-full h-10" />
       <SkeletonBar className="w-full h-10" />
+      <SkeletonBar className="w-full h-10" />
+      <SkeletonBar className="w-full h-10" />
       <SkeletonBar className="w-25 h-10" />
     </div>
   );

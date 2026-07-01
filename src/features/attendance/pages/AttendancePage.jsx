@@ -90,6 +90,7 @@ export const AttendancePage = () => {
       )}
 
       <AttendanceCard
+        radius={data?.meta?.radius}
         status={locationState.status}
         distance={locationState.distance}
         isInRange={locationState.isInRange}

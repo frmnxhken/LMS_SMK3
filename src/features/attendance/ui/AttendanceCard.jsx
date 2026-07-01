@@ -6,6 +6,7 @@ import Button from "@/shared/ui/buttons/Button";
 
 const AttendanceCard = ({
   status,
+  radius,
   distance,
   isInRange,
   onRefresh,
@@ -75,7 +76,7 @@ const AttendanceCard = ({
               </Button>
               {!canAbsen && status === "active" && (
                 <p className="text-[10px] font-bold text-orange-500 uppercase">
-                  Radius Maksimal 50 Meter
+                  Radius Maksimal {radius} Meter
                 </p>
               )}
             </>
