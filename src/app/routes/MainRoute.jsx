@@ -15,6 +15,8 @@ import {
   QuestionEditPage,
 } from "@/features/question-bank";
 import { TaskPage, TaskCalendarPage } from "@/features/task";
+import GradePage from "@/features/grade/pages/GradePage";
+import GradeSubjectPage from "@/features/grade/pages/GradeSubjectPage";
 
 const MainRoute = () => {
   return (
@@ -35,6 +37,8 @@ const MainRoute = () => {
         <Route path="/task" element={<TaskPage />} />
         <Route path="/calendar" element={<TaskCalendarPage />} />
         <Route path="/attendance" element={<AttendancePage />} />
+        <Route path="/grade" element={<GradePage />} />
+        <Route path="/grade/:subject" element={<GradeSubjectPage />} />
       </Route>
     </Route>
   );

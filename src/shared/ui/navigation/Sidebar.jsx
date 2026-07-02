@@ -21,6 +21,8 @@ import {
   MdOutlineDns,
   MdLocationOn,
   MdSettings,
+  MdHistoryEdu,
+  MdHistory,
 } from "react-icons/md";
 import { Link, useLocation } from "react-router";
 
@@ -56,6 +58,12 @@ const menuList = [
     label: "Absensi",
     icon: MdChecklistRtl,
     path: "/attendance",
+    roles: ["student"],
+  },
+  {
+    label: "Nilai Saya",
+    icon: MdHistory,
+    path: "/grade",
     roles: ["student"],
   },
   {

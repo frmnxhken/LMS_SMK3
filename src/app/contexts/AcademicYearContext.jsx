@@ -41,7 +41,14 @@ export function AcademicYearProvider({ children }) {
   }, [queryClient, addToast]);
 
   return (
-    <AcademicYearContext.Provider value={{ status: data?.status, isLoading }}>
+    <AcademicYearContext.Provider
+      value={{
+        status: data?.status,
+        academicYear:
+          data?.start.split("-")[0] + " / " + data?.end.split("-")[0],
+        isLoading,
+      }}
+    >
       {children}
     </AcademicYearContext.Provider>
   );
